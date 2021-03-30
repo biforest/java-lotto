@@ -6,7 +6,10 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
-class PrizeMoneyTest {
+import domain.prize.Result;
+import domain.prize.WinningStatistics;
+
+class WinningStatisticsTest {
 
     @Test
     void 총수익률을_계산한다() {
@@ -15,7 +18,7 @@ class PrizeMoneyTest {
         int purchasePrice = 15000;
 
         // when
-        float earningsRate = PrizeMoney.calculateEarningsRate(result, purchasePrice);
+        float earningsRate = WinningStatistics.calculateEarningsRate(result, purchasePrice);
 
         // then
         assertThat(earningsRate).isEqualTo(

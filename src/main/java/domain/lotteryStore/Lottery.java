@@ -1,4 +1,4 @@
-package domain;
+package domain.lotteryStore;
 
 public class Lottery {
     private final Numbers numbers;

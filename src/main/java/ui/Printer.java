@@ -2,10 +2,9 @@ package ui;
 
 import java.util.List;
 
-import domain.Lotteries;
-import domain.Message;
-import domain.PrizeMoney;
-import domain.Result;
+import domain.lotteryStore.Lotteries;
+import domain.prize.Result;
+import domain.prize.WinningStatistics;
 
 public class Printer {
 
@@ -24,7 +23,7 @@ public class Printer {
 
     public void printWinningStatistics(Result result) {
         StringBuilder builder = new StringBuilder();
-        PrizeMoney[] prizeMonies = PrizeMoney.values();
+        WinningStatistics[] prizeMonies = WinningStatistics.values();
         List<Integer> results = result.getResult();
 
         builder.append(Message.WINNING_STATISTICS.getMessage()).append(Message.BOUNDARY_LINE.getMessage());
@@ -34,15 +33,16 @@ public class Printer {
         System.out.print(builder);
     }
 
-    private void printWinningStatisticsDetails(StringBuilder builder, PrizeMoney prizeMoney, Integer result, int i) {
-        builder.append(prizeMoney.getMatchingCount());
+    private void printWinningStatisticsDetails(StringBuilder builder, WinningStatistics winningStatistics,
+        Integer result, int i) {
+        builder.append(winningStatistics.getMatchingCount());
         if (i == 3) {
             builder.append(Message.MATCH_COUNT_BONUS.getMessage());
         }
         if (i != 3) {
             builder.append(Message.MATCH_COUNT.getMessage());
         }
-        builder.append(prizeMoney.getPrizeMoney())
+        builder.append(winningStatistics.getPrizeMoney())
             .append(Message.WON.getMessage())
             .append(result)
             .append(Message.COUNT.getMessage());

@@ -1,8 +1,8 @@
-package domain;
+package domain.prize;
 
 import java.util.List;
 
-public enum PrizeMoney {
+public enum WinningStatistics {
     THREE(3, 5000),
     FOUR(4, 50000),
     FIVE(5, 1500000),
@@ -12,7 +12,7 @@ public enum PrizeMoney {
     private final int matchingCount;
     private final int prizeMoney;
 
-    PrizeMoney(int matchingCount, int prizeMoney) {
+    WinningStatistics(int matchingCount, int prizeMoney) {
         this.matchingCount = matchingCount;
         this.prizeMoney = prizeMoney;
     }
@@ -21,7 +21,7 @@ public enum PrizeMoney {
         List<Integer> matchingCounts = result.getResult();
         int totalPrizeMoney = 0;
         for (int i = 0; i < 5; i++) {
-            totalPrizeMoney += matchingCounts.get(i) * (PrizeMoney.values())[i].prizeMoney;
+            totalPrizeMoney += matchingCounts.get(i) * (WinningStatistics.values())[i].prizeMoney;
         }
 
         return (float)totalPrizeMoney / purchasePrice;

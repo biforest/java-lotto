@@ -1,8 +1,8 @@
-package ui;
+package ui.receiver;
 
 import java.util.Scanner;
 
-import domain.Message;
+import ui.Message;
 
 public class Receiver {
     private static final Scanner SCANNER = new Scanner(System.in);

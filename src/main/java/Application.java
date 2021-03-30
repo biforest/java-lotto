@@ -1,8 +1,8 @@
-import domain.Lotteries;
-import domain.LotteryMachine;
-import domain.LotteryStore;
+import domain.lotteryService.LotteryMachine;
+import domain.lotteryStore.Lotteries;
+import domain.lotteryStore.LotteryStore;
 import ui.Printer;
-import ui.Receiver;
+import ui.receiver.Receiver;
 
 public class Application {
     public static void main(String[] args) {

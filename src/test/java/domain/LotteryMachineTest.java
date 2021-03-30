@@ -7,6 +7,12 @@ import java.util.Arrays;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import domain.lotteryService.LotteryMachine;
+import domain.lotteryStore.Lotteries;
+import domain.lotteryStore.Lottery;
+import domain.lotteryStore.Numbers;
+import domain.prize.Result;
+
 class LotteryMachineTest {
 
     private LotteryMachine lotteryMachine;
