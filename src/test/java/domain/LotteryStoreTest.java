@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import domain.lotteryStore.Lotteries;
 import domain.lotteryStore.LotteryStore;
+import domain.lotteryStore.TargetNumbers;
 
 class LotteryStoreTest {
 
@@ -14,7 +15,7 @@ class LotteryStoreTest {
 
     @BeforeEach
     void setUp() {
-        lotteryStore = new LotteryStore();
+        lotteryStore = new LotteryStore(new TargetNumbers());
     }
 
     @Test

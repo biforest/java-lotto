@@ -1,21 +1,14 @@
 package domain.lotteryStore;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class LotteryStore {
-    private final List<Integer> targetNumbers = new ArrayList<>();
+    private final TargetNumbers targetNumbers;
 
-    public LotteryStore() {
-        initNumbers();
-    }
-
-    private void initNumbers() {
-        for (int i = 1; i <= 45; i++) {
-            targetNumbers.add(i);
-        }
+    public LotteryStore(TargetNumbers targetNumbers) {
+        this.targetNumbers = targetNumbers;
     }
 
     public Lotteries createLotteries(int count) {
@@ -27,9 +20,10 @@ public class LotteryStore {
     }
 
     private Lottery createLottery() {
-        Collections.shuffle(targetNumbers);
+        targetNumbers.shuffle();
         Numbers numbers = new Numbers(
-            targetNumbers.stream()
+            targetNumbers.getTargetNumbers()
+                .stream()
                 .limit(6)
                 .collect(Collectors.toList()));
         return new Lottery(numbers);
