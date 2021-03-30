@@ -26,4 +26,12 @@ public enum PrizeMoney {
 
         return (float)totalPrizeMoney / purchasePrice;
     }
+
+    public int getMatchingCount() {
+        return matchingCount;
+    }
+
+    public int getPrizeMoney() {
+        return prizeMoney;
+    }
 }
