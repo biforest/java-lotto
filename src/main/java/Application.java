@@ -2,13 +2,17 @@ import domain.lotteryService.LotteryMachine;
 import domain.lotteryStore.Lotteries;
 import domain.lotteryStore.LotteryStore;
 import ui.Printer;
+import ui.receiver.InputValidator;
 import ui.receiver.Receiver;
 
 public class Application {
     public static void main(String[] args) {
         Receiver receiver = new Receiver();
         Printer printer = new Printer();
-        int purchasedCount = printer.printPurchasedCount(receiver.receivePurchasePrice());
+
+        int purchasePrice = receiver.receivePurchasePrice();
+        InputValidator.validatePurchasePrice(purchasePrice);
+        int purchasedCount = printer.printPurchasedCount(purchasePrice);
 
         LotteryStore lotteryStore = new LotteryStore();
         Lotteries lotteries = lotteryStore.createLotteries(purchasedCount);
