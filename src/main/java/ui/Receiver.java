@@ -14,6 +14,7 @@ public class Receiver {
 
     public String receiveWinningNumbers() {
         System.out.println(Message.INPUT_LAST_WEEK_WINNING_NUMBERS.getMessage());
+        SCANNER.nextLine();
         return SCANNER.nextLine();
     }
 

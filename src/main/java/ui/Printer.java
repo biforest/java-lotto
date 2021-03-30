@@ -16,5 +16,6 @@ public class Printer {
             .stream()
             .map(lottery -> lottery.getNumbers().getNumbers())
             .forEach(System.out::println);
+        System.out.println();
     }
 }

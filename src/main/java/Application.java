@@ -1,4 +1,5 @@
 import domain.Lotteries;
+import domain.LotteryMachine;
 import domain.LotteryStore;
 import ui.Printer;
 import ui.Receiver;
@@ -12,5 +13,8 @@ public class Application {
         LotteryStore lotteryStore = new LotteryStore();
         Lotteries lotteries = lotteryStore.createLotteries(purchasedCount);
         printer.printPurchasedLotteries(lotteries);
+
+        LotteryMachine lotteryMachine = new LotteryMachine(receiver.receiveWinningNumbers(),
+            receiver.receiveBonusNumber());
     }
 }
