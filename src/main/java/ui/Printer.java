@@ -11,7 +11,10 @@ public class Printer {
         return purchasedCount;
     }
 
-    public void printLotteries(Lotteries lotteries) {
-
+    public void printPurchasedLotteries(Lotteries lotteries) {
+        lotteries.getLotteries()
+            .stream()
+            .map(lottery -> lottery.getNumbers().getNumbers())
+            .forEach(System.out::println);
     }
 }

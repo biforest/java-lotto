@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class LotteryStore {
-    private List<Integer> numbers = new ArrayList<>();
+    private final List<Integer> targetNumbers = new ArrayList<>();
 
     public LotteryStore() {
         initNumbers();
@@ -14,7 +14,7 @@ public class LotteryStore {
 
     private void initNumbers() {
         for (int i = 1; i <= 45; i++) {
-            numbers.add(i);
+            targetNumbers.add(i);
         }
     }
 
@@ -23,13 +23,15 @@ public class LotteryStore {
         while (count-- > 0) {
             lotteries.add(createLottery());
         }
-
         return new Lotteries(lotteries);
     }
 
     private Lottery createLottery() {
-        Collections.shuffle(numbers);
-        Numbers numbers1 = new Numbers(numbers.stream().limit(6).collect(Collectors.toList()));
-        return new Lottery(numbers1);
+        Collections.shuffle(targetNumbers);
+        Numbers numbers = new Numbers(
+            targetNumbers.stream()
+                .limit(6)
+                .collect(Collectors.toList()));
+        return new Lottery(numbers);
     }
 }
