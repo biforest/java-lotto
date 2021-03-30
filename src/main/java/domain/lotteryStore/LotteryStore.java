@@ -2,7 +2,6 @@ package domain.lotteryStore;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class LotteryStore {
     private final TargetNumbers targetNumbers;
@@ -21,11 +20,7 @@ public class LotteryStore {
 
     private Lottery createLottery() {
         targetNumbers.shuffle();
-        Numbers numbers = new Numbers(
-            targetNumbers.getTargetNumbers()
-                .stream()
-                .limit(6)
-                .collect(Collectors.toList()));
+        Numbers numbers = new Numbers(targetNumbers.getSixNumbersFromTheFront());
         return new Lottery(numbers);
     }
 }
