@@ -1,32 +1,41 @@
 package domain.lotteryService;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import domain.lotteryStore.Lotteries;
 import domain.lotteryStore.Lottery;
 import domain.prize.Result;
-import domain.prize.WinningStatistics;
+import domain.prize.Results;
 
 public class LotteryMachine {
+    private static final int SIZE_OF_WINNING_NUMBERS = 6;
+
     private final WinningNumbers winningNumbers;
     private final BonusNumber bonusNumber;
 
     public LotteryMachine(String winningNumbers, int bonusNumber) {
-        // winningNumbers의 생성자에 bonusNumber를 넘겨주는 것은 좋지 않다고 생각하지만 그럼 어디서 validate?
-        this.winningNumbers = new WinningNumbers(winningNumbers, bonusNumber);
+        this.winningNumbers = new WinningNumbers(winningNumbers);
         this.bonusNumber = new BonusNumber(bonusNumber);
     }
 
-    public WinningStatistics compareNumbers(Lotteries lotteries, int purchasedCount) {
-        return null;
+    public Results compareNumbers(Lotteries lotteries, int purchasedCount) {
+        List<Result> results = new ArrayList<>();
+        for (int i = 0; i < purchasedCount; i++) {
+            results.add(compareOneTicketNumbers(lotteries.get(i)));
+        }
+
+        return new Results(results);
     }
 
     private Result compareOneTicketNumbers(Lottery lottery) {
         int matchingCount = 0;
-        boolean hasBonusNumber = false;
+        boolean hasBonusNumber;
 
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < SIZE_OF_WINNING_NUMBERS; i++) {
             matchingCount += matchWinningNumbers(lottery, i);
-            hasBonusNumber = hasBonusNumber(lottery);
         }
+        hasBonusNumber = hasBonusNumber(lottery);
 
         return new Result(matchingCount, hasBonusNumber);
     }

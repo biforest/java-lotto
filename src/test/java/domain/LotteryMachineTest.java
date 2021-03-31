@@ -3,21 +3,19 @@ package domain;
 import static org.assertj.core.api.Assertions.*;
 
 import java.util.Arrays;
+import java.util.List;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import domain.lotteryService.LotteryMachine;
 import domain.lotteryStore.Lotteries;
 import domain.lotteryStore.Lottery;
 import domain.lotteryStore.Numbers;
-import domain.prize.WinningStatistics;
+import domain.prize.Result;
 
 class LotteryMachineTest {
 
-    private LotteryMachine lotteryMachine;
-    private int purchasedCount = 6;
-    private Lotteries lotteries = new Lotteries(Arrays.asList(
+    private final Lotteries lotteries = new Lotteries(Arrays.asList(
         new Lottery(new Numbers(Arrays.asList(8, 2, 23, 41, 4, 5))),
         new Lottery(new Numbers(Arrays.asList(3, 5, 29, 6, 2, 38))),
         new Lottery(new Numbers(Arrays.asList(4, 31, 5, 40, 2, 1))),
@@ -26,25 +24,29 @@ class LotteryMachineTest {
         new Lottery(new Numbers(Arrays.asList(1, 2, 3, 4, 5, 6)))
     ));
 
-    @BeforeEach
-    void setUp() {
-    }
-
     @Test
-    public void 당첨_번호를_확인한다() throws Exception {
+    public void 각_티켓의_당첨_번호와_일치한_개수와_보너스_숫자를_확인한다() throws Exception {
         //given
         String winningNumbers = "1, 2, 3, 4, 5, 6";
         int bonusNumber = 7;
-        lotteryMachine = new LotteryMachine(winningNumbers, bonusNumber);
+        LotteryMachine lotteryMachine = new LotteryMachine(winningNumbers, bonusNumber);
 
         //when
-        WinningStatistics winningStatistics = lotteryMachine.compareNumbers(lotteries, purchasedCount);
+        int purchasedCount = 6;
+        List<Result> results = lotteryMachine.compareNumbers(lotteries, purchasedCount).getResults();
 
         //then
-        assertThat(winningStatistics.getMatchingCounts().get(0)).isEqualTo(1);
-        assertThat(winningStatistics.getMatchingCounts().get(1)).isEqualTo(2);
-        assertThat(winningStatistics.getMatchingCounts().get(2)).isEqualTo(1);
-        assertThat(winningStatistics.getMatchingCounts().get(3)).isEqualTo(1);
-        assertThat(winningStatistics.getMatchingCounts().get(4)).isEqualTo(1);
+        assertThat(results.get(0).getMatchingCount()).isEqualTo(3);
+        assertThat(results.get(0).isHavingBonusNumber()).isEqualTo(false);
+        assertThat(results.get(1).getMatchingCount()).isEqualTo(4);
+        assertThat(results.get(1).isHavingBonusNumber()).isEqualTo(false);
+        assertThat(results.get(2).getMatchingCount()).isEqualTo(4);
+        assertThat(results.get(2).isHavingBonusNumber()).isEqualTo(false);
+        assertThat(results.get(3).getMatchingCount()).isEqualTo(5);
+        assertThat(results.get(3).isHavingBonusNumber()).isEqualTo(false);
+        assertThat(results.get(4).getMatchingCount()).isEqualTo(5);
+        assertThat(results.get(4).isHavingBonusNumber()).isEqualTo(true);
+        assertThat(results.get(5).getMatchingCount()).isEqualTo(6);
+        assertThat(results.get(5).isHavingBonusNumber()).isEqualTo(false);
     }
 }
