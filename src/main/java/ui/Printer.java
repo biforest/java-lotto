@@ -28,12 +28,12 @@ public class Printer {
     public void printWinningStatistics(WinningStatistics winningStatistics) {
         StringBuilder builder = new StringBuilder();
         PrizeMoney[] prizeMonies = PrizeMoney.values();
-        List<Integer> results = winningStatistics.getMatchingCounts();
+        List<Integer> sizeOfWinnersPerRank = winningStatistics.getRankings();
 
         builder.append(Message.OutputMessage.WINNING_STATISTICS.getMessage())
             .append(Message.OutputMessage.BOUNDARY_LINE.getMessage());
-        for (int i = 0; i < 5; i++) {
-            printWinningStatisticsDetails(builder, prizeMonies[i], results.get(i), i);
+        for (int i = 0; i < SIZE_OF_LOTTERY_RANK; i++) {
+            printWinningStatisticsDetails(builder, prizeMonies[i], sizeOfWinnersPerRank.get(i), i);
         }
         System.out.print(builder);
     }

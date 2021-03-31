@@ -17,14 +17,14 @@ public enum PrizeMoney {
         this.prizeMoney = prizeMoney;
     }
 
-    public static float calculateEarningsRate(WinningStatistics winningStatistics, int purchasePrice) {
-        List<Integer> matchingCounts = winningStatistics.getMatchingCounts();
+    public static float calculateEarningsRate(WinningStatistics winningStatistics, int purchasedCount) {
+        List<Integer> sizeOfWinnersPerRank = winningStatistics.getRankings();
         int totalPrizeMoney = 0;
         for (int i = 0; i < 5; i++) {
-            totalPrizeMoney += matchingCounts.get(i) * (PrizeMoney.values())[i].prizeMoney;
+            totalPrizeMoney += sizeOfWinnersPerRank.get(i) * (PrizeMoney.values())[i].prizeMoney;
         }
 
-        return (float)totalPrizeMoney / purchasePrice;
+        return (float)totalPrizeMoney / (purchasedCount * 1000);
     }
 
     public int getMatchingCount() {

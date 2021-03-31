@@ -11,7 +11,7 @@ public class WinningNumbers {
 
     final List<Integer> winningNumbers;
 
-    public WinningNumbers(String winningNumbers, int bonusNumber) {
+    public WinningNumbers(String winningNumbers) {
         this.winningNumbers = splitWinningNumbers(winningNumbers);
         // TODO: bonusNumber와 겹치는 winningNumbers가 있는지 확인 -> 여기서 해야하나?
     }
@@ -33,6 +33,14 @@ public class WinningNumbers {
 
     public int get(int index) {
         return winningNumbers.get(index);
+    }
+
+    public int size() {
+        return winningNumbers.size();
+    }
+
+    public boolean contains(int numberToCompare) {
+        return winningNumbers.contains(numberToCompare);
     }
 
     public List<Integer> getWinningNumbers() {
