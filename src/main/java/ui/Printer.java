@@ -7,9 +7,13 @@ import domain.prize.PrizeMoney;
 import domain.prize.WinningStatistics;
 
 public class Printer {
+    private static final int PRICE_OF_ONE_LOTTERY_TICKET = 1000;
+    private static final int SIZE_OF_LOTTERY_RANK = 5;
+    private static final int WIN_WITH_BONUS_NUMBER = 3;
+    private static final String LIMIT_OF_DECIMAL_PLACE = "%.2f";
 
     public int printPurchasedCount(int purchasePrice) {
-        int purchasedCount = purchasePrice / 1000;
+        int purchasedCount = purchasePrice / PRICE_OF_ONE_LOTTERY_TICKET;
         System.out.println(purchasedCount + Message.OutputMessage.PURCHASED_COUNT.getMessage());
         return purchasedCount;
     }
@@ -37,10 +41,10 @@ public class Printer {
     private void printWinningStatisticsDetails(StringBuilder builder, PrizeMoney prizeMoney,
         Integer result, int i) {
         builder.append(prizeMoney.getMatchingCount());
-        if (i == 3) {
+        if (i == WIN_WITH_BONUS_NUMBER) {
             builder.append(Message.OutputMessage.MATCH_COUNT_BONUS.getMessage());
         }
-        if (i != 3) {
+        if (i != WIN_WITH_BONUS_NUMBER) {
             builder.append(Message.OutputMessage.MATCH_COUNT.getMessage());
         }
         builder.append(prizeMoney.getPrizeMoney())
@@ -51,7 +55,8 @@ public class Printer {
 
     public void printTotalEarningsRate(float totalEarningsRate) {
         System.out.println(
-            Message.OutputMessage.TOTAL_EARNINGS_RATE.getMessage() + String.format("%.2f", totalEarningsRate)
+            Message.OutputMessage.TOTAL_EARNINGS_RATE.getMessage() + String.format(LIMIT_OF_DECIMAL_PLACE,
+                totalEarningsRate)
                 + Message.OutputMessage.CLOSING_MENTION.getMessage());
     }
 }

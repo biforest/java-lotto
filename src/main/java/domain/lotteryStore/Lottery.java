@@ -7,8 +7,8 @@ public class Lottery {
         this.numbers = numbers;
     }
 
-    public boolean contains(int number) {
-        return numbers.getNumbers().contains(number);
+    public boolean contains(int numberToCompare) {
+        return numbers.getNumbers().contains(numberToCompare);
     }
 
     public Numbers getNumbers() {

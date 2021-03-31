@@ -1,13 +1,9 @@
-package domain;
+package domain.lotteryStore;
 
 import static org.assertj.core.api.Assertions.*;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import domain.lotteryStore.Lotteries;
-import domain.lotteryStore.LotteryStore;
-import domain.lotteryStore.TargetNumbers;
 
 class LotteryStoreTest {
 

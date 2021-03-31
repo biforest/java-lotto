@@ -9,6 +9,10 @@ public class Lotteries {
         this.lotteries = lotteries;
     }
 
+    public Lottery get(int index) {
+        return lotteries.get(index);
+    }
+
     public List<Lottery> getLotteries() {
         return lotteries;
     }

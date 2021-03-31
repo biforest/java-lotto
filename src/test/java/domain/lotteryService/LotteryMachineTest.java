@@ -1,4 +1,4 @@
-package domain;
+package domain.lotteryService;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -7,7 +7,6 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import domain.lotteryService.LotteryMachine;
 import domain.lotteryStore.Lotteries;
 import domain.lotteryStore.Lottery;
 import domain.lotteryStore.Numbers;
