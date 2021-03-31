@@ -7,6 +7,10 @@ public class Lottery {
         this.numbers = numbers;
     }
 
+    public boolean contains(int number) {
+        return numbers.getNumbers().contains(number);
+    }
+
     public Numbers getNumbers() {
         return numbers;
     }

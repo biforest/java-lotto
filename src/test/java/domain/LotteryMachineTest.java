@@ -11,7 +11,7 @@ import domain.lotteryService.LotteryMachine;
 import domain.lotteryStore.Lotteries;
 import domain.lotteryStore.Lottery;
 import domain.lotteryStore.Numbers;
-import domain.prize.Result;
+import domain.prize.WinningStatistics;
 
 class LotteryMachineTest {
 
@@ -38,13 +38,13 @@ class LotteryMachineTest {
         lotteryMachine = new LotteryMachine(winningNumbers, bonusNumber);
 
         //when
-        Result result = lotteryMachine.compareNumbers(lotteries, purchasedCount);
+        WinningStatistics winningStatistics = lotteryMachine.compareNumbers(lotteries, purchasedCount);
 
         //then
-        assertThat(result.getResult().get(0)).isEqualTo(1);
-        assertThat(result.getResult().get(1)).isEqualTo(2);
-        assertThat(result.getResult().get(2)).isEqualTo(1);
-        assertThat(result.getResult().get(3)).isEqualTo(1);
-        assertThat(result.getResult().get(4)).isEqualTo(1);
+        assertThat(winningStatistics.getMatchingCounts().get(0)).isEqualTo(1);
+        assertThat(winningStatistics.getMatchingCounts().get(1)).isEqualTo(2);
+        assertThat(winningStatistics.getMatchingCounts().get(2)).isEqualTo(1);
+        assertThat(winningStatistics.getMatchingCounts().get(3)).isEqualTo(1);
+        assertThat(winningStatistics.getMatchingCounts().get(4)).isEqualTo(1);
     }
 }

@@ -1,15 +1,19 @@
 package domain.prize;
 
-import java.util.List;
-
 public class Result {
-    private final List<Integer> result;
+    private final int matchingCount;
+    private final boolean havingBonusNumber;
 
-    public Result(List<Integer> result) {
-        this.result = result;
+    public Result(int matchingCount, boolean havingBonusNumber) {
+        this.matchingCount = matchingCount;
+        this.havingBonusNumber = havingBonusNumber;
     }
 
-    public List<Integer> getResult() {
-        return result;
+    public int getMatchingCount() {
+        return matchingCount;
+    }
+
+    public boolean isHavingBonusNumber() {
+        return havingBonusNumber;
     }
 }

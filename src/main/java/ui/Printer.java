@@ -3,7 +3,7 @@ package ui;
 import java.util.List;
 
 import domain.lotteryStore.Lotteries;
-import domain.prize.Result;
+import domain.prize.PrizeMoney;
 import domain.prize.WinningStatistics;
 
 public class Printer {
@@ -21,10 +21,10 @@ public class Printer {
             .forEach(System.out::println);
     }
 
-    public void printWinningStatistics(Result result) {
+    public void printWinningStatistics(WinningStatistics winningStatistics) {
         StringBuilder builder = new StringBuilder();
-        WinningStatistics[] prizeMonies = WinningStatistics.values();
-        List<Integer> results = result.getResult();
+        PrizeMoney[] prizeMonies = PrizeMoney.values();
+        List<Integer> results = winningStatistics.getMatchingCounts();
 
         builder.append(Message.OutputMessage.WINNING_STATISTICS.getMessage())
             .append(Message.OutputMessage.BOUNDARY_LINE.getMessage());
@@ -34,16 +34,16 @@ public class Printer {
         System.out.print(builder);
     }
 
-    private void printWinningStatisticsDetails(StringBuilder builder, WinningStatistics winningStatistics,
+    private void printWinningStatisticsDetails(StringBuilder builder, PrizeMoney prizeMoney,
         Integer result, int i) {
-        builder.append(winningStatistics.getMatchingCount());
+        builder.append(prizeMoney.getMatchingCount());
         if (i == 3) {
             builder.append(Message.OutputMessage.MATCH_COUNT_BONUS.getMessage());
         }
         if (i != 3) {
             builder.append(Message.OutputMessage.MATCH_COUNT.getMessage());
         }
-        builder.append(winningStatistics.getPrizeMoney())
+        builder.append(prizeMoney.getPrizeMoney())
             .append(Message.OutputMessage.WON.getMessage())
             .append(result)
             .append(Message.OutputMessage.COUNT.getMessage());

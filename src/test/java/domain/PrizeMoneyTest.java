@@ -6,19 +6,19 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
-import domain.prize.Result;
+import domain.prize.PrizeMoney;
 import domain.prize.WinningStatistics;
 
-class WinningStatisticsTest {
+class PrizeMoneyTest {
 
     @Test
     void 총수익률을_계산한다() {
         // given
-        Result result = new Result(Arrays.asList(3, 4, 0, 2, 1));
+        WinningStatistics winningStatistics = new WinningStatistics(Arrays.asList(3, 4, 0, 2, 1));
         int purchasePrice = 15000;
 
         // when
-        float earningsRate = WinningStatistics.calculateEarningsRate(result, purchasePrice);
+        float earningsRate = PrizeMoney.calculateEarningsRate(winningStatistics, purchasePrice);
 
         // then
         assertThat(earningsRate).isEqualTo(

@@ -1,0 +1,13 @@
+package domain.lotteryService;
+
+public class BonusNumber {
+    private final int bonusNumber;
+
+    public BonusNumber(int bonusNumber) {
+        this.bonusNumber = bonusNumber;
+    }
+
+    public int getBonusNumber() {
+        return bonusNumber;
+    }
+}
