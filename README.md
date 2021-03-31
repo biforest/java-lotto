@@ -15,6 +15,14 @@
 - [ ] 1000원 이하일 경우
 - [ ] 1000원 단위가 아닐 경우
 
+## 클래스 및 매소드
+- Application
+- lottoMachine
+- Generator
+- Printer
+- Receiver
+
+
 
 ## 기능 요구사항
 - 로또 구입 금액을 입력하면 구입 금액에 해당하는 로또를 발급해야 한다.
