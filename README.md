@@ -17,7 +17,8 @@
 
 ## 클래스 및 매소드
 - Application
-- lottoMachine
+- LottoMachine
+- LottoNumber
 - Generator
 - Printer
 - Receiver
