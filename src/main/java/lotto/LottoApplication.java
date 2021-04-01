@@ -43,7 +43,7 @@ public class LottoApplication {
         System.out.println("보너스 볼을 입력해주세요");
         int bonusBall = scanner.nextInt();
         LastWeekWinningBonusBall lastWeekWinningBonusBall = new LastWeekWinningBonusBall(bonusBall);
-        lottoMachine.Discriminator(lottos, lastWeekWinningLotto, lastWeekWinningBonusBall);
+        lottoMachine.Discriminator(lottos, lastWeekWinningLotto, lastWeekWinningBonusBall, numberOfLottoTicket);
     }
 
     public static void main(String[] args) {
