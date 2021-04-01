@@ -1,3 +1,5 @@
+package Domain;
+
 public class Application {
 
     public void run(){
