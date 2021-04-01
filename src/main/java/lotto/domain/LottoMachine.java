@@ -13,31 +13,33 @@ import java.util.List;
 
 public class LottoMachine {
     EnumWinningStatus enumWinningStatus = new EnumWinningStatus();
+    ArrayList<Integer> lottoWinningResults = new ArrayList<>();
+    ArrayList<Boolean> lottoWinningBonusBallResults = new ArrayList<>();
+
     public void Discriminator(
             Lottos lottos,
             LastWeekWinningLotto lastWeekWinningLotto,
             LastWeekWinningBonusBall lastWeekWinningBonusBall,
             NumberOfLottoTicket numberOfLottoTicket
     ){
-        ArrayList<Integer> lottoWinningResults = new ArrayList<>();
-        ArrayList<Boolean> lottoWinningBonusBallResults = new ArrayList<>();
-
         for (LottoTicket lotto : lottos.getLottos())
         {
             List<Boolean> lottoMatchedResult = getMatchLottoNumber(lotto, lastWeekWinningLotto);
             Boolean lottoMatchedBonusBallResult = getMatchLottoBonusBallNumber(lotto, lastWeekWinningBonusBall);
-
             int matchLottoNumberCount = getMatchLottoNumberCount(lottoMatchedResult);
-            lottoWinningBonusBallResults.add(lottoMatchedBonusBallResult);
             lottoWinningResults.add(matchLottoNumberCount);
-            System.out.println(matchLottoNumberCount);
-            System.out.println(lottoMatchedBonusBallResult);
-
+            lottoWinningBonusBallResults.add(lottoMatchedBonusBallResult);
         }
+        LottoFactory lottoFactory = createLottoFactory(lottoWinningResults, lottoWinningBonusBallResults);
+        enumWinningStatus.mappingMatchedLottoWithWinningMoney(lottoFactory, numberOfLottoTicket);
+    }
+
+    private LottoFactory createLottoFactory(ArrayList<Integer> lottoWinningResults, ArrayList<Boolean> lottoWinningBonusBallResults) {
         LottoWinningBonusBallResult lottoWinningBonusBallResult = new LottoWinningBonusBallResult(lottoWinningBonusBallResults);
         LottoWinningResult winningResult = new LottoWinningResult(lottoWinningResults);
+
         LottoFactory lottoFactory = new LottoFactory(winningResult, lottoWinningBonusBallResult);
-        enumWinningStatus.mappingMatchedLottoWithWinningMoney(lottoFactory, numberOfLottoTicket);
+        return lottoFactory;
     }
 
     private int getMatchLottoNumberCount(List<Boolean> lottoMatchedResult){
@@ -46,19 +48,20 @@ public class LottoMachine {
 
     private List<Boolean> getMatchLottoNumber(LottoTicket lotto, LastWeekWinningLotto lastWeekWinningLotto){
         List<Integer> lottoList = lotto.getLotto();
-        List<Integer> lastWeekWinningLottoList = lastWeekWinningLotto.getLotto();
+        List<Integer> lastWeekWinningLottos = lastWeekWinningLotto.getLotto();
         ArrayList<Boolean> lottoMatchedResult = new ArrayList<>();
-        for (int winningLottoNumber = 0; winningLottoNumber < lastWeekWinningLottoList.size(); winningLottoNumber++) {
-            Boolean isMatchLottoNumber = lottoList.contains(lastWeekWinningLottoList.get(winningLottoNumber));
+
+        for (int winningLottoNumber = 0; winningLottoNumber < lastWeekWinningLottos.size(); winningLottoNumber++) {
+            Boolean isMatchLottoNumber = lottoList.contains(lastWeekWinningLottos.get(winningLottoNumber));
             lottoMatchedResult.add(isMatchLottoNumber);
         }
         return lottoMatchedResult;
     }
 
     private Boolean getMatchLottoBonusBallNumber(LottoTicket lotto, LastWeekWinningBonusBall lastWeekWinningBonusBall) {
-        List<Integer> lottoBonusBallList = lotto.getLotto();
-        int lastWeekWinningBonusBallList = lastWeekWinningBonusBall.getLastWeekWinningBonusBall();
-        Boolean isMatchLottoNumber = lottoBonusBallList.contains(lastWeekWinningBonusBallList);
+        List<Integer> lottoBonusBalls = lotto.getLotto();
+        int lastWeekWinningBonusBalls = lastWeekWinningBonusBall.getLastWeekWinningBonusBall();
+        Boolean isMatchLottoNumber = lottoBonusBalls.contains(lastWeekWinningBonusBalls);
         return isMatchLottoNumber;
 
     }
