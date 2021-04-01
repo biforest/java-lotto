@@ -14,6 +14,11 @@ public class Receiver {
         return lottoTotalAmount;
     }
 
+    public int receiveLottoBonusBallNumber() {
+        int lottoBonusBallNumber = scanner.nextInt();
+        return lottoBonusBallNumber;
+    }
+
     public List<Integer> receiveLastWeekLottoWinningNumbers() {
         String lastWeekLottoWinningNumbers = scanner.next();
         List<String> dividedLastWeekLottoWinningNumbers = splitInputLine(lastWeekLottoWinningNumbers);
