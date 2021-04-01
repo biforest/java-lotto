@@ -5,6 +5,7 @@ import java.util.List;
 import domain.lotteryStore.Lotteries;
 import domain.prize.PrizeMoney;
 import domain.prize.WinningStatistics;
+import ui.message.OutputMessage;
 
 public class Printer {
     private static final int PRICE_OF_ONE_LOTTERY_TICKET = 1000;
@@ -14,7 +15,7 @@ public class Printer {
 
     public int printPurchasedCount(int purchasePrice) {
         int purchasedCount = purchasePrice / PRICE_OF_ONE_LOTTERY_TICKET;
-        System.out.println(purchasedCount + Message.OutputMessage.PURCHASED_COUNT.getMessage());
+        System.out.println(purchasedCount + OutputMessage.PURCHASED_COUNT.getMessage());
         return purchasedCount;
     }
 
@@ -30,8 +31,8 @@ public class Printer {
         PrizeMoney[] prizeMonies = PrizeMoney.values();
         List<Integer> sizeOfWinnersPerRank = winningStatistics.getRankings();
 
-        builder.append(Message.OutputMessage.WINNING_STATISTICS.getMessage())
-            .append(Message.OutputMessage.BOUNDARY_LINE.getMessage());
+        builder.append(OutputMessage.WINNING_STATISTICS.getMessage())
+            .append(OutputMessage.BOUNDARY_LINE.getMessage());
         for (int i = 0; i < SIZE_OF_LOTTERY_RANK; i++) {
             printWinningStatisticsDetails(builder, prizeMonies[i], sizeOfWinnersPerRank.get(i), i);
         }
@@ -42,21 +43,21 @@ public class Printer {
         Integer result, int i) {
         builder.append(prizeMoney.getMatchingCount());
         if (i == WIN_WITH_BONUS_NUMBER) {
-            builder.append(Message.OutputMessage.MATCH_COUNT_BONUS.getMessage());
+            builder.append(OutputMessage.MATCH_COUNT_BONUS.getMessage());
         }
         if (i != WIN_WITH_BONUS_NUMBER) {
-            builder.append(Message.OutputMessage.MATCH_COUNT.getMessage());
+            builder.append(OutputMessage.MATCH_COUNT.getMessage());
         }
         builder.append(prizeMoney.getPrizeMoney())
-            .append(Message.OutputMessage.WON.getMessage())
+            .append(OutputMessage.WON.getMessage())
             .append(result)
-            .append(Message.OutputMessage.COUNT.getMessage());
+            .append(OutputMessage.COUNT.getMessage());
     }
 
     public void printTotalEarningsRate(float totalEarningsRate) {
         System.out.println(
-            Message.OutputMessage.TOTAL_EARNINGS_RATE.getMessage() + String.format(LIMIT_OF_DECIMAL_PLACE,
+            OutputMessage.TOTAL_EARNINGS_RATE.getMessage() + String.format(LIMIT_OF_DECIMAL_PLACE,
                 totalEarningsRate)
-                + Message.OutputMessage.CLOSING_MENTION.getMessage());
+                + OutputMessage.CLOSING_MENTION.getMessage());
     }
 }

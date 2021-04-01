@@ -8,6 +8,9 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import domain.lotteryService.Result;
+import domain.lotteryService.Results;
+
 class PrizeMoneyTest {
 
     @Test

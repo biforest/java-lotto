@@ -5,8 +5,6 @@ import java.util.List;
 
 import domain.lotteryStore.Lotteries;
 import domain.lotteryStore.Lottery;
-import domain.prize.Result;
-import domain.prize.Results;
 
 public class LotteryMachine {
     private static final int SIZE_OF_WINNING_NUMBERS = 6;

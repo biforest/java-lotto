@@ -10,7 +10,6 @@ import org.junit.jupiter.api.Test;
 import domain.lotteryStore.Lotteries;
 import domain.lotteryStore.Lottery;
 import domain.lotteryStore.Numbers;
-import domain.prize.Result;
 
 class LotteryMachineTest {
 

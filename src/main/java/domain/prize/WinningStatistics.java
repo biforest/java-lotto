@@ -3,6 +3,9 @@ package domain.prize;
 import java.util.Arrays;
 import java.util.List;
 
+import domain.lotteryService.Result;
+import domain.lotteryService.Results;
+
 public class WinningStatistics {
     private static final int FIFTH_PLACE_INDEX = 0;
     private static final int FOURTH_PLACE_INDEX = 1;

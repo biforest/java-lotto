@@ -1,4 +1,4 @@
-package domain.prize;
+package domain.lotteryService;
 
 import java.util.List;
 

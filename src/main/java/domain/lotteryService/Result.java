@@ -1,4 +1,4 @@
-package domain.prize;
+package domain.lotteryService;
 
 public class Result {
     private final int matchingCount;

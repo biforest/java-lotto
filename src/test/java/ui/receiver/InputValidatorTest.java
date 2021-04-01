@@ -4,7 +4,7 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import domain.lotteryService.WinningNumbers;
-import ui.Message;
+import ui.message.ExceptionMessage;
 
 class InputValidatorTest {
 
@@ -17,6 +17,6 @@ class InputValidatorTest {
         //then
         Assertions.assertThatThrownBy(() -> InputValidator.validateDuplicateWinningNumbers(winningNumbers))
             .isInstanceOf(IllegalArgumentException.class)
-            .hasMessageContaining(Message.ExceptionMessage.DUPLICATE_NUMBERS.getMessage());
+            .hasMessageContaining(ExceptionMessage.DUPLICATE_NUMBERS.getMessage());
     }
 }
