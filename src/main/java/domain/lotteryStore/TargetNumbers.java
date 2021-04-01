@@ -9,10 +9,10 @@ public class TargetNumbers {
     private final List<Integer> targetNumbers = new ArrayList<>();
 
     public TargetNumbers() {
-        initNumbers();
+        initiateNumbers();
     }
 
-    private void initNumbers() {
+    private void initiateNumbers() {
         for (int i = 1; i <= 45; i++) {
             targetNumbers.add(i);
         }

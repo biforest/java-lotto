@@ -1,4 +1,4 @@
-package domain.prize;
+package domain.winningStatistics;
 
 import java.util.List;
 
@@ -20,7 +20,7 @@ public enum PrizeMoney {
     public static float calculateEarningsRate(WinningStatistics winningStatistics, int purchasedCount) {
         List<Integer> sizeOfWinnersPerRank = winningStatistics.getRankings();
         int totalPrizeMoney = 0;
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < sizeOfWinnersPerRank.size(); i++) {
             totalPrizeMoney += sizeOfWinnersPerRank.get(i) * (PrizeMoney.values())[i].prizeMoney;
         }
 

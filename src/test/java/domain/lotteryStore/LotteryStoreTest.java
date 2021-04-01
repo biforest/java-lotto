@@ -11,7 +11,7 @@ class LotteryStoreTest {
 
     @BeforeEach
     void setUp() {
-        lotteryStore = new LotteryStore(new TargetNumbers());
+        lotteryStore = new LotteryStore();
     }
 
     @Test

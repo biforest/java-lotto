@@ -4,11 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LotteryStore {
-    private final TargetNumbers targetNumbers;
-
-    public LotteryStore(TargetNumbers targetNumbers) {
-        this.targetNumbers = targetNumbers;
-    }
+    private final TargetNumbers targetNumbers = new TargetNumbers();
 
     public Lotteries createLotteries(int count) {
         List<Lottery> lotteries = new ArrayList<>();

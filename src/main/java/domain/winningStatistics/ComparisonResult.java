@@ -1,10 +1,10 @@
-package domain.lotteryService;
+package domain.winningStatistics;
 
-public class Result {
+public class ComparisonResult {
     private final int matchingCount;
     private final boolean havingBonusNumber;
 
-    public Result(int matchingCount, boolean havingBonusNumber) {
+    public ComparisonResult(int matchingCount, boolean havingBonusNumber) {
         this.matchingCount = matchingCount;
         this.havingBonusNumber = havingBonusNumber;
     }

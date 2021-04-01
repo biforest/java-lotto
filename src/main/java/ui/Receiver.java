@@ -1,4 +1,4 @@
-package ui.receiver;
+package ui;
 
 import java.util.Scanner;
 
