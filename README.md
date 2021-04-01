@@ -43,7 +43,13 @@
 1, 2, 3, 4, 5, 6
 보너스 볼을 입력해 주세요.
 7
-
+class 3개
+lastweek ()
+bonusnumbe()
+lastweekWinnerLotto
+.method(lastweek, bonus)
+if(5개 맞을 시에)
+  
 당첨 통계
 ---------
 3개 일치 (5000원)- 1개
@@ -70,3 +76,18 @@
 - 로또 자동 생성은 Collections.shuffle() 메소드 활용한다.
 - Collections.sort() 메소드를 활용해 정렬 가능하다.
 - ArrayList의 contains() 메소드를 활용하면 어떤 값이 존재하는지 유무를 판단할 수 있다.
+
+
+- RandomLottoNumber (이거를 strategy처럼 사용해야되나, interface를 만들어야하는지)
+- Lotto (로또 한줄짜리)
+Lottos (로또 여러개묶음)
+- NumberOfLottoTicket
+LottoWinnerNumber(지난주 담청번호)
+LottoWinnerBonusNumber(지난주 보너스번호)
+LottoWinningStrategy(맞으면 countup, 안맞으면 그대로)
+LottoRanks(맞은 개수 별로 로또 갯수 담당 객체)
+LottoProfitRateCalculator
+
+중간중간에 validator 및 exception 추가
+Printer
+Scanner

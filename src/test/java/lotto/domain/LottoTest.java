@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import lotto.domain.exception.NotValidLottoLengthException;
+import lotto.domain.lottoticket.LottoTicket;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -13,7 +14,7 @@ class LottoTest {
         //given
         List<Integer> numbers = List.of(6,7,8,9,10,11);
         List<Integer> actual = List.of(6,7,8,9,10,11);
-        Lotto lotto = new Lotto(numbers);
+        LottoTicket lotto = new LottoTicket(numbers);
 
         //when
         List<Integer> expected = lotto.getLotto();
@@ -29,7 +30,7 @@ class LottoTest {
         //when
         //then
         assertThatExceptionOfType(NotValidLottoLengthException.class).
-                isThrownBy(() -> new Lotto(numbers));
+                isThrownBy(() -> new LottoTicket(numbers));
     }
     @Test
     void 로또_숫자가_6개_미만일_경우_NotValidLottoLengthException을_던진다(){
@@ -39,6 +40,6 @@ class LottoTest {
         //when
         //then
         assertThatExceptionOfType(NotValidLottoLengthException.class).
-                isThrownBy(() -> new Lotto(numbers));
+                isThrownBy(() -> new LottoTicket(numbers));
     }
 }

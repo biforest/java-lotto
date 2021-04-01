@@ -25,7 +25,9 @@ public class RandomLottoNumberStrategy {
 
     private List<Integer> getLottoNumbers(List<Integer> lottoNumberRange){
         Collections.shuffle(lottoNumberRange);
-        return lottoNumberRange.subList(0,LOTTO_NUMBER_COUNT);
+        List<Integer> collectedNumbers = lottoNumberRange.subList(0,LOTTO_NUMBER_COUNT);
+        Collections.sort(collectedNumbers);
+        return collectedNumbers;
     }
 
 }
