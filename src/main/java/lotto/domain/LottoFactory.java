@@ -3,10 +3,6 @@ package lotto.domain;
 import lotto.domain.lottowinningresult.LottoWinningBonusBallResult;
 import lotto.domain.lottowinningresult.LottoWinningResult;
 
-import java.util.ArrayList;
-import java.util.Locale;
-
-
 public class LottoFactory {
     private LottoWinningResult lottoWinningResult;
     private LottoWinningBonusBallResult lottoWinningBonusBallResult;
