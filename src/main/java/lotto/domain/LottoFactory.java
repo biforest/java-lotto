@@ -12,4 +12,12 @@ public class LottoFactory {
         this.lottoWinningBonusBallResult = lottoWinningBonusBallResults;
     }
 
+    public LottoWinningResult getLottoWinningResult(){
+        return this.lottoWinningResult;
+    }
+
+    public LottoWinningBonusBallResult getLottoWinningBonusBallResult(){
+        return this.lottoWinningBonusBallResult;
+    }
+
 }
