@@ -34,9 +34,9 @@
 
 ## 클래스 및 매소드
 - Application
-- LottoMachine
-- LottoNumber
-- Generator
+- Lotto
+- Lottos
+- WinningNumber
 - Printer
 - Receiver
 
