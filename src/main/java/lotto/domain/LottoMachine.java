@@ -4,6 +4,7 @@ import lotto.domain.lastweekwinninglotto.LastWeekWinningBonusBall;
 import lotto.domain.lastweekwinninglotto.LastWeekWinningLotto;
 import lotto.domain.lottoticket.LottoTicket;
 import lotto.domain.lottoticket.Lottos;
+import lotto.domain.lottoticket.NumberOfLottoTicket;
 import lotto.domain.lottowinningresult.LottoWinningBonusBallResult;
 import lotto.domain.lottowinningresult.LottoWinningResult;
 
@@ -15,7 +16,8 @@ public class LottoMachine {
     public void Discriminator(
             Lottos lottos,
             LastWeekWinningLotto lastWeekWinningLotto,
-            LastWeekWinningBonusBall lastWeekWinningBonusBall
+            LastWeekWinningBonusBall lastWeekWinningBonusBall,
+            NumberOfLottoTicket numberOfLottoTicket
     ){
         ArrayList<Integer> lottoWinningResults = new ArrayList<>();
         ArrayList<Boolean> lottoWinningBonusBallResults = new ArrayList<>();
@@ -35,7 +37,7 @@ public class LottoMachine {
         LottoWinningBonusBallResult lottoWinningBonusBallResult = new LottoWinningBonusBallResult(lottoWinningBonusBallResults);
         LottoWinningResult winningResult = new LottoWinningResult(lottoWinningResults);
         LottoFactory lottoFactory = new LottoFactory(winningResult, lottoWinningBonusBallResult);
-        enumWinningStatus.mappingMatchedLottoWithWinningMoney(lottoFactory);
+        enumWinningStatus.mappingMatchedLottoWithWinningMoney(lottoFactory, numberOfLottoTicket);
     }
 
     private int getMatchLottoNumberCount(List<Boolean> lottoMatchedResult){
