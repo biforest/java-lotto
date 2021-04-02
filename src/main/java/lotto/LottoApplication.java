@@ -1,6 +1,10 @@
 package lotto;
 
 import lotto.domain.*;
+import lotto.domain.factory.Issuer;
+import lotto.domain.lotto.LottoTickets;
+import lotto.domain.lotto.WinningNumber;
+import lotto.domain.result.GameResults;
 import lotto.ui.Printer;
 import lotto.ui.Receiver;
 

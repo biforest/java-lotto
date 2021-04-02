@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.domain.result.GameResult;
+import lotto.domain.result.GameResults;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import java.util.Arrays;

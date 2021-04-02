@@ -1,5 +1,9 @@
 package lotto.domain;
 
+import lotto.domain.dto.WinningResult;
+import lotto.domain.result.GameResult;
+import lotto.domain.result.GameResults;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
