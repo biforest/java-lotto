@@ -10,7 +10,7 @@ public class LottoNumber {
     private static final int LOTTO_NUMBER_UPPER_BOUND = 45;
 
     private static final String LOTTO_NUMBER_RANGE_EXCEPTION_MESSAGE =
-            "로또 번호는 " + LOTTO_NUMBER_LOWER_BOUND + "이상, " + LOTTO_NUMBER_UPPER_BOUND + " 이하여야 합니다.";
+            "로또 번호는 " + LOTTO_NUMBER_LOWER_BOUND + " 이상, " + LOTTO_NUMBER_UPPER_BOUND + " 이하여야 합니다.";
 
     private final int lottoNumber;
 
@@ -30,7 +30,7 @@ public class LottoNumber {
     }
 
     public static List<LottoNumber> range() {
-        return IntStream.range(LOTTO_NUMBER_LOWER_BOUND, LOTTO_NUMBER_UPPER_BOUND)
+        return IntStream.range(LOTTO_NUMBER_LOWER_BOUND, LOTTO_NUMBER_UPPER_BOUND + 1)
                 .boxed()
                 .map(LottoNumber::new)
                 .collect(Collectors.toList());
