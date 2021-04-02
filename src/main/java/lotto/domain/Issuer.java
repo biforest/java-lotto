@@ -9,7 +9,7 @@ public class Issuer {
 
     private static final String MONEY_AMOUNT_EXCEPTION_MESSAGE = "금액은 " + TICKET_PRICE + "원 이상으로 입력해주세요.";
 
-    public static LottoTickets issueLottos(int money) {
+    public static LottoTickets issueLottoTickets(int money) {
         int numberOfTickets = money / TICKET_PRICE;
         validate(numberOfTickets);
 

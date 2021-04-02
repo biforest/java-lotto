@@ -10,13 +10,13 @@ import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 class IssuerTest {
 
     @Test
-    void issueLottos() {
+    void issueLottoTickets() {
         //given
         int money = 10000;
         int expected = 10;
 
         //when
-        LottoTickets lottoTickets = Issuer.issueLottos(money);
+        LottoTickets lottoTickets = Issuer.issueLottoTickets(money);
 
         //then
         int actual = lottoTickets.getLottoTickets().size();
@@ -30,7 +30,7 @@ class IssuerTest {
         int expected = 14;
 
         //when
-        LottoTickets lottoTickets = Issuer.issueLottos(money);
+        LottoTickets lottoTickets = Issuer.issueLottoTickets(money);
 
         //then
         int actual = lottoTickets.getLottoTickets().size();
@@ -42,7 +42,7 @@ class IssuerTest {
     void invalidMoney(int money) {
         //when then
         assertThatExceptionOfType(IllegalArgumentException.class)
-                .isThrownBy(() -> Issuer.issueLottos(money))
+                .isThrownBy(() -> Issuer.issueLottoTickets(money))
                 .withMessage("금액은 1000원 이상으로 입력해주세요.");
      }
 }
