@@ -16,7 +16,7 @@ public class LottoMachine {
     ArrayList<Integer> lottoWinningResults = new ArrayList<>();
     ArrayList<Boolean> lottoWinningBonusBallResults = new ArrayList<>();
 
-    public ArrayList<Integer> Discriminator(
+    public ArrayList<WinningStatus> Discriminator(
             Lottos lottos,
             LastWeekWinningLotto lastWeekWinningLotto,
             LastWeekWinningBonusBall lastWeekWinningBonusBall,

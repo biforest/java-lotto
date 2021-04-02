@@ -11,11 +11,11 @@ import java.util.Map;
 
 public class EnumWinningStatus {
     private static final int NOT_MATCH_LOTTO = 0;
-    private ArrayList<Integer> lottoPrices = new ArrayList<>();
-    private Map<Integer, Integer> mappingLottoWithBonusBall = new HashMap<>();
+    private ArrayList<WinningStatus> lottoPrices = new ArrayList<>();
+    private Map<WinningStatus, Integer> mappingLottoWithBonusBall = new HashMap<>();
     private Printer printer = new Printer();
 
-    public ArrayList<Integer> getLottoPrices(LottoFactory lottoFactory, NumberOfLottoTicket numberOfLottoTicket){
+    public ArrayList<WinningStatus> getLottoPrices(LottoFactory lottoFactory, NumberOfLottoTicket numberOfLottoTicket){
         LottoWinningResult lottoWinningResults = lottoFactory.getLottoWinningResult();
         LottoWinningBonusBallResult lottoWinningBonusBallResult = lottoFactory.getLottoWinningBonusBallResult();
 
@@ -44,12 +44,12 @@ public class EnumWinningStatus {
             WinningStatus winningStatus
     ){
         if((lottoMatchedNumber == matchedWinningNumberCount) && (isMatchedBonusBallCount == lottoBonusBallNumber)){
-            lottoPrices.add(winningStatus.getWinningMoney());
+            lottoPrices.add(winningStatus);
         }
     }
 
-    private Map<Integer, Integer> getMappingLottoWithBonusBall() {
-        for (Integer key: lottoPrices
+    private Map<WinningStatus, Integer> getMappingLottoWithBonusBall() {
+        for (WinningStatus key: lottoPrices
              ) {
             mappingLottoWithBonusBall.put(key, mappingLottoWithBonusBall.getOrDefault(key, 0)+1);
         }

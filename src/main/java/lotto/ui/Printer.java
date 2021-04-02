@@ -27,14 +27,12 @@ public class Printer {
         }
     }
 
-    public void printAllMatchedLottoResult(Map<Integer, Integer> lottoPrices) {
-        List<Integer> keySet = new ArrayList(lottoPrices.keySet());
-        keySet.sort(Comparator.comparingInt(lottoPrices::get));
+    public void printAllMatchedLottoResult(Map<WinningStatus, Integer> lottoPrices) {
+        List<WinningStatus> keySet = new ArrayList(lottoPrices.keySet());
+        keySet.sort(Comparator.comparingInt(WinningStatus::getWinningMoney));
 
-        for(Integer key: keySet) {
-//            WinningStatus lottoMatchCountKey = getMappingMatchedLottoCount(key);
-            int lottoMatchCountKey = 1;
-            System.out.println(String.format(PRINT_FINAL_MATCHED_LOTTO_RESULT_MESSAGE, lottoMatchCountKey, key, lottoPrices.get(key)));
+        for(WinningStatus key: keySet) {
+            System.out.println(String.format(PRINT_FINAL_MATCHED_LOTTO_RESULT_MESSAGE, key.getMatchCount(), key.getWinningMoney(), lottoPrices.get(key)));
         }
     }
 
