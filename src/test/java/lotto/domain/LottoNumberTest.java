@@ -7,7 +7,6 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
-import static org.junit.jupiter.api.Assertions.*;
 
 class LottoNumberTest {
 
@@ -33,5 +32,14 @@ class LottoNumberTest {
         assertThatExceptionOfType(IllegalArgumentException.class)
                 .isThrownBy(() -> new LottoNumber(lottoNumber))
                 .withMessage("로또 번호는 1 이상, 45 이하여야 합니다.");
+    }
+
+    @DisplayName("해시코드 테스트 커버리지 커")
+    @Test
+    void testCoverage() {
+        //given when then
+        LottoNumber lottoNumber = new LottoNumber(10);
+        int hashCode = lottoNumber.hashCode();
+        assertThat(hashCode).isEqualTo(lottoNumber.hashCode());
     }
 }
