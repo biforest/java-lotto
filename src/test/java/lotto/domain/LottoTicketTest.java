@@ -36,8 +36,8 @@ class LottoTicketTest {
         //then
         lottoNumbers.forEach(
                 lottoNumber -> assertThat(lottoNumber.getLottoNumber())
-                        .isGreaterThan(LOWER_BOUND)
-                        .isLessThan(UPPER_BOUND)
+                        .isGreaterThanOrEqualTo(LOWER_BOUND)
+                        .isLessThanOrEqualTo(UPPER_BOUND)
         );
     }
 }
