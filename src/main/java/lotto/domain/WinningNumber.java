@@ -24,4 +24,15 @@ public class WinningNumber {
             throw new IllegalArgumentException(BONUS_NUMBER_EXCEPTION_MESSAGE);
         }
     }
+
+    public MatchCount matchNumbers(LottoTicket lottoTicket) {
+        int matchCount = Long.valueOf(
+                winningNumbers.stream()
+                .filter(lottoTicket::contains)
+                .count()
+                ).intValue();
+
+        boolean isBonusMatch = lottoTicket.contains(bonusNumber);
+        return new MatchCount(matchCount, isBonusMatch);
+    }
 }
