@@ -1,10 +1,11 @@
-package lotto.domain;
+package lotto.domain.lotto;
+import lotto.domain.lotto.WinningNumber;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import java.util.Arrays;
 import java.util.List;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
-import static org.junit.jupiter.api.Assertions.*;
+
 class WinningNumberTest {
     @DisplayName("보너스 번호는 당첨 번호에 포함되는 숫자여서는 안된다.")
     @Test

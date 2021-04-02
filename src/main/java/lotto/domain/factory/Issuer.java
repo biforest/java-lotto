@@ -1,4 +1,7 @@
-package lotto.domain;
+package lotto.domain.factory;
+import lotto.domain.lotto.LottoTicket;
+import lotto.domain.lotto.LottoTickets;
+
 import java.util.ArrayList;
 import java.util.List;
 public class Issuer {

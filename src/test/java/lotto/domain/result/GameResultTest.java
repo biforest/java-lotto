@@ -1,4 +1,6 @@
-package lotto.domain;
+package lotto.domain.result;
+import lotto.domain.MatchCount;
+import lotto.domain.result.GameResult;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -45,5 +47,13 @@ class GameResultTest {
         assertThatExceptionOfType(IllegalArgumentException.class)
                 .isThrownBy(() -> GameResult.evaluate(matchCount))
                 .withMessage("일치하는 게임 결과가 없습니다.");
+    }
+    @DisplayName("description getter 테스트")
+    @Test
+    void getDescription() {
+        //given
+        GameResult gameResult = GameResult.ALL_MATCHED;
+        //when then
+        assertThat(gameResult.getDescription()).isEqualTo("6개 일치");
     }
 }

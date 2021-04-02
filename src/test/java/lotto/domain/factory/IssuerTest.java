@@ -1,4 +1,6 @@
-package lotto.domain;
+package lotto.domain.factory;
+import lotto.domain.factory.Issuer;
+import lotto.domain.lotto.LottoTickets;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;

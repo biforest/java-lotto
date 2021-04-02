@@ -1,4 +1,6 @@
-package lotto.domain;
+package lotto.domain.result;
+import lotto.domain.MatchCount;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;

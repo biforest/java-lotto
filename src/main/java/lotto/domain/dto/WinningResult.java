@@ -1,4 +1,7 @@
-package lotto.domain;
+package lotto.domain.dto;
+
+import lotto.domain.result.GameResult;
+
 public class WinningResult {
     private final int numberOfWinners;
     private final GameResult gameResult;
