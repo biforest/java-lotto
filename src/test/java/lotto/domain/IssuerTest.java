@@ -19,7 +19,7 @@ class IssuerTest {
         LottoTickets lottoTickets = Issuer.issueLottos(money);
 
         //then
-        int actual = lottoTickets.getLottos().size();
+        int actual = lottoTickets.getLottoTickets().size();
         assertThat(actual).isEqualTo(expected);
     }
 
@@ -33,7 +33,7 @@ class IssuerTest {
         LottoTickets lottoTickets = Issuer.issueLottos(money);
 
         //then
-        int actual = lottoTickets.getLottos().size();
+        int actual = lottoTickets.getLottoTickets().size();
         assertThat(actual).isEqualTo(expected);
      }
 
