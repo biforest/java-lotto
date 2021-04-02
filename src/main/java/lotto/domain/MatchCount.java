@@ -1,6 +1,7 @@
 package lotto.domain;
 
 public class MatchCount {
+
     private final int matchCount;
     private final boolean isBonusMatch;
 
