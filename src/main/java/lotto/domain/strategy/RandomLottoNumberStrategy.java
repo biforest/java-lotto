@@ -3,7 +3,6 @@ package lotto.domain.strategy;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Random;
 
 public class RandomLottoNumberStrategy {
     private final static int UPPER_BOUND = 45;

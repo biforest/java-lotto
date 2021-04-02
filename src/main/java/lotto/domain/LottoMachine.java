@@ -16,7 +16,7 @@ public class LottoMachine {
     ArrayList<Integer> lottoWinningResults = new ArrayList<>();
     ArrayList<Boolean> lottoWinningBonusBallResults = new ArrayList<>();
 
-    public void Discriminator(
+    public ArrayList<Integer> Discriminator(
             Lottos lottos,
             LastWeekWinningLotto lastWeekWinningLotto,
             LastWeekWinningBonusBall lastWeekWinningBonusBall,
@@ -31,7 +31,7 @@ public class LottoMachine {
             lottoWinningBonusBallResults.add(lottoMatchedBonusBallResult);
         }
         LottoFactory lottoFactory = createLottoFactory(lottoWinningResults, lottoWinningBonusBallResults);
-        enumWinningStatus.mappingMatchedLottoWithWinningMoney(lottoFactory, numberOfLottoTicket);
+        return enumWinningStatus.getLottoPrices(lottoFactory, numberOfLottoTicket);
     }
 
     private LottoFactory createLottoFactory(ArrayList<Integer> lottoWinningResults, ArrayList<Boolean> lottoWinningBonusBallResults) {

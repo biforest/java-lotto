@@ -1,4 +1,5 @@
 package lotto.domain.lottoticket;
+import lotto.domain.strategy.RandomLottoNumberStrategy;
 
 import java.util.List;
 

@@ -1,6 +1,7 @@
 package lotto;
 
 import lotto.domain.LottoMachine;
+import lotto.domain.Profit;
 import lotto.domain.lastweekwinninglotto.LastWeekWinningBonusBall;
 import lotto.domain.lastweekwinninglotto.LastWeekWinningLotto;
 import lotto.domain.lottoticket.LottoTicket;
@@ -29,7 +30,9 @@ public class LottoApplication {
         LastWeekWinningLotto lastWeekWinningLotto = new LastWeekWinningLotto(LastWeekLottoWinningNumbers);
         printer.requestLottoBonusBallNumber();
         LastWeekWinningBonusBall lastWeekWinningBonusBall = new LastWeekWinningBonusBall(receiver.receiveLottoBonusBallNumber());
-        lottoMachine.Discriminator(lottos, lastWeekWinningLotto, lastWeekWinningBonusBall, numberOfLottoTicket);
+        ArrayList<Integer> getLottoPrices =  lottoMachine.Discriminator(lottos, lastWeekWinningLotto, lastWeekWinningBonusBall, numberOfLottoTicket);
+        Profit profit = new Profit(getLottoPrices);
+        System.out.println(profit.getCalculatedProfit(numberOfLottoTicket));
     }
 
     private Lottos makeLottos(NumberOfLottoTicket numberOfLottoTicket) {

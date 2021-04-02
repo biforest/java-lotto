@@ -3,14 +3,19 @@ package lotto.domain;
 import lotto.domain.lottoticket.NumberOfLottoTicket;
 import lotto.domain.lottowinningresult.LottoWinningBonusBallResult;
 import lotto.domain.lottowinningresult.LottoWinningResult;
+import lotto.ui.Printer;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 public class EnumWinningStatus {
+    private static final int NOT_MATCH_LOTTO = 0;
     private ArrayList<Integer> lottoPrices = new ArrayList<>();
-    public List<Long> mappingMatchedLottoWithWinningMoney(LottoFactory lottoFactory, NumberOfLottoTicket numberOfLottoTicket){
-        ArrayList<Long> mappingMatchedLottoWithWinningMoney = new ArrayList<>();
+    private Map<Integer, Integer> mappingLottoWithBonusBall = new HashMap<>();
+    private Printer printer = new Printer();
+
+    public ArrayList<Integer> getLottoPrices(LottoFactory lottoFactory, NumberOfLottoTicket numberOfLottoTicket){
         LottoWinningResult lottoWinningResults = lottoFactory.getLottoWinningResult();
         LottoWinningBonusBallResult lottoWinningBonusBallResult = lottoFactory.getLottoWinningBonusBallResult();
 
@@ -19,8 +24,8 @@ public class EnumWinningStatus {
             Boolean lottoBonusBallNumber = lottoWinningBonusBallResult.getLottoWinningBonusBallResult().get(i);
             getWinningLottoTicketPrices(lottoMatchedNumber, lottoBonusBallNumber);
         }
-        System.out.println(lottoPrices);
-        return mappingMatchedLottoWithWinningMoney;
+        printer.printAllMatchedLottoResult(getMappingLottoWithBonusBall());
+        return lottoPrices;
     }
 
     private void getWinningLottoTicketPrices(int lottoMatchedNumber, boolean lottoBonusBallNumber) {
@@ -41,7 +46,14 @@ public class EnumWinningStatus {
         if((lottoMatchedNumber == matchedWinningNumberCount) && (isMatchedBonusBallCount == lottoBonusBallNumber)){
             lottoPrices.add(winningStatus.getWinningMoney());
         }
+    }
 
+    private Map<Integer, Integer> getMappingLottoWithBonusBall() {
+        for (Integer key: lottoPrices
+             ) {
+            mappingLottoWithBonusBall.put(key, mappingLottoWithBonusBall.getOrDefault(key, 0)+1);
+        }
+        return mappingLottoWithBonusBall;
     }
 
 }
