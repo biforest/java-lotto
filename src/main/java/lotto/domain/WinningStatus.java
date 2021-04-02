@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import java.util.List;
 
 public enum WinningStatus {
     SIX_MATCH(6, false, 2000000000),
