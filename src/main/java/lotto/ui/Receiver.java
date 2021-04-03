@@ -30,7 +30,8 @@ public class Receiver {
     }
 
     private List<Integer> convertStringToInt(List<String> dividedLastWeekLottoWinningNumbers) {
-        return dividedLastWeekLottoWinningNumbers.stream().map(Integer::parseInt).collect(Collectors.toList());
-
+        return dividedLastWeekLottoWinningNumbers.stream()
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
     }
 }
