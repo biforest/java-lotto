@@ -24,7 +24,8 @@ public class EnumWinningStatus {
             Boolean lottoBonusBallNumber = lottoWinningBonusBallResult.getLottoWinningBonusBallResult().get(i);
             getWinningLottoTicketPrices(lottoMatchedNumber, lottoBonusBallNumber);
         }
-        printer.printAllMatchedLottoResult(getMappingLottoWithBonusBall());
+        printer.printWinningStatistics();
+        printer.printAllMatchedLottoResults(getMappingLottoWithBonusBall());
         return lottoPrices;
     }
 
