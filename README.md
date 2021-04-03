@@ -43,12 +43,6 @@
 1, 2, 3, 4, 5, 6
 보너스 볼을 입력해 주세요.
 7
-class 3개
-lastweek ()
-bonusnumbe()
-lastweekWinnerLotto
-.method(lastweek, bonus)
-if(5개 맞을 시에)
   
 당첨 통계
 ---------
