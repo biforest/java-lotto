@@ -12,16 +12,20 @@ public class Printer {
     private static final String REQUEST_LOTTO_BONUS_BALL_NUMBER_MESSAGE = "보너스 볼을 입력해주세요";
     private static final String PRINT_FINAL_MATCHED_LOTTO_RESULT_MESSAGE = "%s개 일치 (%s원)- %s개";
     private static final String PRINT_LOTTO_PROFIT_MESSAGE = "총 수익률은 %f입니다.";
+
     public void requestPurchaseAmount() {
         System.out.println(REQUEST_PURCHASE_AMOUNT_MESSAGE);
     }
+
     public void requestLastWeekLottoWinningNumber() {
         System.out.println(REQUEST_LAST_WEEK_LOTTO_WINNING_NUMBER_MESSAGE);
     }
+
     public void requestLottoBonusBallNumber() {
         System.out.println(REQUEST_LOTTO_BONUS_BALL_NUMBER_MESSAGE);
     }
-    public void printAllLotto(Lottos lottos){
+
+    public void printAllLotto(Lottos lottos) {
         for (LottoTicket lotto : lottos.getLottos()) {
             System.out.println(lotto.getLotto());
         }
@@ -31,7 +35,7 @@ public class Printer {
         List<WinningStatus> keySet = new ArrayList(lottoPrices.keySet());
         keySet.sort(Comparator.comparingInt(WinningStatus::getWinningMoney));
 
-        for(WinningStatus key: keySet) {
+        for (WinningStatus key : keySet) {
             System.out.println(String.format(PRINT_FINAL_MATCHED_LOTTO_RESULT_MESSAGE, key.getMatchCount(), key.getWinningMoney(), lottoPrices.get(key)));
         }
     }
