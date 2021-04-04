@@ -5,11 +5,10 @@ import java.util.List;
 import java.util.Set;
 import java.util.regex.Pattern;
 
+import domain.lotteryStore.TargetNumbers;
 import ui.message.ExceptionMessage;
 
 public class WinningNumbersValidator {
-    public static final int MINIMUM_WINNING_NUMBER = 1;
-    public static final int MAXIMUM_WINNING_NUMBER = 45;
     private static final String CHARACTERS_CONTAINING_NUMBER_COMMA = "^[0-9,\\s]+$";
     private static final int SIZE_OF_WINNING_NUMBERS = 6;
 
@@ -27,8 +26,8 @@ public class WinningNumbersValidator {
 
     public void validateRangeOfWinningNumbers(List<Integer> splitWinningNumbers) {
         if (splitWinningNumbers.stream()
-            .anyMatch(
-                winningNumber -> winningNumber < MINIMUM_WINNING_NUMBER || winningNumber > MAXIMUM_WINNING_NUMBER)) {
+            .anyMatch(winningNumber -> winningNumber < TargetNumbers.MINIMUM_LOTTERY_NUMBER
+                || winningNumber > TargetNumbers.MAXIMUM_LOTTERY_NUMBER)) {
             throw new IllegalArgumentException(ExceptionMessage.MUST_INPUT_NUMBERS_IN_VALID_RANGE.getMessage());
         }
     }

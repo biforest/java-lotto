@@ -1,12 +1,12 @@
 package domain.value.validator;
 
+import domain.lotteryStore.TargetNumbers;
 import domain.value.WinningNumbers;
 import ui.message.ExceptionMessage;
 
 public class BonusNumberValidator {
     public void validateRangeOfBonusNumber(int bonusNumber) {
-        if (bonusNumber < WinningNumbersValidator.MINIMUM_WINNING_NUMBER
-            || bonusNumber > WinningNumbersValidator.MAXIMUM_WINNING_NUMBER) {
+        if (bonusNumber < TargetNumbers.MINIMUM_LOTTERY_NUMBER || bonusNumber > TargetNumbers.MAXIMUM_LOTTERY_NUMBER) {
             throw new IllegalArgumentException(ExceptionMessage.MUST_INPUT_NUMBERS_IN_VALID_RANGE.getMessage());
         }
     }

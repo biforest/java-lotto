@@ -6,6 +6,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class TargetNumbers {
+    public static final int MINIMUM_LOTTERY_NUMBER = 1;
+    public static final int MAXIMUM_LOTTERY_NUMBER = 45;
+
     private final List<Integer> targetNumbers = new ArrayList<>();
 
     public TargetNumbers() {
@@ -13,7 +16,7 @@ public class TargetNumbers {
     }
 
     private void initiateNumbers() {
-        for (int i = 1; i <= 45; i++) {
+        for (int i = MINIMUM_LOTTERY_NUMBER; i <= MAXIMUM_LOTTERY_NUMBER; i++) {
             targetNumbers.add(i);
         }
     }
