@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class LottoApplication {
-    private static final String WINNING_NUMBER_INPUT_DELIMITER = ", ";
+    private static final String WINNING_NUMBER_INPUT_DELIMITER = ",";
 
     private final Printer printer;
     private final Receiver receiver;
