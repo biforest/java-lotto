@@ -3,8 +3,8 @@ package lotto.domain.factory;
 import lotto.domain.lotto.LottoTicket;
 import lotto.domain.lotto.LottoTickets;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Issuer {
     private static final int TICKET_PRICE = 1000;
@@ -16,11 +16,11 @@ public class Issuer {
         int numberOfTickets = money / TICKET_PRICE;
         validate(numberOfTickets);
 
-        List<LottoTicket> lottoTickets = new ArrayList<>();
-        for (int i = 0; i < numberOfTickets; i++) {
-            lottoTickets.add(new LottoTicket());
-        }
-        return new LottoTickets(lottoTickets);
+        return new LottoTickets(
+                IntStream.range(0, numberOfTickets)
+                        .mapToObj(__ -> new LottoTicket())
+                        .collect(Collectors.toList())
+        );
     }
 
     private static void validate(int numberOfTickets) {
