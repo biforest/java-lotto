@@ -23,7 +23,7 @@ public class Application {
         printer.printPurchasedCount(manualCount, purchasedCount);
 
         LotteryStore lotteryStore = new LotteryStore();
-        Lotteries lotteries = lotteryStore.createLotteries(purchasedCount);
+        Lotteries lotteries = lotteryStore.createLotteries(purchasedCount, manualCount, manualNumbers);
         printer.printPurchasedLotteries(lotteries);
 
         ManualNumbersGenerator winningNumbers = new ManualNumbersGenerator(receiver.receiveWinningNumbers());

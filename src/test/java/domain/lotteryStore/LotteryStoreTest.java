@@ -2,6 +2,8 @@ package domain.lotteryStore;
 
 import static org.assertj.core.api.Assertions.*;
 
+import java.util.ArrayList;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -20,7 +22,7 @@ class LotteryStoreTest {
         int sizeOfLottery = 6;
 
         //when
-        Lotteries lotteries = lotteryStore.createLotteries(1);
+        Lotteries lotteries = lotteryStore.createLotteries(1, 0, new ArrayList<>());
 
         //then
         assertThat(lotteries.getLotteries().get(0).getNumbers().getNumbers().size()).isEqualTo(sizeOfLottery);

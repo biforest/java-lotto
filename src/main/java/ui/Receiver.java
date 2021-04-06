@@ -30,6 +30,12 @@ public class Receiver {
         return inputManualNumbers;
     }
 
+    public String receiveWinningNumbers() {
+        System.out.println(InputMessage.INPUT_LAST_WEEK_WINNING_NUMBERS.getMessage());
+        SCANNER.nextLine();
+        return SCANNER.nextLine();
+    }
+
     public int receiveBonusNumber() {
         System.out.println(InputMessage.INPUT_BONUS_BALL.getMessage());
         return SCANNER.nextInt();

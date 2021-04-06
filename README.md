@@ -140,7 +140,7 @@ ___
 - [x] 숫자를 가진 클래스 분류
 - [x] 수동으로 구매할 로또 수 입력
 - [x] 수동으로 구매할 번호 입력
-  - [ ] 수동 로또 생성
+  - [x] 수동 로또 생성
 - [ ] Printer %s, %f 사용
 - [ ] LotteryComparator를 Lotteries로 합칠 것이냐
 - [ ] PrizeMoney로 당첨 횟수 세기
