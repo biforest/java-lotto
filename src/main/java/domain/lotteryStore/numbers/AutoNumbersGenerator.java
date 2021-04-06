@@ -1,11 +1,9 @@
-package domain.lotteryStore;
+package domain.lotteryStore.numbers;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
-
-import domain.value.LotteryNumberRange;
 
 public class AutoNumbersGenerator {
     private final List<Integer> autoNumbers = new ArrayList<>();

@@ -3,6 +3,7 @@ package domain.value;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import domain.lotteryStore.PurchasePrice;
 import ui.message.ExceptionMessage;
 
 class PurchasePriceTest {

@@ -2,8 +2,8 @@ package domain.winningStatistics;
 
 import domain.lotteryStore.Lotteries;
 import domain.lotteryStore.Lottery;
-import domain.value.BonusNumber;
-import domain.value.ManualNumbersGenerator;
+import domain.lotteryStore.numbers.BonusNumber;
+import domain.lotteryStore.numbers.ManualNumbersGenerator;
 
 public class LotteryComparator {
     private final WinningStatistics winningStatistics = new WinningStatistics();

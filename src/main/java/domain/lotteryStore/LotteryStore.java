@@ -3,11 +3,11 @@ package domain.lotteryStore;
 import java.util.ArrayList;
 import java.util.List;
 
-import domain.value.ManualNumbersGenerator;
+import domain.lotteryStore.numbers.AutoNumbersGenerator;
+import domain.lotteryStore.numbers.ManualNumbersGenerator;
+import domain.lotteryStore.numbers.Numbers;
 
 public class LotteryStore {
-    private final AutoNumbersGenerator autoNumbersGenerator = new AutoNumbersGenerator();
-
     public Lotteries createLotteries(int purchasedCount, int manualCount, List<String> manualNumbers) {
         List<Lottery> lotteries = new ArrayList<>();
         List<Lottery> manualLotteries = makeManualLotteries(manualCount, manualNumbers);
@@ -29,15 +29,16 @@ public class LotteryStore {
     }
 
     private List<Lottery> makeAutoLotteries(int purchasedCount, int manualCount) {
+        AutoNumbersGenerator autoNumbersGenerator = new AutoNumbersGenerator();
         List<Lottery> autoLotteries = new ArrayList<>();
         int autoCount = purchasedCount - manualCount;
         while (autoCount-- > 0) {
-            autoLotteries.add(makeAutoLottery());
+            autoLotteries.add(makeAutoLottery(autoNumbersGenerator));
         }
         return autoLotteries;
     }
 
-    private Lottery makeAutoLottery() {
+    private Lottery makeAutoLottery(AutoNumbersGenerator autoNumbersGenerator) {
         autoNumbersGenerator.shuffle();
         Numbers numbers = new Numbers(autoNumbersGenerator.getSixNumbersFromTheFront());
         return new Lottery(numbers);

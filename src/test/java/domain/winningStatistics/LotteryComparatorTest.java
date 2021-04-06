@@ -9,9 +9,9 @@ import org.junit.jupiter.api.Test;
 
 import domain.lotteryStore.Lotteries;
 import domain.lotteryStore.Lottery;
-import domain.lotteryStore.Numbers;
-import domain.value.BonusNumber;
-import domain.value.ManualNumbersGenerator;
+import domain.lotteryStore.numbers.BonusNumber;
+import domain.lotteryStore.numbers.ManualNumbersGenerator;
+import domain.lotteryStore.numbers.Numbers;
 
 class LotteryComparatorTest {
 

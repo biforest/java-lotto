@@ -141,7 +141,7 @@ ___
 - [x] 수동으로 구매할 로또 수 입력
 - [x] 수동으로 구매할 번호 입력
   - [x] 수동 로또 생성
-- [ ] Printer %s, %f 사용
+- [x] Printer %s, %f 사용
 - [ ] LotteryComparator를 Lotteries로 합칠 것이냐
 - [ ] PrizeMoney로 당첨 횟수 세기
 
@@ -177,4 +177,3 @@ ___
   - 범위 검증 필요
 - [x] BonusNumber: 1개
   - 범위 검증 필요
-  

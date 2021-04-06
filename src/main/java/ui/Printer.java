@@ -29,8 +29,7 @@ public class Printer {
         PrizeMoney[] prizeMonies = PrizeMoney.values();
         List<Integer> sizeOfWinnersPerRank = winningStatistics.getRankings();
 
-        builder.append(OutputMessage.WINNING_STATISTICS.getMessage())
-            .append(OutputMessage.BOUNDARY_LINE.getMessage());
+        builder.append(OutputMessage.WINNING_STATISTICS.getMessage());
         for (int i = 0; i < SIZE_OF_LOTTERY_RANK; i++) {
             printWinningStatisticsDetails(builder, prizeMonies[i], sizeOfWinnersPerRank.get(i), i);
         }
@@ -38,22 +37,18 @@ public class Printer {
     }
 
     private void printWinningStatisticsDetails(StringBuilder builder, PrizeMoney prizeMoney, Integer result, int i) {
-        builder.append(prizeMoney.getMatchingCount());
         if (i == WIN_WITH_BONUS_NUMBER) {
-            builder.append(OutputMessage.MATCH_COUNT_BONUS.getMessage());
+            builder.append(
+                String.format(OutputMessage.MATCH_COUNT_WITH_BONUS.getMessage(), prizeMoney.getMatchingCount(),
+                    prizeMoney.getPrizeMoney(), result));
         }
         if (i != WIN_WITH_BONUS_NUMBER) {
-            builder.append(OutputMessage.MATCH_COUNT.getMessage());
+            builder.append(String.format(OutputMessage.MATCH_COUNT.getMessage(), prizeMoney.getMatchingCount(),
+                prizeMoney.getPrizeMoney(), result));
         }
-        builder.append(prizeMoney.getPrizeMoney())
-            .append(OutputMessage.WON.getMessage())
-            .append(result)
-            .append(OutputMessage.COUNT.getMessage());
     }
 
     public void printTotalEarningsRate(float totalEarningsRate) {
-        System.out.println(
-            OutputMessage.TOTAL_EARNINGS_RATE.getMessage() + String.format(LIMIT_OF_DECIMAL_PLACE, totalEarningsRate)
-                + OutputMessage.CLOSING_MENTION.getMessage());
+        System.out.println(String.format(OutputMessage.TOTAL_EARNINGS_RATE.getMessage(), totalEarningsRate));
     }
 }

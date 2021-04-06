@@ -1,5 +1,7 @@
 package domain.lotteryStore;
 
+import domain.lotteryStore.numbers.Numbers;
+
 public class Lottery {
     private final Numbers numbers;
 

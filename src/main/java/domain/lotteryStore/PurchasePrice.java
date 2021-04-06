@@ -1,4 +1,4 @@
-package domain.value;
+package domain.lotteryStore;
 
 import ui.message.ExceptionMessage;
 

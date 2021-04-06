@@ -1,9 +1,7 @@
-package domain.lotteryStore;
+package domain.lotteryStore.numbers;
 
 import java.util.Collections;
 import java.util.List;
-
-import domain.value.ManualNumbersGenerator;
 
 public class Numbers {
     private final List<Integer> numbers;

@@ -3,6 +3,8 @@ package domain.value;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import domain.lotteryStore.numbers.BonusNumber;
+import domain.lotteryStore.numbers.ManualNumbersGenerator;
 import ui.message.ExceptionMessage;
 
 public class BonusNumberTest {
