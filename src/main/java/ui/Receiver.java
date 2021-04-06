@@ -1,5 +1,7 @@
 package ui;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import ui.message.InputMessage;
@@ -12,10 +14,20 @@ public class Receiver {
         return SCANNER.nextInt();
     }
 
-    public String receiveWinningNumbers() {
-        System.out.println(InputMessage.INPUT_LAST_WEEK_WINNING_NUMBERS.getMessage());
+    public int receiveManualCount() {
+        System.out.println(InputMessage.INPUT_MANUAL_COUNT.getMessage());
         SCANNER.nextLine();
-        return SCANNER.nextLine();
+        return SCANNER.nextInt();
+    }
+
+    public List<String> receiveManualNumbers(int manualCount) {
+        System.out.println(InputMessage.INPUT_MANUAL_NUMBERS.getMessage());
+        SCANNER.nextLine();
+        List<String> inputManualNumbers = new ArrayList<>();
+        for (int i = 0; i < manualCount; i++) {
+            inputManualNumbers.add(SCANNER.nextLine());
+        }
+        return inputManualNumbers;
     }
 
     public int receiveBonusNumber() {

@@ -8,11 +8,11 @@ public class PurchasePrice {
     private final int purchasePrice;
 
     public PurchasePrice(int purchasePrice) {
-        validateSmallerThanPurchasePrice();
+        validateSmallerThanPurchasePrice(purchasePrice);
         this.purchasePrice = purchasePrice;
     }
 
-    private void validateSmallerThanPurchasePrice() {
+    private void validateSmallerThanPurchasePrice(int purchasePrice) {
         if (purchasePrice < PRICE_OF_ONE_LOTTERY_TICKET) {
             throw new IllegalArgumentException(ExceptionMessage.MUST_BUY_MORE_THAN_ONE_TICKET.getMessage());
         }

@@ -12,8 +12,9 @@ public class Printer {
     private static final int WIN_WITH_BONUS_NUMBER = 3;
     private static final String LIMIT_OF_DECIMAL_PLACE = "%.2f";
 
-    public void printPurchasedCount(int purchasedCount) {
-        System.out.println(purchasedCount + OutputMessage.PURCHASED_COUNT.getMessage());
+    public void printPurchasedCount(int manualCount, int purchasedCount) {
+        System.out.println(
+            String.format(OutputMessage.PURCHASED_COUNT.getMessage(), manualCount, purchasedCount - manualCount));
     }
 
     public void printPurchasedLotteries(Lotteries lotteries) {

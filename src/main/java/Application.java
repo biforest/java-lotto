@@ -1,3 +1,5 @@
+import java.util.List;
+
 import domain.lotteryStore.Lotteries;
 import domain.lotteryStore.LotteryStore;
 import domain.value.BonusNumber;
@@ -16,7 +18,9 @@ public class Application {
 
         PurchasePrice purchasePrice = new PurchasePrice(receiver.receivePurchasePrice());
         int purchasedCount = purchasePrice.getPurchasedCount();
-        printer.printPurchasedCount(purchasedCount);
+        int manualCount = receiver.receiveManualCount();
+        List<String> manualNumbers = receiver.receiveManualNumbers(manualCount);
+        printer.printPurchasedCount(manualCount, purchasedCount);
 
         LotteryStore lotteryStore = new LotteryStore();
         Lotteries lotteries = lotteryStore.createLotteries(purchasedCount);

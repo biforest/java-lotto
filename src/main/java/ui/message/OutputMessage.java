@@ -1,7 +1,7 @@
 package ui.message;
 
 public enum OutputMessage {
-    PURCHASED_COUNT("개를 구매했습니다."),
+    PURCHASED_COUNT("\n수동으로 %d장, 자동으로 %d개를 구매했습니다."),
     WINNING_STATISTICS("\n당첨 통계\n"),
     BOUNDARY_LINE("---------\n"),
     MATCH_COUNT("개 일치 ("),
