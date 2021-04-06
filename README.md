@@ -112,7 +112,7 @@
 
 ___
 
-### 기능 목록
+### 1단계 기능 목록
 
 - [x] 구입금액 입력
   - [x] 예외
@@ -135,6 +135,16 @@ ___
   - [x] 당첨 번호 입력에 숫자와 쉼표가 아닌 글자가 들어간 경우
   - [x] 당첨 번호 개수가 6개가 아닐 경우
 
+### 2단계 기능 목록
+
+- [x] 숫자를 가진 클래스 분류
+- [ ] 수동으로 구매할 로또 수 입력
+- [ ] 수동으로 구매할 번호 입력
+  - [ ] 수동 로또 생성
+- [ ] Printer %s, %f 사용
+- [ ] LotteryComparator를 Lotteries로 합칠 것이냐
+- [ ] PrizeMoney로 당첨 횟수 세기
+
 ### 논의거리
 
 - 일급컬렉션, 원시값 래핑 잘 했는지
@@ -144,3 +154,27 @@ ___
 - validate 메서드들 try-catch 해주기
 - WinningStatistics if분기 어떻게 처리할건지
 - enum에서 값을 변경해도 되는지
+
+### LotteryNumber
+
+- 최소(1), 최대(45) 값
+- validate range
+
+### 숫자를 가지는 클래스
+
+- Numbers: 6개 List<Integer>
+  - Lottery가 만들어질 때 TargetNumbers로부터 받음
+  - 당첨 번호 6개와 비교
+- [x] LotteryNumber
+  - 최댓값, 최솟값, 검증 로직 가지는 부모 클래스
+- [x] TargetNumbers: 45개 -> AutoNumbersGenerator
+  - 자동 생성
+  - shuffle, 앞의 6개 숫자 가져오기 -> Numbers
+  - 범위 검증 필요 X
+  - 최댓값, 최솟값 필요 O
+- [x] WinningNumbers: 6개 -> ManualNumbersGenerator
+  - 입력 받음, 수동 생성
+  - 범위 검증 필요
+- [x] BonusNumber: 1개
+  - 범위 검증 필요
+  
