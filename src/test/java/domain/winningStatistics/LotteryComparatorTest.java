@@ -11,11 +11,11 @@ import domain.lotteryStore.Lotteries;
 import domain.lotteryStore.Lottery;
 import domain.lotteryStore.Numbers;
 import domain.value.BonusNumber;
-import domain.value.WinningNumbers;
+import domain.value.ManualNumbersGenerator;
 
 class LotteryComparatorTest {
 
-    private final WinningNumbers winningNumbers = new WinningNumbers("1, 2, 3, 4, 5, 6");
+    private final ManualNumbersGenerator winningNumbers = new ManualNumbersGenerator("1, 2, 3, 4, 5, 6");
     private final BonusNumber bonusNumber = new BonusNumber(7, winningNumbers);
     private final Lotteries lotteries = new Lotteries(Arrays.asList(
         new Lottery(new Numbers(Arrays.asList(8, 2, 23, 41, 4, 5))),
@@ -51,7 +51,7 @@ class LotteryComparatorTest {
         int purchasedCount = 6;
 
         //when
-        lotteryComparator.compareNumbers(winningNumbers, bonusNumber, lotteries, purchasedCount);
+        lotteryComparator.compareNumbers(winningNumbers, bonusNumber, lotteries);
         WinningStatistics winningStatistics = lotteryComparator.getWinningStatistics();
         List<Integer> rankings = winningStatistics.getRankings();
 

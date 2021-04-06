@@ -13,6 +13,10 @@ public class Lotteries {
         return lotteries.get(index);
     }
 
+    public int size() {
+        return lotteries.size();
+    }
+
     public List<Lottery> getLotteries() {
         return lotteries;
     }

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LotteryStore {
-    private final TargetNumbers targetNumbers = new TargetNumbers();
+    private final AutoNumbersGenerator autoNumbersGenerator = new AutoNumbersGenerator();
 
     public Lotteries createLotteries(int count) {
         List<Lottery> lotteries = new ArrayList<>();
@@ -15,8 +15,8 @@ public class LotteryStore {
     }
 
     private Lottery createLottery() {
-        targetNumbers.shuffle();
-        Numbers numbers = new Numbers(targetNumbers.getSixNumbersFromTheFront());
+        autoNumbersGenerator.shuffle();
+        Numbers numbers = new Numbers(autoNumbersGenerator.getSixNumbersFromTheFront());
         return new Lottery(numbers);
     }
 }

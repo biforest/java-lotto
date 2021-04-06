@@ -3,7 +3,7 @@ package domain.lotteryStore;
 import java.util.Collections;
 import java.util.List;
 
-import domain.value.WinningNumbers;
+import domain.value.ManualNumbersGenerator;
 
 public class Numbers {
     private final List<Integer> numbers;
@@ -13,15 +13,15 @@ public class Numbers {
         this.numbers = numbers;
     }
 
-    public int countMatchingNumbers(WinningNumbers winningNumbers) {
-        return (int)winningNumbers.getWinningNumbers()
+    public int countMatchingNumbers(ManualNumbersGenerator winningNumbers) {
+        return (int)winningNumbers.getManualNumbers()
             .stream()
             .filter(this::contains)
             .count();
     }
 
-    public boolean contains(int compareToNumber) {
-        return numbers.contains(compareToNumber);
+    public boolean contains(int numberToCompare) {
+        return numbers.contains(numberToCompare);
     }
 
     public List<Integer> getNumbers() {

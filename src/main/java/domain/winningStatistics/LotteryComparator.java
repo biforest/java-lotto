@@ -3,26 +3,26 @@ package domain.winningStatistics;
 import domain.lotteryStore.Lotteries;
 import domain.lotteryStore.Lottery;
 import domain.value.BonusNumber;
-import domain.value.WinningNumbers;
+import domain.value.ManualNumbersGenerator;
 
 public class LotteryComparator {
     private final WinningStatistics winningStatistics = new WinningStatistics();
 
-    public void compareNumbers(WinningNumbers winningNumbers, BonusNumber bonusNumber, Lotteries lotteries,
-        int purchasedCount) {
-        for (int i = 0; i < purchasedCount; i++) {
+    public void compareNumbers(ManualNumbersGenerator winningNumbers, BonusNumber bonusNumber, Lotteries lotteries) {
+        for (int i = 0; i < lotteries.size(); i++) {
             ComparisonResult comparisonResult = compareOneTicketNumbers(winningNumbers, bonusNumber, lotteries.get(i));
             winningStatistics.checkRanking(comparisonResult);
         }
     }
 
-    public ComparisonResult compareOneTicketNumbers(WinningNumbers winningNumbers, BonusNumber bonusNumber,
+    public ComparisonResult compareOneTicketNumbers(ManualNumbersGenerator winningNumbers, BonusNumber bonusNumber,
         Lottery lottery) {
-        return new ComparisonResult(getCountOfMatchingWinningNumbers(lottery, winningNumbers),
-            hasBonusNumber(lottery, bonusNumber));
+        int countOfMatchingNumbers = getCountOfMatchingWinningNumbers(lottery, winningNumbers);
+        boolean hasBonusNumber = hasBonusNumber(lottery, bonusNumber);
+        return new ComparisonResult(countOfMatchingNumbers, hasBonusNumber);
     }
 
-    private int getCountOfMatchingWinningNumbers(Lottery lottery, WinningNumbers winningNumbers) {
+    private int getCountOfMatchingWinningNumbers(Lottery lottery, ManualNumbersGenerator winningNumbers) {
         return lottery.getNumbers().countMatchingNumbers(winningNumbers);
     }
 

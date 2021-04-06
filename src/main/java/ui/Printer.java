@@ -3,21 +3,17 @@ package ui;
 import java.util.List;
 
 import domain.lotteryStore.Lotteries;
-import domain.value.PurchasePrice;
 import domain.winningStatistics.PrizeMoney;
 import domain.winningStatistics.WinningStatistics;
 import ui.message.OutputMessage;
 
 public class Printer {
-    private static final int PRICE_OF_ONE_LOTTERY_TICKET = 1000;
     private static final int SIZE_OF_LOTTERY_RANK = 5;
     private static final int WIN_WITH_BONUS_NUMBER = 3;
     private static final String LIMIT_OF_DECIMAL_PLACE = "%.2f";
 
-    public int printPurchasedCount(PurchasePrice purchasePrice) {
-        int purchasedCount = purchasePrice.getPurchasePrice() / PRICE_OF_ONE_LOTTERY_TICKET;
+    public void printPurchasedCount(int purchasedCount) {
         System.out.println(purchasedCount + OutputMessage.PURCHASED_COUNT.getMessage());
-        return purchasedCount;
     }
 
     public void printPurchasedLotteries(Lotteries lotteries) {

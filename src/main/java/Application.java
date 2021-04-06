@@ -1,8 +1,8 @@
 import domain.lotteryStore.Lotteries;
 import domain.lotteryStore.LotteryStore;
 import domain.value.BonusNumber;
+import domain.value.ManualNumbersGenerator;
 import domain.value.PurchasePrice;
-import domain.value.WinningNumbers;
 import domain.winningStatistics.LotteryComparator;
 import domain.winningStatistics.PrizeMoney;
 import domain.winningStatistics.WinningStatistics;
@@ -15,17 +15,18 @@ public class Application {
         Printer printer = new Printer();
 
         PurchasePrice purchasePrice = new PurchasePrice(receiver.receivePurchasePrice());
-        int purchasedCount = printer.printPurchasedCount(purchasePrice);
+        int purchasedCount = purchasePrice.getPurchasedCount();
+        printer.printPurchasedCount(purchasedCount);
 
         LotteryStore lotteryStore = new LotteryStore();
         Lotteries lotteries = lotteryStore.createLotteries(purchasedCount);
         printer.printPurchasedLotteries(lotteries);
 
-        WinningNumbers winningNumbers = new WinningNumbers(receiver.receiveWinningNumbers());
+        ManualNumbersGenerator winningNumbers = new ManualNumbersGenerator(receiver.receiveWinningNumbers());
         BonusNumber bonusNumber = new BonusNumber(receiver.receiveBonusNumber(), winningNumbers);
 
         LotteryComparator lotteryComparator = new LotteryComparator();
-        lotteryComparator.compareNumbers(winningNumbers, bonusNumber, lotteries, purchasedCount);
+        lotteryComparator.compareNumbers(winningNumbers, bonusNumber, lotteries);
         WinningStatistics winningStatistics = lotteryComparator.getWinningStatistics();
 
         printer.printWinningStatistics(winningStatistics);
