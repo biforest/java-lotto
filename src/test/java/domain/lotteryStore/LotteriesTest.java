@@ -1,4 +1,4 @@
-package domain.winningStatistics;
+package domain.lotteryStore;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -7,13 +7,13 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import domain.lotteryStore.Lotteries;
-import domain.lotteryStore.Lottery;
 import domain.lotteryStore.numbers.BonusNumber;
 import domain.lotteryStore.numbers.ManualNumbersGenerator;
 import domain.lotteryStore.numbers.Numbers;
+import domain.winningStatistics.ComparisonResult;
+import domain.winningStatistics.WinningStatistics;
 
-class LotteryComparatorTest {
+class LotteriesTest {
 
     private final ManualNumbersGenerator winningNumbers = new ManualNumbersGenerator("1, 2, 3, 4, 5, 6");
     private final BonusNumber bonusNumber = new BonusNumber(7, winningNumbers);
@@ -28,14 +28,9 @@ class LotteryComparatorTest {
 
     @Test
     public void 로또_티켓_하나의_비교_결과를_확인한다() {
-        //given
-        LotteryComparator lotteryComparator = new LotteryComparator();
-
         //when
-        ComparisonResult result1 = lotteryComparator.compareOneTicketNumbers(winningNumbers, bonusNumber,
-            lotteries.get(1));
-        ComparisonResult result2 = lotteryComparator.compareOneTicketNumbers(winningNumbers, bonusNumber,
-            lotteries.get(4));
+        ComparisonResult result1 = lotteries.compareOneTicketNumbers(winningNumbers, bonusNumber, lotteries.get(1));
+        ComparisonResult result2 = lotteries.compareOneTicketNumbers(winningNumbers, bonusNumber, lotteries.get(4));
 
         //then
         assertThat(result1.getMatchingCount()).isEqualTo(4);
@@ -46,13 +41,9 @@ class LotteryComparatorTest {
 
     @Test
     public void 당첨_통계를_확인한다() throws Exception {
-        //given
-        LotteryComparator lotteryComparator = new LotteryComparator();
-        int purchasedCount = 6;
-
         //when
-        lotteryComparator.compareNumbers(winningNumbers, bonusNumber, lotteries);
-        WinningStatistics winningStatistics = lotteryComparator.getWinningStatistics();
+        lotteries.compareWithWinningNumbersAndBonusNumber(winningNumbers, bonusNumber);
+        WinningStatistics winningStatistics = lotteries.getWinningStatistics();
         List<Integer> rankings = winningStatistics.getRankings();
 
         //then
@@ -62,4 +53,5 @@ class LotteryComparatorTest {
         assertThat(rankings.get(3)).isEqualTo(1);
         assertThat(rankings.get(4)).isEqualTo(1);
     }
+
 }

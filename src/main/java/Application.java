@@ -5,7 +5,6 @@ import domain.lotteryStore.LotteryStore;
 import domain.lotteryStore.PurchasePrice;
 import domain.lotteryStore.numbers.BonusNumber;
 import domain.lotteryStore.numbers.ManualNumbersGenerator;
-import domain.winningStatistics.LotteryComparator;
 import domain.winningStatistics.PrizeMoney;
 import domain.winningStatistics.WinningStatistics;
 import ui.Printer;
@@ -15,11 +14,9 @@ public class Application {
     private final Receiver receiver;
     private final Printer printer;
     private final LotteryStore lotteryStore;
-    private final LotteryComparator lotteryComparator;
 
     public Application() {
         lotteryStore = new LotteryStore();
-        lotteryComparator = new LotteryComparator();
         receiver = new Receiver();
         printer = new Printer();
     }
@@ -42,8 +39,8 @@ public class Application {
         ManualNumbersGenerator winningNumbers = new ManualNumbersGenerator(receiver.receiveWinningNumbers());
         BonusNumber bonusNumber = new BonusNumber(receiver.receiveBonusNumber(), winningNumbers);
 
-        lotteryComparator.compareNumbers(winningNumbers, bonusNumber, lotteries);
-        WinningStatistics winningStatistics = lotteryComparator.getWinningStatistics();
+        lotteries.compareWithWinningNumbersAndBonusNumber(winningNumbers, bonusNumber);
+        WinningStatistics winningStatistics = lotteries.getWinningStatistics();
 
         printer.printWinningStatistics(winningStatistics);
         printer.printTotalEarningsRate(PrizeMoney.calculateEarningsRate(winningStatistics, purchasedCount));
