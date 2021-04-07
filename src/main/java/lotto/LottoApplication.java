@@ -24,6 +24,7 @@ public class LottoApplication {
     public void run() {
         printer.requestPurchaseAmount();
         NumberOfLottoTicket numberOfLottoTicket = new NumberOfLottoTicket(receiver.receiveLottoTotalAmount());
+        printer.printNumberOfLottoTicket(numberOfLottoTicket);
         Lottos lottos = makeLottos(numberOfLottoTicket);
         printer.printAllLotto(lottos);
 
@@ -32,7 +33,7 @@ public class LottoApplication {
         LastWeekWinningLotto lastWeekWinningLotto = new LastWeekWinningLotto(LastWeekLottoWinningNumbers);
 
         printer.requestLottoBonusBallNumber();
-        LastWeekWinningBonusBall lastWeekWinningBonusBall = new LastWeekWinningBonusBall(receiver.receiveLottoBonusBallNumber());
+        LastWeekWinningBonusBall lastWeekWinningBonusBall = new LastWeekWinningBonusBall(receiver.receiveLottoBonusBallNumber(), lastWeekWinningLotto);
         ArrayList<WinningStatus> getLottoPrices =  lottoMachine.Discriminator(lottos, lastWeekWinningLotto, lastWeekWinningBonusBall, numberOfLottoTicket);
         Profit profit = new Profit(getLottoPrices, numberOfLottoTicket);
 

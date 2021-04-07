@@ -3,12 +3,13 @@ package lotto.ui;
 import lotto.domain.WinningStatus;
 import lotto.domain.lottoticket.LottoTicket;
 import lotto.domain.lottoticket.Lottos;
+import lotto.domain.lottoticket.NumberOfLottoTicket;
 
 import java.util.*;
 
 public class Printer {
     private static final String REQUEST_PURCHASE_AMOUNT_MESSAGE = "구입금액을 입력해 주세요.";
-    private static final String REQUEST_LAST_WEEK_LOTTO_WINNING_NUMBER_MESSAGE = "지난 주 당첨 번호를 입력해 주세요.";
+    private static final String REQUEST_LAST_WEEK_LOTTO_WINNING_NUMBER_MESSAGE = "\n지난 주 당첨 번호를 입력해 주세요.";
     private static final String REQUEST_LOTTO_BONUS_BALL_NUMBER_MESSAGE = "보너스 볼을 입력해주세요";
     private static final String PRINT_FINAL_MATCHED_LOTTO_RESULT_MESSAGE = "%s개 일치%s(%s원)- ";
     private static final String PRINT_LOTTO_PROFIT_MESSAGE = "총 수익률은 %.2f입니다.";
@@ -16,6 +17,7 @@ public class Printer {
     private static final String PRINT_DIVIDER_MESSAGE = "---------\n";
     private static final String PRINT_WINNING_STATISTICS_MESSAGE = "\n당첨 통계\n";
     private static final String PRINT_PROFIT_LOSS_MESSAGE = "(기준이 1이기 때문에 결과적으로 손해라는 의미임)";
+    private static final String PRINT_NUMBER_OF_LOTTO_TICKET = "개를 구매했습니다.";
 
     public void requestPurchaseAmount() {
         System.out.println(REQUEST_PURCHASE_AMOUNT_MESSAGE);
@@ -88,6 +90,10 @@ public class Printer {
         if(!isProfit) {
             System.out.println(PRINT_PROFIT_LOSS_MESSAGE);
         }
+    }
+
+    public void printNumberOfLottoTicket(NumberOfLottoTicket numberOfLottoTicket) {
+        System.out.println(numberOfLottoTicket.getNumberOfLottoTicket() + PRINT_NUMBER_OF_LOTTO_TICKET);
     }
 }
 

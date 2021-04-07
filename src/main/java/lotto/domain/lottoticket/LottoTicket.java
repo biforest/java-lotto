@@ -18,6 +18,7 @@ public class LottoTicket implements Lotto{
             throw new NotValidLottoLengthException();
         }
     }
+
     @Override
     public List<Integer> getLotto(){
         return this.numbers;
