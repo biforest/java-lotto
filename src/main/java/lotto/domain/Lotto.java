@@ -10,6 +10,7 @@ abstract class Lotto {
     public Lotto(List<Integer> numbers){
         LottoValidation lottoValidation = new LottoValidation();
         lottoValidation.checkLottoLength(numbers);
+        lottoValidation.checkDuplicatedNumber(numbers);
         this.numbers = numbers;
     }
 
