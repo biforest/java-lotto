@@ -1,6 +1,10 @@
 package lotto.ui;
 
 import lotto.domain.NumberOfLottoTicket;
+import lotto.domain.lotto.LottoAutomaticTicket;
+import lotto.domain.lotto.LottoAutomaticTickets;
+import lotto.domain.lotto.LottoManualTicket;
+import lotto.domain.lotto.LottoManualTickets;
 
 public class Printer {
     private static final String REQUEST_PURCHASE_AMOUNT_MESSAGE = "구입금액을 입력해 주세요.";
@@ -28,4 +32,15 @@ public class Printer {
         ));
     }
 
+    public void printLottoAutomaticTickets(LottoAutomaticTickets lottoAutomaticTickets) {
+        for (LottoAutomaticTicket lottoAutomaticTicket: lottoAutomaticTickets.getLottoAutomaticTickets()) {
+            System.out.println(lottoAutomaticTicket.getLotto());
+        }
+    }
+
+    public void printLottoManualTickets(LottoManualTickets lottoManualTickets) {
+        for (LottoManualTicket lottoManualTicket: lottoManualTickets.getLottoManualTickets()) {
+            System.out.println(lottoManualTicket.getLotto());
+        }
+    }
 }
