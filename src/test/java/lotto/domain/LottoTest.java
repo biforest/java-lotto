@@ -1,44 +1,56 @@
 package lotto.domain;
 
 import lotto.domain.exception.NotValidLottoLengthException;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 class LottoTest {
+
+    private LottoAutomaticTicket lottoAutomaticTicket;
+
+    @BeforeEach
+    void setup() {
+        List<Integer> numbers = new ArrayList<>(Arrays.asList(6,7,8,9,10,11));
+        lottoAutomaticTicket = new LottoAutomaticTicket(numbers);
+    }
+
     @Test
     void 로또_객체를_생성한다(){
         //given
-        List<Integer> numbers = List.of(6,7,8,9,10,11);
-        List<Integer> actual = List.of(6,7,8,9,10,11);
-        Lotto lotto = new Lotto(numbers);
+        List<Integer> actual = new ArrayList<>(Arrays.asList(6,7,8,9,10,11));
+
 
         //when
-        List<Integer> expected = lotto.getLotto();
+        List<Integer> expected = lottoAutomaticTicket.getLotto();
         System.out.println(expected);
         //then
         assertThat(expected).isEqualTo(actual);
     }
+
     @Test
     void 로또_숫자가_6개를_초과할_경우_NotValidLottoLengthException을_던진다(){
         //given
-        List<Integer> numbers = List.of(6,7,8,9,10,11,12);
+        List<Integer> numbers = new ArrayList<>(Arrays.asList(6,7,8,9,10,11,12));
 
         //when
         //then
         assertThatExceptionOfType(NotValidLottoLengthException.class).
-                isThrownBy(() -> new Lotto(numbers));
+                isThrownBy(() -> new LottoAutomaticTicket(numbers));
     }
     @Test
     void 로또_숫자가_6개_미만일_경우_NotValidLottoLengthException을_던진다(){
         //given
-        List<Integer> numbers = List.of(6,7,8,9,10);
+        List<Integer> numbers = new ArrayList<>(Arrays.asList(6,7,8,9,10));
 
         //when
         //then
         assertThatExceptionOfType(NotValidLottoLengthException.class).
-                isThrownBy(() -> new Lotto(numbers));
+                isThrownBy(() -> new LottoAutomaticTicket(numbers));
     }
 }
