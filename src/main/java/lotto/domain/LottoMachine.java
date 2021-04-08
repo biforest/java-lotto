@@ -27,12 +27,50 @@ public class LottoMachine {
             LastWeekWinningBonusBall lastWeekWinningBonusBall) {
         Map<Integer, Boolean> mappingLottoManualTicketsResult = new HashMap<>();
 
-        for (LottoManualTicket lastManualTicket : lottoManualTickets.getLottoManualTickets()) {
-            int matchedLottoManualTicketCount = calculateMatchedLottoManualTicket(lastManualTicket, lastWeekWinningLotto);
-            Boolean isMatchedBonusBall = calculateMatchedBonusBallManualTicket(lastManualTicket, lastWeekWinningBonusBall);
+        for (LottoManualTicket lottoManualTicket : lottoManualTickets.getLottoManualTickets()) {
+            int matchedLottoManualTicketCount = calculateMatchedLottoManualTicket(lottoManualTicket, lastWeekWinningLotto);
+            Boolean isMatchedBonusBall = calculateMatchedBonusBallManualTicket(lottoManualTicket, lastWeekWinningBonusBall);
             mappingLottoManualTicketsResult.put(matchedLottoManualTicketCount, isMatchedBonusBall);
         }
         return mappingLottoManualTicketsResult;
+    }
+
+    public Map<Integer, Boolean> lottoAutomaticTicketsDiscriminator(
+            LottoAutomaticTickets lottoAutomaticTickets,
+            LastWeekWinningLotto lastWeekWinningLotto,
+            LastWeekWinningBonusBall lastWeekWinningBonusBall) {
+        Map<Integer, Boolean> mappingLottoAutomaticTicketsResult = new HashMap<>();
+
+        for (LottoAutomaticTicket lottoAutomaticTicket : lottoAutomaticTickets.getLottoAutomaticTickets()) {
+            int matchedLottoAutomaticTicketCount = calculateMatchedLottoAutomaticTicket(lottoAutomaticTicket, lastWeekWinningLotto);
+            Boolean isMatchedBonusBall = calculateMatchedBonusBallAutomaticTicket(lottoAutomaticTicket, lastWeekWinningBonusBall);
+            mappingLottoAutomaticTicketsResult.put(matchedLottoAutomaticTicketCount, isMatchedBonusBall);
+        }
+        return mappingLottoAutomaticTicketsResult;
+    }
+
+    private Boolean calculateMatchedBonusBallAutomaticTicket(
+            LottoAutomaticTicket lottoAutomaticTicket,
+            LastWeekWinningBonusBall lastWeekWinningBonusBall) {
+
+        List<Integer> lottoTicket = lottoAutomaticTicket.getLotto();
+        int WinningBonusBalls = lastWeekWinningBonusBall.getLastWeekWinningBonusBall();
+        return lottoTicket.contains(WinningBonusBalls);
+    }
+
+    private int calculateMatchedLottoAutomaticTicket(
+            LottoAutomaticTicket lottoAutomaticTicket,
+            LastWeekWinningLotto lastWeekWinningLotto) {
+
+        List<Integer> lottoTicket = lottoAutomaticTicket.getLotto();
+        List<Integer> lastWeekWinningLottoTicket = lastWeekWinningLotto.getLotto();
+        int matchedCount = 0;
+        for (int lottoNumber = 0; lottoNumber < LOTTO_SIZE; lottoNumber++) {
+            Boolean isMatchLottoNumber = lottoTicket.contains(lastWeekWinningLottoTicket.get(lottoNumber));
+            matchedCount += countMatchedLottoNumber(isMatchLottoNumber);
+        }
+        return matchedCount;
+
     }
 
     private Boolean calculateMatchedBonusBallManualTicket(
@@ -62,5 +100,4 @@ public class LottoMachine {
         }
         return 0;
     }
-
 }
