@@ -9,18 +9,20 @@ import domain.winningStatistics.WinningStatistics;
 
 public class Lotteries {
     private final List<Lottery> lotteries;
-    private final WinningStatistics winningStatistics = new WinningStatistics();
 
     public Lotteries(List<Lottery> lotteries) {
         this.lotteries = lotteries;
     }
 
-    public void compareWithWinningNumbersAndBonusNumber(ManualNumbersGenerator winningNumbers,
+    public WinningStatistics compareWithWinningNumbersAndBonusNumber(ManualNumbersGenerator winningNumbers,
         BonusNumber bonusNumber) {
+        WinningStatistics winningStatistics = new WinningStatistics();
         for (Lottery lottery : lotteries) {
             ComparisonResult comparisonResult = compareOneTicketNumbers(winningNumbers, bonusNumber, lottery);
-            winningStatistics.checkRanking(comparisonResult);
+            comparisonResult.checkRanking(winningStatistics);
         }
+
+        return winningStatistics;
     }
 
     public ComparisonResult compareOneTicketNumbers(ManualNumbersGenerator winningNumbers, BonusNumber bonusNumber,
@@ -44,9 +46,5 @@ public class Lotteries {
 
     public List<Lottery> getLotteries() {
         return lotteries;
-    }
-
-    public WinningStatistics getWinningStatistics() {
-        return winningStatistics;
     }
 }

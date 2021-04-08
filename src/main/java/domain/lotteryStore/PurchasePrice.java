@@ -10,7 +10,7 @@ public class PurchasePrice {
     public PurchasePrice(int purchasePrice) {
         validateSmallerThanPurchasePrice(purchasePrice);
         this.purchasePrice = purchasePrice;
-    }
+    }g
 
     private void validateSmallerThanPurchasePrice(int purchasePrice) {
         if (purchasePrice < PRICE_OF_ONE_LOTTERY_TICKET) {
@@ -20,9 +20,5 @@ public class PurchasePrice {
 
     public int getPurchasedCount() {
         return purchasePrice / PRICE_OF_ONE_LOTTERY_TICKET;
-    }
-
-    public int getPurchasePrice() {
-        return purchasePrice;
     }
 }
