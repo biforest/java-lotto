@@ -3,24 +3,27 @@ package lotto.domain.strategy;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Random;
 
-public class RandomLottoNumberStrategy {
+public class RandomLottoNumberGenerator {
     private final static int UPPER_BOUND = 45;
     private final static int LOWER_BOUND = 1;
     private final static int LOTTO_NUMBER_COUNT = 6;
 
+    private final List<Integer> lottoNumberRange;
+
+    public RandomLottoNumberGenerator() {
+        lottoNumberRange = new ArrayList<>();
+        setLottoNumberRange();
+    }
+
     public List<Integer> getRandomLottoNumbers(){
-        List<Integer> lottoNumberRange = setLottoNumberRange();
         return getLottoNumbers(lottoNumberRange);
     }
 
-    private List<Integer> setLottoNumberRange(){
-        ArrayList<Integer> lottoNumberRange = new ArrayList<>();
+    private void setLottoNumberRange(){
         for (int lottoNumber = LOWER_BOUND; lottoNumber < UPPER_BOUND; lottoNumber++) {
             lottoNumberRange.add(lottoNumber);
         }
-        return lottoNumberRange;
     }
 
     private List<Integer> getLottoNumbers(List<Integer> lottoNumberRange){
