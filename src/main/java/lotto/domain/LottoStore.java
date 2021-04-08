@@ -1,9 +1,6 @@
 package lotto.domain;
 
-import lotto.domain.lotto.LastWeekWinningLotto;
-import lotto.domain.lotto.LottoAutomaticTickets;
-import lotto.domain.lotto.LottoManualTicket;
-import lotto.domain.lotto.LottoManualTickets;
+import lotto.domain.lotto.*;
 import lotto.ui.Printer;
 import lotto.ui.Receiver;
 
@@ -54,5 +51,14 @@ public class LottoStore {
         printer.requestLastWeekLottoWinningNumber();
         List<Integer> LastWeekLottoWinningNumbers = receiver.receiveLastWeekLottoWinningNumbers();
         return new LastWeekWinningLotto(LastWeekLottoWinningNumbers);
+    }
+
+    public LastWeekWinningBonusBall inputLastWeekWinningBonusBall() {
+        printer.requestLottoBonusBallNumber();
+        int BonusBall = receiver.receiveLottoBonusBallNumber();
+        return new LastWeekWinningBonusBall(BonusBall);
+    }
+
+    public void informLottoStatistics() {
     }
 }
