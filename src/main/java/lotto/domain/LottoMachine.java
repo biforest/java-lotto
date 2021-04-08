@@ -107,11 +107,12 @@ public class LottoMachine {
         return 0;
     }
 
-    public void getStatistics(List<LottoMatchStatus> lottoAllTicketMatchStatuses) {
+    public List<WinningStatus> getStatistics(List<LottoMatchStatus> lottoAllTicketMatchStatuses) {
 
         for (LottoMatchStatus lottoMatchStatus: lottoAllTicketMatchStatuses) {
             mappingLottoTicketWithBonusBall(lottoMatchStatus);
         }
+        return lottoPrices;
     }
 
     private void mappingLottoTicketWithBonusBall(LottoMatchStatus lottoMatchStatus) {
@@ -136,5 +137,9 @@ public class LottoMachine {
             mappingLottoWithBonusBall.put(key, mappingLottoWithBonusBall.getOrDefault(key, 0)+1);
         }
         return mappingLottoWithBonusBall;
+    }
+
+    public Profit getProfitInformation(List<WinningStatus> lottoStatistics, NumberOfLottoTicket numberOfLottoTicket) {
+        return new Profit(lottoStatistics, numberOfLottoTicket );
     }
 }
