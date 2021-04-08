@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import lotto.domain.lotto.LottoAutomaticTickets;
 import lotto.domain.lotto.LottoManualTicket;
 import lotto.domain.lotto.LottoManualTickets;
 import lotto.ui.Printer;
@@ -10,6 +11,7 @@ import java.util.ArrayList;
 public class LottoStore {
     private final Printer printer = new Printer();
     private final Receiver receiver = new Receiver();
+    private final LottoMachine lottoMachine = new LottoMachine();
 
     public PurchaseAmount inputLottoPurchaseAmount() {
         printer.requestPurchaseAmount();
@@ -30,12 +32,12 @@ public class LottoStore {
             LottoManualTicket lottoManualTicket = new LottoManualTicket(receiver.receiverLottoManualTicket());
             lottoManualTicketDummy.add(lottoManualTicket);
         }
-        LottoManualTickets lottoManualTickets = new LottoManualTickets(lottoManualTicketDummy);
-        return lottoManualTickets;
+        return new LottoManualTickets(lottoManualTicketDummy);
     }
 
-    public void generateLottoAutomaticTickets() {
-
+    public void informLottoAutomaticTickets(NumberOfLottoTicket numberOfLottoTicket) {
+        LottoAutomaticTickets lottoAutomaticTickets = lottoMachine.generateLottoAutomaticTickets(numberOfLottoTicket);
+        printer.printLottoAutomaticTickets();
     }
 
     public NumberOfLottoTicket informNumberOfLottoTicket(PurchaseAmount purchaseAmount, int lottoManualTicketNumber) {
