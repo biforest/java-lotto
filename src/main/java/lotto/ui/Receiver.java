@@ -1,6 +1,5 @@
 package lotto.ui;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
@@ -38,6 +37,10 @@ public class Receiver {
 
     private List<String> splitInputDelimiter(String lottoManualTicket) {
         return Arrays.asList(lottoManualTicket.split(DELIMITER));
+    }
+
+    public int receiveLottoBonusBallNumber() {
+        return scanner.nextInt();
     }
 
 }
