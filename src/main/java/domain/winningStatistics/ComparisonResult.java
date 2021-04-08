@@ -9,6 +9,23 @@ public class ComparisonResult {
         this.havingBonusNumber = havingBonusNumber;
     }
 
+    public void checkRanking(WinningStatistics winningStatistics) {
+        for (PrizeMoney prizeMoney : PrizeMoney.values()) {
+            checkWinnings(winningStatistics, prizeMoney);
+        }
+    }
+
+    private void checkWinnings(WinningStatistics winningStatistics, PrizeMoney prizeMoney) {
+        if (matchingCount == prizeMoney.getMatchingCount()
+                && isHavingBonusNumberWithFiveMatchingCount() == prizeMoney.isHavingBonusNumber()) {
+            winningStatistics.increase(prizeMoney);
+        }
+    }
+
+    private boolean isHavingBonusNumberWithFiveMatchingCount() {
+        return matchingCount == 5 && havingBonusNumber;
+    }
+
     public int getMatchingCount() {
         return matchingCount;
     }
