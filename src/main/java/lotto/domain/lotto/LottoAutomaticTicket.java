@@ -12,6 +12,6 @@ public class LottoAutomaticTicket extends Lotto{
     }
 
     public List<Integer> getLotto(){
-        return this.numbers;
+        return numbers;
     }
 }
