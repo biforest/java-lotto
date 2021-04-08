@@ -24,6 +24,12 @@ public class Receiver {
         return convertStringToInt(lottoManualTicket);
     }
 
+    public List<Integer> receiveLastWeekLottoWinningNumbers() {
+        String lastWeekLottoWinningNumbers = scanner.next();
+        List<String> dividedLastWeekLottoWinningNumbers = splitInputDelimiter(lastWeekLottoWinningNumbers);
+        return convertStringToInt(dividedLastWeekLottoWinningNumbers);
+    }
+
     private List<Integer> convertStringToInt(List<String> lottoManualTicket) {
         return lottoManualTicket.stream()
                 .map(Integer::parseInt)
@@ -33,4 +39,5 @@ public class Receiver {
     private List<String> splitInputDelimiter(String lottoManualTicket) {
         return Arrays.asList(lottoManualTicket.split(DELIMITER));
     }
+
 }
