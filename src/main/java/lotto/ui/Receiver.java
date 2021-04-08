@@ -8,4 +8,6 @@ public class Receiver {
     public int receiveLottoPurchaseAmount() {
         return scanner.nextInt();
     }
+
+    public int receiverLottoManualTicketNumber() {return scanner.nextInt();}
 }

@@ -13,4 +13,9 @@ public class LottoStore {
 
         return new PurchaseAmount(lottoPurchaseAmount);
     }
+
+    public int inputLottoManualTicketNumber() {
+        printer.requestLottoManualTicketNumber();
+        return receiver.receiverLottoManualTicketNumber();
+    }
 }
