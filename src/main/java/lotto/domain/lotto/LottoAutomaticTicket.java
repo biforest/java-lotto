@@ -3,7 +3,6 @@ package lotto.domain.lotto;
 import java.util.List;
 
 public class LottoAutomaticTicket extends Lotto{
-
     private final List<Integer> numbers;
 
     public LottoAutomaticTicket(List<Integer> numbers) {
