@@ -59,6 +59,22 @@ public class LottoStore {
         return new LastWeekWinningBonusBall(BonusBall);
     }
 
-    public void informLottoStatistics() {
+    public void informLottoStatistics(
+            NumberOfLottoTicket numberOfLottoTicket,
+            LottoManualTickets lottoManualTickets,
+            LottoAutomaticTickets lottoAutomaticTickets,
+            LastWeekWinningLotto lastWeekWinningLotto,
+            LastWeekWinningBonusBall lastWeekWinningBonusBall) {
+
+        List<LottoMatchStatus> lottoAllTicketMatchStatuses = new ArrayList<>();
+        List<LottoMatchStatus> lottoManualTicketMatchStatuses = lottoMachine.lottoManualTicketsDiscriminator(lottoManualTickets, lastWeekWinningLotto, lastWeekWinningBonusBall);
+        List<LottoMatchStatus> lottoAutomaticTicketMatchStatuses = lottoMachine.lottoAutomaticTicketsDiscriminator(lottoAutomaticTickets, lastWeekWinningLotto, lastWeekWinningBonusBall);
+        lottoAllTicketMatchStatuses.addAll(lottoManualTicketMatchStatuses);
+        lottoAllTicketMatchStatuses.addAll(lottoAutomaticTicketMatchStatuses);
+        List<WinningStatus> lottoStatistics = lottoMachine.getStatistics(lottoAllTicketMatchStatuses);
+        printer.printAllMatchedLottoResults(lottoMachine.getMappingLottoWithBonusBall());
+        Profit profit = lottoMachine.getProfitInformation(lottoStatistics, numberOfLottoTicket);
+        printer.printLottoProfit(profit.getProfit());
+        printer.printIsLottoProfit(profit.isProfit());
     }
 }
