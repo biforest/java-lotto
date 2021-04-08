@@ -15,7 +15,7 @@ public class Profit {
         this.calculatedProfit = CalculatedProfit();
     }
 
-    private int sumLottoPrices(List<WinningStatus> lottoPrices){
+    private int sumLottoPrices(List<WinningStatus> lottoPrices) {
         return lottoPrices.stream().mapToInt(WinningStatus::getWinningMoney).sum();
     }
 
@@ -24,7 +24,7 @@ public class Profit {
     }
 
     public boolean isProfit() {
-        if (calculatedProfit<PROFIT_THRESHOLD) {
+        if (calculatedProfit < PROFIT_THRESHOLD) {
             return false;
         }
         return true;

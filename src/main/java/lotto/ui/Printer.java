@@ -45,13 +45,13 @@ public class Printer {
     }
 
     public void printLottoAutomaticTickets(LottoAutomaticTickets lottoAutomaticTickets) {
-        for (LottoAutomaticTicket lottoAutomaticTicket: lottoAutomaticTickets.getLottoAutomaticTickets()) {
+        for (LottoAutomaticTicket lottoAutomaticTicket : lottoAutomaticTickets.getLottoAutomaticTickets()) {
             System.out.println(lottoAutomaticTicket.getLotto());
         }
     }
 
     public void printLottoManualTickets(LottoManualTickets lottoManualTickets) {
-        for (LottoManualTicket lottoManualTicket: lottoManualTickets.getLottoManualTickets()) {
+        for (LottoManualTicket lottoManualTicket : lottoManualTickets.getLottoManualTickets()) {
             System.out.println(lottoManualTicket.getLotto());
         }
     }
@@ -60,13 +60,12 @@ public class Printer {
         List<WinningStatus> keySet = new ArrayList(lottoPrices.keySet());
         keySet.sort(Comparator.comparingInt(WinningStatus::getWinningMoney));
 
-        for(WinningStatus winningStatus: WinningStatus.values()){
+        for (WinningStatus winningStatus : WinningStatus.values()) {
             printMatchedLottoWithBonusBallFormat(winningStatus);
             printMatchedLottoFormat(winningStatus);
             printMatchedLottoResult(winningStatus, lottoPrices);
         }
     }
-
 
     public void requestLastWeekLottoWinningNumber() {
         System.out.println(REQUEST_LAST_WEEK_LOTTO_WINNING_NUMBER_MESSAGE);
@@ -77,11 +76,11 @@ public class Printer {
     }
 
     private void printMatchedLottoResult(WinningStatus winningStatus, Map<WinningStatus, Integer> lottoPrices) {
-        if (lottoPrices.get(winningStatus) == null){
+        if (lottoPrices.get(winningStatus) == null) {
             System.out.println("0개");
         }
-        if (lottoPrices.get(winningStatus) != null){
-            System.out.println(lottoPrices.get(winningStatus)+"개");
+        if (lottoPrices.get(winningStatus) != null) {
+            System.out.println(lottoPrices.get(winningStatus) + "개");
         }
     }
 
@@ -96,7 +95,7 @@ public class Printer {
     }
 
     private void printMatchedLottoWithBonusBallFormat(WinningStatus winningStatus) {
-        if (winningStatus.hasBonusBall()){
+        if (winningStatus.hasBonusBall()) {
             System.out.print(String.format(
                     PRINT_FINAL_MATCHED_LOTTO_RESULT_MESSAGE,
                     winningStatus.getMatchCount(),
@@ -110,7 +109,7 @@ public class Printer {
     }
 
     public void printIsLottoProfit(boolean isProfit) {
-        if(!isProfit) {
+        if (!isProfit) {
             System.out.println(PRINT_PROFIT_LOSS_MESSAGE);
         }
     }

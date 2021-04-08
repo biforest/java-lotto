@@ -2,7 +2,7 @@ package lotto.domain.lotto;
 
 import java.util.List;
 
-public class LastWeekWinningLotto extends Lotto{
+public class LastWeekWinningLotto extends Lotto {
     private final List<Integer> winningLotto;
 
     public LastWeekWinningLotto(List<Integer> winningLotto) {
@@ -10,7 +10,7 @@ public class LastWeekWinningLotto extends Lotto{
         this.winningLotto = winningLotto;
     }
 
-    public List<Integer> getLotto(){
+    public List<Integer> getLotto() {
         return winningLotto;
     }
 

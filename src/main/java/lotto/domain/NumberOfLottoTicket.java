@@ -29,7 +29,7 @@ public class NumberOfLottoTicket {
         return LOTTO_TICKET_PRICE;
     }
 
-    public int getNumberOfManualLottoTicket(){
+    public int getNumberOfManualLottoTicket() {
         return numberOfManualLottoTicket;
     }
 

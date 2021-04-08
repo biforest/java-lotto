@@ -11,7 +11,7 @@ public enum WinningStatus {
     private final int winningMoney;
     private final boolean BonusBall;
 
-    WinningStatus(int matchCount, boolean BonusBall, int winningMoney){
+    WinningStatus(int matchCount, boolean BonusBall, int winningMoney) {
         this.matchCount = matchCount;
         this.winningMoney = winningMoney;
         this.BonusBall = BonusBall;

@@ -44,7 +44,7 @@ public class LottoMachine {
             LottoAutomaticTickets lottoAutomaticTickets,
             LastWeekWinningLotto lastWeekWinningLotto,
             LastWeekWinningBonusBall lastWeekWinningBonusBall) {
-        List<LottoMatchStatus> lottoMatchStatuses= new ArrayList<>();
+        List<LottoMatchStatus> lottoMatchStatuses = new ArrayList<>();
 
         for (LottoAutomaticTicket lottoAutomaticTicket : lottoAutomaticTickets.getLottoAutomaticTickets()) {
             int matchedLottoAutomaticTicketCount = calculateMatchedLottoAutomaticTicket(lottoAutomaticTicket, lastWeekWinningLotto);
@@ -82,6 +82,7 @@ public class LottoMachine {
     private Boolean calculateMatchedBonusBallManualTicket(
             LottoManualTicket lottoManualTicket,
             LastWeekWinningBonusBall lastWeekWinningBonusBall) {
+
         List<Integer> lottoTicket = lottoManualTicket.getLotto();
         int WinningBonusBalls = lastWeekWinningBonusBall.getLastWeekWinningBonusBall();
         return lottoTicket.contains(WinningBonusBalls);
@@ -90,6 +91,7 @@ public class LottoMachine {
     private int calculateMatchedLottoManualTicket(
             LottoManualTicket lottoManualTicket,
             LastWeekWinningLotto lastWeekWinningLotto) {
+
         List<Integer> lottoTicket = lottoManualTicket.getLotto();
         List<Integer> lastWeekWinningLottoTicket = lastWeekWinningLotto.getLotto();
         int matchedCount = 0;
@@ -108,38 +110,37 @@ public class LottoMachine {
     }
 
     public List<WinningStatus> getStatistics(List<LottoMatchStatus> lottoAllTicketMatchStatuses) {
-
-        for (LottoMatchStatus lottoMatchStatus: lottoAllTicketMatchStatuses) {
+        for (LottoMatchStatus lottoMatchStatus : lottoAllTicketMatchStatuses) {
             mappingLottoTicketWithBonusBall(lottoMatchStatus);
         }
         return lottoPrices;
     }
 
     private void mappingLottoTicketWithBonusBall(LottoMatchStatus lottoMatchStatus) {
-        for (WinningStatus winningStatus: WinningStatus.values()) {
+        for (WinningStatus winningStatus : WinningStatus.values()) {
             compareWinningStatus(winningStatus, lottoMatchStatus.getMatchedCount(), lottoMatchStatus.getHasBonusBall());
         }
     }
 
     private void compareWinningStatus(WinningStatus winningStatus, int lottoMatchedCount, Boolean hasBonusBall) {
-        if((winningStatus.getMatchCount() == lottoMatchedCount) && (lottoMatchedCount != WINNING_LOTTO_WITH_BONUS_BALL_MATCHED_COUNT)){
+        if ((winningStatus.getMatchCount() == lottoMatchedCount) && (lottoMatchedCount != WINNING_LOTTO_WITH_BONUS_BALL_MATCHED_COUNT)) {
             lottoPrices.add(winningStatus);
         }
-        if((winningStatus.hasBonusBall() == hasBonusBall) && (lottoMatchedCount == WINNING_LOTTO_WITH_BONUS_BALL_MATCHED_COUNT)){
+        if ((winningStatus.hasBonusBall() == hasBonusBall) && (lottoMatchedCount == WINNING_LOTTO_WITH_BONUS_BALL_MATCHED_COUNT)) {
             lottoPrices.add(winningStatus);
         }
     }
 
     public Map<WinningStatus, Integer> getMappingLottoWithBonusBall() {
         Map<WinningStatus, Integer> mappingLottoWithBonusBall = new HashMap<>();
-        for (WinningStatus key: lottoPrices
-        ) {
-            mappingLottoWithBonusBall.put(key, mappingLottoWithBonusBall.getOrDefault(key, 0)+1);
+
+        for (WinningStatus key : lottoPrices) {
+            mappingLottoWithBonusBall.put(key, mappingLottoWithBonusBall.getOrDefault(key, 0) + 1);
         }
         return mappingLottoWithBonusBall;
     }
 
     public Profit getProfitInformation(List<WinningStatus> lottoStatistics, NumberOfLottoTicket numberOfLottoTicket) {
-        return new Profit(lottoStatistics, numberOfLottoTicket );
+        return new Profit(lottoStatistics, numberOfLottoTicket);
     }
 }

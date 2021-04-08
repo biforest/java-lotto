@@ -2,7 +2,7 @@ package lotto.domain.lotto;
 
 import java.util.List;
 
-public class LottoAutomaticTicket extends Lotto{
+public class LottoAutomaticTicket extends Lotto {
     private final List<Integer> numbers;
 
     public LottoAutomaticTicket(List<Integer> numbers) {
@@ -10,7 +10,7 @@ public class LottoAutomaticTicket extends Lotto{
         this.numbers = numbers;
     }
 
-    public List<Integer> getLotto(){
+    public List<Integer> getLotto() {
         return numbers;
     }
 }

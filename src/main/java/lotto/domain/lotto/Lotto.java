@@ -7,7 +7,7 @@ import java.util.List;
 abstract class Lotto {
     private final List<Integer> numbers;
 
-    public Lotto(List<Integer> numbers){
+    public Lotto(List<Integer> numbers) {
         LottoValidation lottoValidation = new LottoValidation();
         lottoValidation.checkLottoLength(numbers);
         lottoValidation.checkDuplicatedNumber(numbers);
