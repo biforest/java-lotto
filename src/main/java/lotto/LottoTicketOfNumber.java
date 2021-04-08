@@ -1,6 +1,6 @@
-package lotto.domain;
+package lotto;
 
-import lotto.domain.validation.LottoTicketOfNumberValidation;
+import lotto.validation.LottoTicketOfNumberValidation;
 
 public class LottoTicketOfNumber {
     private final static int LOTTO_TICKET_PRICE = 1000;

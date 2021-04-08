@@ -1,11 +1,12 @@
-package lotto.domain.lotto;
+package lotto.lotto;
 
 import java.util.List;
 
-public class LottoManualTicket extends Lotto{
+public class LottoAutomaticTicket extends Lotto{
+
     private final List<Integer> numbers;
 
-    public LottoManualTicket(List<Integer> numbers) {
+    public LottoAutomaticTicket(List<Integer> numbers) {
         super(numbers);
         this.numbers = numbers;
     }

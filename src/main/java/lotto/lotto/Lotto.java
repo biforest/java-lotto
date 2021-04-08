@@ -1,6 +1,6 @@
-package lotto.domain.lotto;
+package lotto.lotto;
 
-import lotto.domain.validation.LottoValidation;
+import lotto.validation.LottoValidation;
 
 import java.util.List;
 

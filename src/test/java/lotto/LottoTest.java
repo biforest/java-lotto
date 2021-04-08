@@ -1,8 +1,8 @@
-package lotto.domain;
+package lotto;
 
-import lotto.domain.exception.NotDuplicatedNumberException;
-import lotto.domain.exception.NotValidLottoLengthException;
-import lotto.domain.lotto.LottoAutomaticTicket;
+import lotto.exception.NotDuplicatedNumberException;
+import lotto.exception.NotValidLottoLengthException;
+import lotto.lotto.LottoAutomaticTicket;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

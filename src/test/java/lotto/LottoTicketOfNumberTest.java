@@ -1,6 +1,6 @@
-package lotto.domain;
+package lotto;
 
-import lotto.domain.exception.NotValidLottoTicketOfNumberException;
+import lotto.exception.NotValidLottoTicketOfNumberException;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
