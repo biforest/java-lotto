@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import lotto.domain.lotto.LastWeekWinningLotto;
 import lotto.domain.lotto.LottoAutomaticTickets;
 import lotto.domain.lotto.LottoManualTicket;
 import lotto.domain.lotto.LottoManualTickets;
@@ -7,6 +8,7 @@ import lotto.ui.Printer;
 import lotto.ui.Receiver;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class LottoStore {
     private final Printer printer = new Printer();
@@ -35,14 +37,22 @@ public class LottoStore {
         return new LottoManualTickets(lottoManualTicketDummy);
     }
 
-    public void informLottoAutomaticTickets(NumberOfLottoTicket numberOfLottoTicket) {
-        LottoAutomaticTickets lottoAutomaticTickets = lottoMachine.generateLottoAutomaticTickets(numberOfLottoTicket);
-        printer.printLottoAutomaticTickets();
+    public LottoAutomaticTickets informLottoAutomaticTickets(LottoManualTickets lottoManualTickets, NumberOfLottoTicket numberOfLottoTicket) {
+        printer.printLottoManualTickets(lottoManualTickets);
+        LottoAutomaticTickets lottoAutomaticTickets = lottoMachine.generateLottoAutomaticTicket(numberOfLottoTicket);
+        printer.printLottoAutomaticTickets(lottoAutomaticTickets);
+        return lottoAutomaticTickets;
     }
 
     public NumberOfLottoTicket informNumberOfLottoTicket(PurchaseAmount purchaseAmount, int lottoManualTicketNumber) {
         NumberOfLottoTicket numberOfLottoTicket = new NumberOfLottoTicket(purchaseAmount, lottoManualTicketNumber);
         printer.printNumberOfEachLottoTicket(numberOfLottoTicket);
         return numberOfLottoTicket;
+    }
+
+    public LastWeekWinningLotto inputLastWeekWinningLotto() {
+        printer.requestLastWeekLottoWinningNumber();
+        List<Integer> LastWeekLottoWinningNumbers = receiver.receiveLastWeekLottoWinningNumbers();
+        return new LastWeekWinningLotto(LastWeekLottoWinningNumbers);
     }
 }
