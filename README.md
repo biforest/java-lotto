@@ -143,7 +143,7 @@ ___
   - [x] 수동 로또 생성
 - [x] Printer %s, %f 사용
 - [x] LotteryComparator 기능을 Lotteries로 합치기
-- [ ] PrizeMoney로 당첨 횟수 세기
+- [x] PrizeMoney로 당첨 횟수 세기
 
 ### 논의거리
 
@@ -155,18 +155,14 @@ ___
 - WinningStatistics if분기 어떻게 처리할건지
 - enum에서 값을 변경해도 되는지
 
-### LotteryNumber
-
-- 최소(1), 최대(45) 값
-- validate range
-
 ### 숫자를 가지는 클래스
 
 - Numbers: 6개 List<Integer>
   - Lottery가 만들어질 때 TargetNumbers로부터 받음
   - 당첨 번호 6개와 비교
-- [x] LotteryNumber
-  - 최댓값, 최솟값, 검증 로직 가지는 부모 클래스
+- [x] **LotteryNumber**
+  - 최솟값(1), 최솟값(45)
+  - 범위 검증 로직 (validate range) 가지는 부모 클래스
 - [x] TargetNumbers: 45개 -> AutoNumbersGenerator
   - 자동 생성
   - shuffle, 앞의 6개 숫자 가져오기 -> Numbers

@@ -32,7 +32,6 @@ public class Receiver {
 
     public String receiveWinningNumbers() {
         System.out.println(InputMessage.INPUT_LAST_WEEK_WINNING_NUMBERS.getMessage());
-        SCANNER.nextLine();
         return SCANNER.nextLine();
     }
 
