@@ -1,21 +1,30 @@
 package domain.winningStatistics;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
-public class Rankings {
-    private final List<Integer> rankings;
+public class WinningStatistics {
+    private Map<PrizeMoney, Integer> winningStatistics = new HashMap<>();
 
-    public Rankings() {
-        this.rankings = new ArrayList<>(Arrays.asList(0, 0, 0, 0, 0));
+
+    public WinningStatistics() {
+        initiate();
     }
 
-    public void increase(int index) {
-        rankings.set(index, rankings.get(index) + 1);
+    private void initiate() {
+        for (PrizeMoney value : PrizeMoney.values()) {
+            winningStatistics.put(value, 0);
+        }
     }
 
-    public List<Integer> getRankings() {
-        return rankings;
+    public void increase(PrizeMoney value) {
+        winningStatistics.put(value, winningStatistics.get(value) + 1);
+    }
+
+    public int get(PrizeMoney value) {
+        return winningStatistics.get(value);
+    }
+
+    public Map<PrizeMoney, Integer> getWinningStatistics() {
+        return winningStatistics;
     }
 }
