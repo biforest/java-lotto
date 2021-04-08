@@ -50,4 +50,25 @@ class ProfitTest {
         //then
         assertThat(false).isEqualTo(isProfit);
     }
+
+    @Test
+    void Profit_객체를_생성하고_수익률_반환한다() {
+        //given
+        int purchaseManualLottoOfNumber = 3;
+        PurchaseAmount purchaseAmount = new PurchaseAmount(4000);
+        NumberOfLottoTicket numberOfLottoTicket = new NumberOfLottoTicket(purchaseAmount, purchaseManualLottoOfNumber);
+        List<WinningStatus> lottoPrices = new ArrayList<>();
+        for (WinningStatus winningStatus: WinningStatus.values()) {
+            if (winningStatus.getWinningMoney() == 5000) {
+                lottoPrices.add(winningStatus);
+            }
+        }
+        Profit profit = new Profit(lottoPrices, numberOfLottoTicket);
+
+        //when
+        float calculatedProfit = profit.getProfit();
+
+        //then
+        assertThat(1.25).isEqualTo(calculatedProfit);
+    }
 }
