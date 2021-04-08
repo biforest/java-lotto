@@ -1,5 +1,6 @@
 package lotto.domain.lotto;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class LottoAutomaticTickets {
@@ -9,7 +10,7 @@ public class LottoAutomaticTickets {
         this.lottoAutomaticTickets = lottoAutomaticTickets;
     }
 
-    public List<LottoAutomaticTicket> getLottoManualTickets() {
+    public List<LottoAutomaticTicket> getLottoAutomaticTickets() {
         return lottoAutomaticTickets;
     }
 }
