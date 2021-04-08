@@ -1,6 +1,8 @@
 package lotto.domain;
 
+import lotto.domain.exception.NotDuplicatedNumberException;
 import lotto.domain.exception.NotValidLottoLengthException;
+import lotto.domain.lotto.LottoAutomaticTicket;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -51,6 +53,17 @@ class LottoTest {
         //when
         //then
         assertThatExceptionOfType(NotValidLottoLengthException.class).
+                isThrownBy(() -> new LottoAutomaticTicket(numbers));
+    }
+
+    @Test
+    void 로또_숫자가_6개일때_겹치는_숫자가_있을_경우_NotDuplicatedNumberException_을_던진다() {
+        //given
+        List<Integer> numbers = new ArrayList<>(Arrays.asList(6,6,7,8,9,10));
+
+        //when
+        //then
+        assertThatExceptionOfType(NotDuplicatedNumberException.class).
                 isThrownBy(() -> new LottoAutomaticTicket(numbers));
     }
 }
