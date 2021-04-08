@@ -33,4 +33,8 @@ public class LottoStore {
         LottoManualTickets lottoManualTickets = new LottoManualTickets(lottoManualTicketDummy);
         return lottoManualTickets;
     }
+
+    public void generateLottoAutomaticTickets() {
+        printer.printNumberOfEachLottoTicket();
+    }
 }
