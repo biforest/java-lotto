@@ -6,12 +6,11 @@ import domain.winningStatistics.WinningStatistics;
 import ui.message.OutputMessage;
 
 public class Printer {
-    private static final int SIZE_OF_LOTTERY_RANK = 5;
+    private static final int SIZE_OF_RANK = 5;
     private static final int WIN_WITH_BONUS_NUMBER = 3;
 
     public void printPurchasedCount(int manualCount, int purchasedCount) {
-        System.out.println(
-            String.format(OutputMessage.PURCHASED_COUNT.getMessage(), manualCount, purchasedCount - manualCount));
+        System.out.printf(OutputMessage.PURCHASED_COUNT.getMessage(), manualCount, purchasedCount - manualCount);
     }
 
     public void printPurchasedLotteries(Lotteries lotteries) {
@@ -45,6 +44,6 @@ public class Printer {
     }
 
     public void printTotalEarningsRate(float totalEarningsRate) {
-        System.out.println(String.format(OutputMessage.TOTAL_EARNINGS_RATE.getMessage(), totalEarningsRate));
+        System.out.printf(OutputMessage.TOTAL_EARNINGS_RATE.getMessage(), totalEarningsRate);
     }
 }

@@ -21,8 +21,4 @@ public class PurchasePrice {
     public int getPurchasedCount() {
         return purchasePrice / PRICE_OF_ONE_LOTTERY_TICKET;
     }
-
-    public int getPurchasePrice() {
-        return purchasePrice;
-    }
 }
