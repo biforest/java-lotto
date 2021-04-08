@@ -25,6 +25,10 @@ public class NumberOfLottoTicket {
         return lottoTicketOfTotalNumber - manualLottoTicketOfNumber;
     }
 
+    public int getLottoTicketPrice() {
+        return LOTTO_TICKET_PRICE;
+    }
+
     public int getNumberOfManualLottoTicket(){
         return numberOfManualLottoTicket;
     }
