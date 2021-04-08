@@ -24,7 +24,8 @@ public class EnumWinningStatus {
             Boolean lottoBonusBallNumber = lottoWinningBonusBallResult.getLottoWinningBonusBallResult().get(i);
             getWinningLottoTicketPrices(lottoMatchedNumber, lottoBonusBallNumber);
         }
-        printer.printAllMatchedLottoResult(getMappingLottoWithBonusBall());
+        printer.printWinningStatistics();
+        printer.printAllMatchedLottoResults(getMappingLottoWithBonusBall());
         return lottoPrices;
     }
 
@@ -49,8 +50,7 @@ public class EnumWinningStatus {
     }
 
     private Map<WinningStatus, Integer> getMappingLottoWithBonusBall() {
-        for (WinningStatus key: lottoPrices
-        ) {
+        for (WinningStatus key: lottoPrices) {
             mappingLottoWithBonusBall.put(key, mappingLottoWithBonusBall.getOrDefault(key, 0)+1);
         }
         return mappingLottoWithBonusBall;

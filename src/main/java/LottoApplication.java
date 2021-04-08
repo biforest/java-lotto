@@ -24,14 +24,18 @@ public class LottoApplication {
         NumberOfLottoTicket numberOfLottoTicket = new NumberOfLottoTicket(receiver.receiveLottoTotalAmount());
         Lottos lottos = makeLottos(numberOfLottoTicket);
         printer.printAllLotto(lottos);
+
         printer.requestLastWeekLottoWinningNumber();
         List<Integer> LastWeekLottoWinningNumbers = receiver.receiveLastWeekLottoWinningNumbers();
         LastWeekWinningLotto lastWeekWinningLotto = new LastWeekWinningLotto(LastWeekLottoWinningNumbers);
+
         printer.requestLottoBonusBallNumber();
         LastWeekWinningBonusBall lastWeekWinningBonusBall = new LastWeekWinningBonusBall(receiver.receiveLottoBonusBallNumber());
         ArrayList<WinningStatus> getLottoPrices =  lottoMachine.Discriminator(lottos, lastWeekWinningLotto, lastWeekWinningBonusBall, numberOfLottoTicket);
-        Profit profit = new Profit(getLottoPrices);
-        printer.printLottoProfit(profit.getCalculatedProfit(numberOfLottoTicket));
+        Profit profit = new Profit(getLottoPrices, numberOfLottoTicket);
+
+        printer.printLottoProfit(profit.getProfit());
+        printer.printIsLottoProfit(profit.isProfit());
     }
 
     private Lottos makeLottos(NumberOfLottoTicket numberOfLottoTicket) {

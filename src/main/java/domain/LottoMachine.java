@@ -43,7 +43,7 @@ public class LottoMachine {
     }
 
     private int getMatchLottoNumberCount(List<Boolean> lottoMatchedResult){
-        return (int) lottoMatchedResult.stream().filter(index-> (index)).count();
+        return (int)lottoMatchedResult.stream().filter(index-> (index)).count();
     }
 
     private List<Boolean> getMatchLottoNumber(LottoTicket lotto, LastWeekWinningLotto lastWeekWinningLotto){

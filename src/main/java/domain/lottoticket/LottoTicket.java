@@ -7,7 +7,7 @@ public class LottoTicket implements Lotto{
     private static final int LOTTO_NUMBER_COUNT = 6;
     private final List<Integer> numbers;
 
-    public LottoTicket(List<Integer> numbers ) {
+    public LottoTicket(List<Integer> numbers) {
         checkLottoLength(numbers);
         this.numbers = numbers;
     }

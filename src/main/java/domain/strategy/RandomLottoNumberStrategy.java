@@ -10,12 +10,12 @@ public class RandomLottoNumberStrategy {
     private final static int LOWER_BOUND = 1;
     private final static int LOTTO_NUMBER_COUNT = 6;
 
-    public List<Integer> getRandomLottoNumbers(){
+    public List<Integer> getRandomLottoNumbers() {
         List<Integer> lottoNumberRange = setLottoNumberRange();
         return getLottoNumbers(lottoNumberRange);
     }
 
-    private List<Integer> setLottoNumberRange(){
+    private List<Integer> setLottoNumberRange() {
         ArrayList<Integer> lottoNumberIndex = new ArrayList<>();
         for (int lottoNumber = LOWER_BOUND; lottoNumber < UPPER_BOUND; lottoNumber++) {
             lottoNumberIndex.add(lottoNumber);
@@ -23,7 +23,7 @@ public class RandomLottoNumberStrategy {
         return lottoNumberIndex;
     }
 
-    private List<Integer> getLottoNumbers(List<Integer> lottoNumberRange){
+    private List<Integer> getLottoNumbers(List<Integer> lottoNumberRange) {
         Collections.shuffle(lottoNumberRange);
         List<Integer> collectedNumbers = lottoNumberRange.subList(0,LOTTO_NUMBER_COUNT);
         Collections.sort(collectedNumbers);
