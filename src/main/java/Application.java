@@ -39,8 +39,7 @@ public class Application {
         ManualNumbersGenerator winningNumbers = new ManualNumbersGenerator(receiver.receiveWinningNumbers());
         BonusNumber bonusNumber = new BonusNumber(receiver.receiveBonusNumber(), winningNumbers);
 
-        lotteries.compareWithWinningNumbersAndBonusNumber(winningNumbers, bonusNumber);
-        WinningStatistics winningStatistics = lotteries.getWinningStatistics();
+        WinningStatistics winningStatistics = lotteries.compareWithWinningNumbersAndBonusNumber(winningNumbers, bonusNumber);
 
         printer.printWinningStatistics(winningStatistics);
         printer.printTotalEarningsRate(PrizeMoney.calculateEarningsRate(winningStatistics, purchasedCount));
