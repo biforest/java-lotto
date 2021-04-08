@@ -35,6 +35,12 @@ public class LottoStore {
     }
 
     public void generateLottoAutomaticTickets() {
-        printer.printNumberOfEachLottoTicket();
+
+    }
+
+    public NumberOfLottoTicket informNumberOfLottoTicket(PurchaseAmount purchaseAmount, int lottoManualTicketNumber) {
+        NumberOfLottoTicket numberOfLottoTicket = new NumberOfLottoTicket(purchaseAmount, lottoManualTicketNumber);
+        printer.printNumberOfEachLottoTicket(numberOfLottoTicket);
+        return numberOfLottoTicket;
     }
 }
