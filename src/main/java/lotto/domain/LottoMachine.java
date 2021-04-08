@@ -3,6 +3,7 @@ package lotto.domain;
 import lotto.domain.lotto.*;
 import lotto.domain.strategy.RandomLottoNumberGenerator;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,7 +12,10 @@ import java.util.stream.IntStream;
 
 public class LottoMachine {
     private final static int LOTTO_SIZE = 6;
+    private final static int WINNING_LOTTO_WITH_BONUS_BALL_MATCHED_COUNT = 5;
+
     private final RandomLottoNumberGenerator randomLottoNumberGenerator = new RandomLottoNumberGenerator();
+    private final ArrayList<WinningStatus> lottoPrices = new ArrayList<>();
 
     public LottoAutomaticTickets generateLottoAutomaticTicket(NumberOfLottoTicket numberOfLottoTicket) {
         int numberOfLottoAutomaticTicket = numberOfLottoTicket.getAutomaticLottoTicketOfNumber();
@@ -21,32 +25,34 @@ public class LottoMachine {
         return new LottoAutomaticTickets(lottoAutomaticTicket);
     }
 
-    public Map<Integer, Boolean> lottoManualTicketsDiscriminator(
+    public List<LottoMatchStatus> lottoManualTicketsDiscriminator(
             LottoManualTickets lottoManualTickets,
             LastWeekWinningLotto lastWeekWinningLotto,
             LastWeekWinningBonusBall lastWeekWinningBonusBall) {
-        Map<Integer, Boolean> mappingLottoManualTicketsResult = new HashMap<>();
+        List<LottoMatchStatus> lottoMatchStatuses = new ArrayList<>();
 
         for (LottoManualTicket lottoManualTicket : lottoManualTickets.getLottoManualTickets()) {
             int matchedLottoManualTicketCount = calculateMatchedLottoManualTicket(lottoManualTicket, lastWeekWinningLotto);
             Boolean isMatchedBonusBall = calculateMatchedBonusBallManualTicket(lottoManualTicket, lastWeekWinningBonusBall);
-            mappingLottoManualTicketsResult.put(matchedLottoManualTicketCount, isMatchedBonusBall);
+            LottoMatchStatus lottoMatchStatus = new LottoMatchStatus(matchedLottoManualTicketCount, isMatchedBonusBall);
+            lottoMatchStatuses.add(lottoMatchStatus);
         }
-        return mappingLottoManualTicketsResult;
+        return lottoMatchStatuses;
     }
 
-    public Map<Integer, Boolean> lottoAutomaticTicketsDiscriminator(
+    public List<LottoMatchStatus> lottoAutomaticTicketsDiscriminator(
             LottoAutomaticTickets lottoAutomaticTickets,
             LastWeekWinningLotto lastWeekWinningLotto,
             LastWeekWinningBonusBall lastWeekWinningBonusBall) {
-        Map<Integer, Boolean> mappingLottoAutomaticTicketsResult = new HashMap<>();
+        List<LottoMatchStatus> lottoMatchStatuses= new ArrayList<>();
 
         for (LottoAutomaticTicket lottoAutomaticTicket : lottoAutomaticTickets.getLottoAutomaticTickets()) {
             int matchedLottoAutomaticTicketCount = calculateMatchedLottoAutomaticTicket(lottoAutomaticTicket, lastWeekWinningLotto);
             Boolean isMatchedBonusBall = calculateMatchedBonusBallAutomaticTicket(lottoAutomaticTicket, lastWeekWinningBonusBall);
-            mappingLottoAutomaticTicketsResult.put(matchedLottoAutomaticTicketCount, isMatchedBonusBall);
+            LottoMatchStatus lottoMatchStatus = new LottoMatchStatus(matchedLottoAutomaticTicketCount, isMatchedBonusBall);
+            lottoMatchStatuses.add(lottoMatchStatus);
         }
-        return mappingLottoAutomaticTicketsResult;
+        return lottoMatchStatuses;
     }
 
     private Boolean calculateMatchedBonusBallAutomaticTicket(
@@ -99,5 +105,36 @@ public class LottoMachine {
             return 1;
         }
         return 0;
+    }
+
+    public void getStatistics(List<LottoMatchStatus> lottoAllTicketMatchStatuses) {
+
+        for (LottoMatchStatus lottoMatchStatus: lottoAllTicketMatchStatuses) {
+            mappingLottoTicketWithBonusBall(lottoMatchStatus);
+        }
+    }
+
+    private void mappingLottoTicketWithBonusBall(LottoMatchStatus lottoMatchStatus) {
+        for (WinningStatus winningStatus: WinningStatus.values()) {
+            compareWinningStatus(winningStatus, lottoMatchStatus.getMatchedCount(), lottoMatchStatus.getHasBonusBall());
+        }
+    }
+
+    private void compareWinningStatus(WinningStatus winningStatus, int lottoMatchedCount, Boolean hasBonusBall) {
+        if((winningStatus.getMatchCount() == lottoMatchedCount) && (lottoMatchedCount != WINNING_LOTTO_WITH_BONUS_BALL_MATCHED_COUNT)){
+            lottoPrices.add(winningStatus);
+        }
+        if((winningStatus.hasBonusBall() == hasBonusBall) && (lottoMatchedCount == WINNING_LOTTO_WITH_BONUS_BALL_MATCHED_COUNT)){
+            lottoPrices.add(winningStatus);
+        }
+    }
+
+    public Map<WinningStatus, Integer> getMappingLottoWithBonusBall() {
+        Map<WinningStatus, Integer> mappingLottoWithBonusBall = new HashMap<>();
+        for (WinningStatus key: lottoPrices
+        ) {
+            mappingLottoWithBonusBall.put(key, mappingLottoWithBonusBall.getOrDefault(key, 0)+1);
+        }
+        return mappingLottoWithBonusBall;
     }
 }
