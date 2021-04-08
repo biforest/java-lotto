@@ -21,6 +21,8 @@ public class Printer {
     private static final String REQUEST_LOTTO_BONUS_BALL_NUMBER_MESSAGE = "보너스 볼을 입력해주세요";
     private static final String PRINT_FINAL_MATCHED_LOTTO_RESULT_MESSAGE = "%s개 일치%s(%s원)- ";
     private static final String PRINT_MATCH_BONUS_BALL_MESSAGE = ", 보너스 볼 일치";
+    private static final String PRINT_PROFIT_LOSS_MESSAGE = "(기준이 1이기 때문에 결과적으로 손해라는 의미임)";
+    private static final String PRINT_LOTTO_PROFIT_MESSAGE = "총 수익률은 %.2f입니다.";
 
     public void requestPurchaseAmount() {
         System.out.println(REQUEST_PURCHASE_AMOUNT_MESSAGE);
@@ -100,6 +102,16 @@ public class Printer {
                     winningStatus.getMatchCount(),
                     PRINT_MATCH_BONUS_BALL_MESSAGE,
                     winningStatus.getWinningMoney()));
+        }
+    }
+
+    public void printLottoProfit(float calculatedProfit) {
+        System.out.print(String.format(PRINT_LOTTO_PROFIT_MESSAGE, calculatedProfit));
+    }
+
+    public void printIsLottoProfit(boolean isProfit) {
+        if(!isProfit) {
+            System.out.println(PRINT_PROFIT_LOSS_MESSAGE);
         }
     }
 }
