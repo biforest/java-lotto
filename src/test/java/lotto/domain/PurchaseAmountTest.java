@@ -1,15 +1,14 @@
 package lotto.domain;
 
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class PurchaseAmountTest {
+
     @Test
     void 로또_구입금액_객체를_생성한다(){
         //given
@@ -23,5 +22,12 @@ class PurchaseAmountTest {
 
         //then
         assertThat(expected).isEqualTo(actual);
+    }
+
+    @ParameterizedTest(name = "{0}이 들어올때 예외 발생")
+    @ValueSource(ints = {-1000, 0})
+    void 로또_구입_금액이_0이하일_경우_IllegalArgumentException_을_던진다(int value) {
+        Assertions.assertThatIllegalArgumentException()
+                .isThrownBy(() -> new PurchaseAmount(value));
     }
 }
