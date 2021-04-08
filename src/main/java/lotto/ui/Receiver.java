@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 
 public class Receiver {
     private static final Scanner scanner = new Scanner(System.in);
-    private static final String DELIMITER = ", ";
+    private static final String DELIMITER = ",";
 
     public int receiveLottoPurchaseAmount() {
         return scanner.nextInt();
@@ -18,7 +18,7 @@ public class Receiver {
         return scanner.nextInt();
     }
 
-    public List<Integer> receiverLottoManualTickets() {
+    public List<Integer> receiverLottoManualTicket() {
         String lottoTicket = scanner.next();
         List<String> lottoManualTicket = splitInputDelimiter(lottoTicket);
         return convertStringToInt(lottoManualTicket);

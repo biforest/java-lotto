@@ -9,9 +9,9 @@ public class NumberOfLottoTicket {
     private final int numberOfManualLottoTicket;
     private final int automaticLottoTicketOfNumber;
 
-    public NumberOfLottoTicket(int purchaseAmount, int purchaseManualLottoOfNumber) {
+    public NumberOfLottoTicket(PurchaseAmount purchaseAmount, int purchaseManualLottoOfNumber) {
         LottoTicketOfNumberValidation lottoTicketOfNumberValidation = new LottoTicketOfNumberValidation();
-        this.totalNumberOfLottoTicket = calculateLottoTicketOfNumber(purchaseAmount);
+        this.totalNumberOfLottoTicket = calculateLottoTicketOfNumber(purchaseAmount.getPurchaseAmount());
         this.numberOfManualLottoTicket = purchaseManualLottoOfNumber;
         this.automaticLottoTicketOfNumber = calculateAutomaticLottoTicketOfNumber(totalNumberOfLottoTicket, numberOfManualLottoTicket);
         lottoTicketOfNumberValidation.checkLottoTicketOfNumber(this.totalNumberOfLottoTicket);
