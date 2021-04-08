@@ -1,6 +1,6 @@
 package lotto;
 
-import lotto.domain.LottoTicketOfNumber;
+import lotto.domain.NumberOfLottoTicket;
 import lotto.domain.exception.NotValidLottoTicketOfNumberException;
 import org.junit.jupiter.api.Test;
 
@@ -14,10 +14,10 @@ class LottoTicketOfNumberTest {
         int purchaseAmountNumber = 11000;
         int manualLottoTicketOfNumber = 3;
         int actual = 11;
-        LottoTicketOfNumber lottoTicketOfNumber = new LottoTicketOfNumber(purchaseAmountNumber, manualLottoTicketOfNumber);
+        NumberOfLottoTicket lottoTicketOfNumber = new NumberOfLottoTicket(purchaseAmountNumber, manualLottoTicketOfNumber);
 
         //when
-        int expected = lottoTicketOfNumber.getLottoTicketOfNumber();
+        int expected = lottoTicketOfNumber.getTotalNumberOfLottoTicket();
         System.out.println(expected);
 
         //then
@@ -30,7 +30,7 @@ class LottoTicketOfNumberTest {
         int purchaseAmountNumber = 11000;
         int manualLottoTicketOfNumber = 3;
         int actual = 8;
-        LottoTicketOfNumber lottoTicketOfNumber = new LottoTicketOfNumber(purchaseAmountNumber, manualLottoTicketOfNumber);
+        NumberOfLottoTicket lottoTicketOfNumber = new NumberOfLottoTicket(purchaseAmountNumber, manualLottoTicketOfNumber);
 
         //when
         int expected = lottoTicketOfNumber.getAutomaticLottoTicketOfNumber();
@@ -48,6 +48,6 @@ class LottoTicketOfNumberTest {
         //when
         //then
         assertThatExceptionOfType(NotValidLottoTicketOfNumberException.class).
-                isThrownBy(() -> new LottoTicketOfNumber(purchaseAmount, manualLottoTicketOfNumber));
+                isThrownBy(() -> new NumberOfLottoTicket(purchaseAmount, manualLottoTicketOfNumber));
     }
 }
