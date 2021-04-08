@@ -1,4 +1,4 @@
-package lotto.validation;
+package lotto.domain.validation;
 
 public class PurchaseAmountValidation {
     private static final int MIN_PURCHASE_AMOUNT = 0;

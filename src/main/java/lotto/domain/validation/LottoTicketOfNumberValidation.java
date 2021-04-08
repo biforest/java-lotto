@@ -1,6 +1,6 @@
-package lotto.validation;
+package lotto.domain.validation;
 
-import lotto.exception.NotValidLottoTicketOfNumberException;
+import lotto.domain.exception.NotValidLottoTicketOfNumberException;
 
 
 public class LottoTicketOfNumberValidation {

@@ -1,7 +1,7 @@
-package lotto.validation;
+package lotto.domain.validation;
 
-import lotto.exception.NotDuplicatedNumberException;
-import lotto.exception.NotValidLottoLengthException;
+import lotto.domain.exception.NotDuplicatedNumberException;
+import lotto.domain.exception.NotValidLottoLengthException;
 
 import java.util.ArrayList;
 import java.util.List;

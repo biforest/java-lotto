@@ -1,6 +1,6 @@
-package lotto;
+package lotto.domain;
 
-import lotto.validation.PurchaseAmountValidation;
+import lotto.domain.validation.PurchaseAmountValidation;
 
 public class PurchaseAmount {
     private final int purchaseAmount;
