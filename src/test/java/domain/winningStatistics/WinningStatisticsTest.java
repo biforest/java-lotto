@@ -2,29 +2,31 @@ package domain.winningStatistics;
 
 import static org.assertj.core.api.Assertions.*;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class RankingsTest {
+class WinningStatisticsTest {
 
-    private Rankings rankings;
+    private WinningStatistics winningStatistics;
 
     @BeforeEach
     void setUp() {
-        rankings = new Rankings();
+        winningStatistics = new WinningStatistics();
     }
 
     @Test
     void 당첨자_수를_증가시킨다() {
-        rankings.increase(1);
-        List<Integer> sizeOfWinners = rankings.getRankings();
+        winningStatistics.increase(PrizeMoney.THREE);
+        PrizeMoney[] prizeMonies = PrizeMoney.values();
 
-        assertThat(sizeOfWinners.get(0)).isEqualTo(0);
-        assertThat(sizeOfWinners.get(1)).isEqualTo(1);
-        assertThat(sizeOfWinners.get(0)).isEqualTo(0);
-        assertThat(sizeOfWinners.get(0)).isEqualTo(0);
-        assertThat(sizeOfWinners.get(0)).isEqualTo(0);
+        assertThat(winningStatistics.get(prizeMonies[0])).isEqualTo(1);
+        assertThat(winningStatistics.get(prizeMonies[1])).isEqualTo(0);
+        assertThat(winningStatistics.get(prizeMonies[2])).isEqualTo(0);
+        assertThat(winningStatistics.get(prizeMonies[3])).isEqualTo(0);
+        assertThat(winningStatistics.get(prizeMonies[4])).isEqualTo(0);
     }
 }

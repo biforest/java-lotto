@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.*;
 import java.util.Arrays;
 import java.util.List;
 
+import domain.winningStatistics.PrizeMoney;
 import org.junit.jupiter.api.Test;
 
 import domain.lotteryStore.numbers.BonusNumber;
@@ -14,7 +15,6 @@ import domain.winningStatistics.ComparisonResult;
 import domain.winningStatistics.WinningStatistics;
 
 class LotteriesTest {
-
     private final ManualNumbersGenerator winningNumbers = new ManualNumbersGenerator("1, 2, 3, 4, 5, 6");
     private final BonusNumber bonusNumber = new BonusNumber(7, winningNumbers);
     private final Lotteries lotteries = new Lotteries(Arrays.asList(
@@ -43,15 +43,14 @@ class LotteriesTest {
     public void 당첨_통계를_확인한다() throws Exception {
         //when
         lotteries.compareWithWinningNumbersAndBonusNumber(winningNumbers, bonusNumber);
-        WinningStatistics winningStatistics = lotteries.getWinningStatistics();
-        List<Integer> rankings = winningStatistics.getRankings();
+        WinningStatistics winningStatistics = lotteries.compareWithWinningNumbersAndBonusNumber(winningNumbers, bonusNumber);
+        PrizeMoney[] prizeMonies = PrizeMoney.values();
 
         //then
-        assertThat(rankings.get(0)).isEqualTo(1);
-        assertThat(rankings.get(1)).isEqualTo(2);
-        assertThat(rankings.get(2)).isEqualTo(1);
-        assertThat(rankings.get(3)).isEqualTo(1);
-        assertThat(rankings.get(4)).isEqualTo(1);
+        assertThat(winningStatistics.get(prizeMonies[0])).isEqualTo(1);
+        assertThat(winningStatistics.get(prizeMonies[1])).isEqualTo(2);
+        assertThat(winningStatistics.get(prizeMonies[2])).isEqualTo(1);
+        assertThat(winningStatistics.get(prizeMonies[3])).isEqualTo(1);
+        assertThat(winningStatistics.get(prizeMonies[4])).isEqualTo(1);
     }
-
 }
