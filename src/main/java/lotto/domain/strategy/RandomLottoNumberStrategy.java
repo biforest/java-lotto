@@ -16,11 +16,11 @@ public class RandomLottoNumberStrategy {
     }
 
     private List<Integer> setLottoNumberRange(){
-        ArrayList<Integer> lottoNumberIndex = new ArrayList<>();
+        ArrayList<Integer> lottoNumberRange = new ArrayList<>();
         for (int lottoNumber = LOWER_BOUND; lottoNumber < UPPER_BOUND; lottoNumber++) {
-            lottoNumberIndex.add(lottoNumber);
+            lottoNumberRange.add(lottoNumber);
         }
-        return lottoNumberIndex;
+        return lottoNumberRange;
     }
 
     private List<Integer> getLottoNumbers(List<Integer> lottoNumberRange){
