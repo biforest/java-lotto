@@ -11,9 +11,10 @@ class IssuerTest {
     void issueLottoTickets() {
         //given
         int money = 10000;
-        int expected = 10;
+        int manualTicketCount = 2;
+        int expected = 8;
         //when
-        LottoTickets lottoTickets = Issuer.issueLottoTickets(money);
+        LottoTickets lottoTickets = Issuer.issueLottoTickets(money, manualTicketCount);
         //then
         int actual = lottoTickets.getLottoTickets().size();
         assertThat(actual).isEqualTo(expected);
@@ -22,19 +23,20 @@ class IssuerTest {
     void moneyNotUnitOfLottoPrice() {
         //given
         int money = 14500;
-        int expected = 14;
+        int manualTicketCount = 2;
+        int expected = 12;
         //when
-        LottoTickets lottoTickets = Issuer.issueLottoTickets(money);
+        LottoTickets lottoTickets = Issuer.issueLottoTickets(money, manualTicketCount);
         //then
         int actual = lottoTickets.getLottoTickets().size();
         assertThat(actual).isEqualTo(expected);
     }
     @ValueSource(ints = {999, 0, -1000})
     @ParameterizedTest
-    void invalidMoney(int money) {
+    void invalidMoney(int money, int manualTicketCount) {
         //when then
         assertThatExceptionOfType(IllegalArgumentException.class)
-                .isThrownBy(() -> Issuer.issueLottoTickets(money))
+                .isThrownBy(() -> Issuer.issueLottoTickets(money, manualTicketCount))
                 .withMessage("금액은 1000원 이상으로 입력해주세요.");
     }
 }

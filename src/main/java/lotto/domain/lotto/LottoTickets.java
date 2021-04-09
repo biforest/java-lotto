@@ -10,6 +10,9 @@ public class LottoTickets {
     public LottoTickets(List<LottoTicket> lottoTickets) {
         this.lottoTickets = new ArrayList<>(lottoTickets);
     }
+    public void addTickets(LottoTickets lottoTickets){
+        this.lottoTickets.addAll(lottoTickets.getLottoTickets());
+    }
     public GameResults matchNumbers(WinningNumber winningNumber) {
         List<GameResult> results = lottoTickets.stream()
                 .map(winningNumber::matchNumbers)

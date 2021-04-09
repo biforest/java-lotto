@@ -13,7 +13,9 @@ import java.util.stream.Collectors;
 public class Printer {
 
     private static final String PURCHASE_AMOUNT_REQUEST_MESSAGE = "구입금액을 입력해 주세요.";
-    private static final String PURCHASE_MESSAGE = "개를 구매했습니다.";
+    private static final String MANUAL_TICKET_COUNT_REQUEST_MESSAGE = "수동으로 구매할 로또 수를 입력해주세요.";
+    private static final String MANUAL_TICKET_NUMBER_REQUEST_MESSAGE = "수동으로 구매할 번호를 입력해 주세요.";
+    private static final String PURCHASE_MESSAGE = "수동으로 %d장, 자동으로 %d개를 구매했습니다.";
     private static final String LOTTO_NUMBER_DELIMITER = ", ";
     private static final String LOTTO_NUMBERS_MESSAGE = "[%s]\n";
     private static final String WINNING_NUMBER_REQUEST_MESSAGE = "지난 주 당첨 번호를 입력해 주세요.";
@@ -29,15 +31,23 @@ public class Printer {
         System.out.println(PURCHASE_AMOUNT_REQUEST_MESSAGE);
     }
 
-    public void printIssuedTickets(LottoTickets lottoTickets) {
+    public void printIssuedTickets(LottoTickets lottoTickets, int manualTicketCount) {
         List<LottoTicket> tickets = lottoTickets.getLottoTickets();
-        printNumberOfTickets(tickets);
+        printNumberOfTickets(tickets, manualTicketCount);
         printLottoTickets(tickets);
     }
 
-    private void printNumberOfTickets(List<LottoTicket> tickets) {
-        int numberOfTickets = tickets.size();
-        System.out.println(numberOfTickets + PURCHASE_MESSAGE);
+    public void requestManualTicketCount(){
+        System.out.println(MANUAL_TICKET_COUNT_REQUEST_MESSAGE);
+    }
+
+    public void requestManualTicketNumber(){
+        System.out.println(MANUAL_TICKET_NUMBER_REQUEST_MESSAGE);
+    }
+
+    private void printNumberOfTickets(List<LottoTicket> tickets, int manualTicketCount) {
+        int numberOfTickets = tickets.size() - manualTicketCount;
+        System.out.printf((PURCHASE_MESSAGE) + "%n", manualTicketCount, numberOfTickets);
     }
 
     private void printLottoTickets(List<LottoTicket> tickets) {

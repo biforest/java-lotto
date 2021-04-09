@@ -6,12 +6,18 @@ import java.util.List;
 import java.util.stream.Collectors;
 public class LottoTicket {
     private static final int NUMBER_OF_LOTTO_NUMBERS = 6;
-    private final List<LottoNumber> lottoNumbers;
+    private List<LottoNumber> lottoNumbers;
+
     public LottoTicket() {
         List<LottoNumber> lottoNumbers = LottoNumber.range();
         lottoNumbers = generateLottoNumbers(lottoNumbers);
         this.lottoNumbers = new ArrayList<>(lottoNumbers);
     }
+    public LottoTicket(List<Integer> manualLottoNumbers){
+        List<LottoNumber> lottoNumbers = LottoNumber.setManualNumber(manualLottoNumbers);
+        this.lottoNumbers = new ArrayList<>(lottoNumbers);
+    }
+
     private List<LottoNumber> generateLottoNumbers(List<LottoNumber> lottoNumbers) {
         Collections.shuffle(lottoNumbers);
         lottoNumbers = lottoNumbers.stream()

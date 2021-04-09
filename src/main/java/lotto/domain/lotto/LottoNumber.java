@@ -1,4 +1,5 @@
 package lotto.domain.lotto;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -26,6 +27,13 @@ public class LottoNumber {
                 .boxed()
                 .map(LottoNumber::new)
                 .collect(Collectors.toList());
+    }
+    public static List<LottoNumber> setManualNumber(List<Integer> manualNumber){
+        List<LottoNumber> lottoNumberManualNumber = new ArrayList<>();
+        for (Integer integer : manualNumber) {
+            lottoNumberManualNumber.add(new LottoNumber(integer));
+        }
+        return lottoNumberManualNumber;
     }
     public int getLottoNumber() {
         return lottoNumber;
