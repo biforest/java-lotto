@@ -20,7 +20,6 @@ public class AutoIssueStrategy implements IssueStrategy {
     @Override
     public List<LottoTicket> issue() {
         List<LottoNumber> lottoNumbers = LottoNumber.range();
-        Collections.shuffle(lottoNumbers);
 
         return IntStream.range(0, numberOfTickets)
                 .mapToObj(__ -> makeRandomLottoNumbers(lottoNumbers))
@@ -30,6 +29,8 @@ public class AutoIssueStrategy implements IssueStrategy {
     }
 
     private List<LottoNumber> makeRandomLottoNumbers(List<LottoNumber> lottoNumbers) {
+        Collections.shuffle(lottoNumbers);
+
         return lottoNumbers.stream()
                 .limit(NUMBER_OF_LOTTO_NUMBERS)
                 .sorted(Comparator.comparing(LottoNumber::getLottoNumber))
