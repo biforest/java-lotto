@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import lotto.domain.dto.WinningResult;
+import lotto.domain.lotto.PurchaseAmount;
 import lotto.domain.result.GameResult;
 import lotto.domain.result.GameResults;
 
@@ -11,9 +12,9 @@ public class Statistics {
     private static final int IS_EQUAL_RATE = 1;
 
     private final GameResults gameResults;
-    private final int purchaseAmount;
+    private final PurchaseAmount purchaseAmount;
 
-    public Statistics(GameResults gameResults, int purchaseAmount) {
+    public Statistics(GameResults gameResults, PurchaseAmount purchaseAmount) {
         this.gameResults = gameResults;
         this.purchaseAmount = purchaseAmount;
     }
@@ -26,7 +27,7 @@ public class Statistics {
     }
 
     public double calculateEarningRate() {
-        return gameResults.calculatePrize() / purchaseAmount;
+        return gameResults.calculatePrize() / purchaseAmount.getPurchaseAmount();
     }
 
     public boolean isProfit(double earningRate) {

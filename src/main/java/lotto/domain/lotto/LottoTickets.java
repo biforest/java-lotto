@@ -24,6 +24,11 @@ public class LottoTickets {
         return new GameResults(results);
     }
 
+    public LottoTickets merge(LottoTickets mergedTickets) {
+        this.lottoTickets.addAll(mergedTickets.getLottoTickets());
+        return new LottoTickets(this.lottoTickets);
+    }
+
     public List<LottoTicket> getLottoTickets() {
         return lottoTickets;
     }
