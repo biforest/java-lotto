@@ -3,19 +3,17 @@ package lotto.ui;
 import lotto.domain.*;
 import lotto.domain.dto.WinningResult;
 import lotto.domain.lotto.LottoNumber;
+import lotto.domain.lotto.LottoNumbers;
 import lotto.domain.lotto.LottoTicket;
 import lotto.domain.lotto.LottoTickets;
 import lotto.domain.result.GameResult;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Printer {
 
     private static final String PURCHASE_AMOUNT_REQUEST_MESSAGE = "구입금액을 입력해 주세요.";
     private static final String PURCHASE_MESSAGE = "개를 구매했습니다.";
-    private static final String LOTTO_NUMBER_DELIMITER = ", ";
-    private static final String LOTTO_NUMBERS_MESSAGE = "[%s]\n";
     private static final String WINNING_NUMBER_REQUEST_MESSAGE = "지난 주 당첨 번호를 입력해 주세요.";
     private static final String BONUS_NUMBER_REQUEST_MESSAGE = "보너스 볼을 입력해 주세요.";
     private static final String WINNING_STATISTICS_MESSAGE = "당첨 통계";
@@ -41,15 +39,10 @@ public class Printer {
     }
 
     private void printLottoTickets(List<LottoTicket> tickets) {
-        for (LottoTicket ticket : tickets) {
-            String lottoNumbers = ticket.getLottoNumbers()
-                    .stream()
-                    .map(LottoNumber::getLottoNumber)
-                    .map(String::valueOf)
-                    .collect(Collectors.joining(LOTTO_NUMBER_DELIMITER));
-
-            System.out.printf(LOTTO_NUMBERS_MESSAGE, lottoNumbers);
-        }
+        tickets.stream()
+                .map(LottoTicket::getLottoNumbers)
+                .map(LottoNumbers::getLottoNumbers)
+                .forEach(System.out::println);
     }
 
     public void requestWinningNumber() {
