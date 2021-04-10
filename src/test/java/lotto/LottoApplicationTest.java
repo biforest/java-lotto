@@ -20,8 +20,14 @@ public class LottoApplicationTest {
                 new Printer(), new Receiver(new ByteArrayInputStream(input.getBytes()))
         );
 
+        String manualInput = "30000\n1\n1, 2, 3, 4 ,5 ,6\n1, 10, 25, 30, 31, 38\n44";
+        LottoApplication appManual = new LottoApplication(
+                new Printer(), new Receiver(new ByteArrayInputStream(manualInput.getBytes()))
+        );
+
         //when
         app.run();
+        appManual.run();
 
         //then
         assertThat(true).isTrue();

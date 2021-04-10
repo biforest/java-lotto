@@ -8,7 +8,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
-class LottoNumbersTest {
+class LottoNumbers거Test {
 
     @DisplayName("각각 다른 로또 번호가 아니라면 예외")
     @Test
