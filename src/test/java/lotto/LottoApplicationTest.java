@@ -15,7 +15,7 @@ public class LottoApplicationTest {
     @Test
     void application() {
         //given
-        String input = "3000000\n1, 10, 25, 30, 31, 38\n44";
+        String input = "3000000\n0\n1, 10, 25, 30, 31, 38\n44";
         LottoApplication app = new LottoApplication(
                 new Printer(), new Receiver(new ByteArrayInputStream(input.getBytes()))
         );

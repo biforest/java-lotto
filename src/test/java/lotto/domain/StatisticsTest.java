@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import lotto.domain.dto.WinningResult;
+import lotto.domain.lotto.PurchaseAmount;
 import lotto.domain.result.GameResult;
 import lotto.domain.result.GameResults;
 import org.junit.jupiter.api.DisplayName;
@@ -20,7 +21,7 @@ class StatisticsTest {
                 GameResult.THREE_MATCHED, GameResult.FOUR_MATCHED, GameResult.UNDER_THREE_MATCHED);
 
         GameResults gameResults = new GameResults(results);
-        statistics = new Statistics(gameResults, 7000);
+        statistics = new Statistics(gameResults, new PurchaseAmount(7000, 0));
     }
 
     @DisplayName("출력용 WinningResult dto 테스트")
@@ -75,7 +76,7 @@ class StatisticsTest {
                 GameResult.UNDER_THREE_MATCHED, GameResult.UNDER_THREE_MATCHED, GameResult.UNDER_THREE_MATCHED, GameResult.UNDER_THREE_MATCHED);
 
         GameResults gameResults = new GameResults(results);
-        Statistics lossStatistics = new Statistics(gameResults, 7000);
+        Statistics lossStatistics = new Statistics(gameResults, new PurchaseAmount(7000, 0));
 
         //when then
         assertThat(lossStatistics.isProfit(lossStatistics.calculateEarningRate())).isFalse();
