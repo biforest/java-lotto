@@ -2,10 +2,7 @@ package lotto.ui;
 
 import lotto.domain.*;
 import lotto.domain.dto.WinningResult;
-import lotto.domain.lotto.LottoNumbers;
-import lotto.domain.lotto.LottoTicket;
-import lotto.domain.lotto.LottoTickets;
-import lotto.domain.lotto.PurchaseAmount;
+import lotto.domain.lotto.*;
 import lotto.domain.result.GameResult;
 
 import java.util.List;
