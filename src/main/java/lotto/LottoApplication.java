@@ -54,9 +54,10 @@ public class LottoApplication {
     private LottoNumbers createManualLottoNumbers() {
         return new LottoNumbers(
                 Arrays.stream(receiver.receiveLine().split(LOTTO_NUMBER_INPUT_DELIMITER))
-                .map(Integer::valueOf)
-                .map(LottoNumber::new)
-                .collect(Collectors.toList())
+                        .map(String::trim)
+                        .map(Integer::valueOf)
+                        .map(LottoNumber::new)
+                        .collect(Collectors.toList())
         );
     }
 
@@ -65,6 +66,7 @@ public class LottoApplication {
         String winningNumber = receiver.receiveLine();
 
         return Arrays.stream(winningNumber.split(LOTTO_NUMBER_INPUT_DELIMITER))
+                .map(String::trim)
                 .map(Integer::valueOf)
                 .collect(Collectors.toList());
     }
