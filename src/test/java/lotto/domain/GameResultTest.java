@@ -50,12 +50,12 @@ class GameResultTest {
                 .isThrownBy(() -> GameResult.evaluate(matchCount))
                 .withMessage("일치하는 게임 결과가 없습니다.");
     }
-    @DisplayName("description getter 테스트")
+    @DisplayName("match count getter 테스트")
     @Test
     void getDescription() {
         //given
         GameResult gameResult = GameResult.ALL_MATCHED;
         //when then
-        assertThat(gameResult.getDescription()).isEqualTo("6개 일치");
+        assertThat(gameResult.getMatchCount().getMatchCount()).isEqualTo(6);
     }
 }

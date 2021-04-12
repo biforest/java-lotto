@@ -9,6 +9,8 @@ import java.util.List;
 
 public class Printer {
 
+    private static final int FIVE_MATCH_BALL = 5;
+
     private static final String PURCHASE_AMOUNT_REQUEST_MESSAGE = "구입금액을 입력해 주세요.";
     private static final String MANUAL_NUMBER_OF_LOTTOS_REQUEST_MESSAGE = "수동으로 구매할 로또 수를 입력해 주세요.";
     private static final String MANUAL_LOTTO_NUMBERS_REQUEST_MESSAGE = "수동으로 구매할 번호를 입력해 주세요.";
@@ -17,7 +19,9 @@ public class Printer {
     private static final String BONUS_NUMBER_REQUEST_MESSAGE = "보너스 볼을 입력해 주세요.";
     private static final String WINNING_STATISTICS_MESSAGE = "당첨 통계";
     private static final String DIVIDER_LINE = "----------";
-    private static final String WINNING_RESULT_MESSAGE = "%s (%d원) - %d개\n";
+    private static final String WINNING_RESULT_HEADER = "%d개 일치";
+    private static final String MATCH_BONUS_BALL_MESSAGE = ", 보너스 볼 일치";
+    private static final String WINNING_RESULT_BODY = " (%d원) - %d\n";
     private static final String EARNING_RATE_MESSAGE = "총 수익률은 %.2f입니다.(기준이 1이기 때문에 결과적으로 %s라는 의미임)";
     private static final String PROFIT_MESSAGE = "이익";
     private static final String LOSS_MESSAGE = "손해";
@@ -63,12 +67,20 @@ public class Printer {
         System.out.println(DIVIDER_LINE);
         for (WinningResult winningResult : statistics.winningResults()) {
             GameResult gameResult = winningResult.getGameResult();
-            System.out.printf(WINNING_RESULT_MESSAGE, gameResult.getDescription(), gameResult.getPrize(), winningResult.getNumberOfWinners());
+            System.out.printf(WINNING_RESULT_HEADER, gameResult.getMatchCount().getMatchCount());
+            printOnlyFiveWithBonusBall(gameResult);
+            System.out.printf(WINNING_RESULT_BODY, gameResult.getPrize(), winningResult.getNumberOfWinners());
         }
         System.out.println();
 
         double earningRate = statistics.calculateEarningRate();
         System.out.printf(EARNING_RATE_MESSAGE, earningRate, profitAndLossMessage(statistics.isProfit(earningRate)));
+    }
+
+    private void printOnlyFiveWithBonusBall(GameResult gameResult) {
+        if (gameResult.getMatchCount().getMatchCount() == FIVE_MATCH_BALL && gameResult.getMatchCount().isBonusMatch()) {
+            System.out.print(MATCH_BONUS_BALL_MESSAGE);
+        }
     }
 
     private String profitAndLossMessage(boolean isProfit) {

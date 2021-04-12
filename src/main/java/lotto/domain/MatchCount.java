@@ -33,4 +33,12 @@ public class MatchCount {
     public boolean isAllMatch() {
         return matchCount == 6;
     }
+
+    public int getMatchCount() {
+        return matchCount;
+    }
+
+    public boolean isBonusMatch() {
+        return isBonusMatch;
+    }
 }
