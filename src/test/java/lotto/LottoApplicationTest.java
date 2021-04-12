@@ -2,12 +2,14 @@ package lotto;
 
 import lotto.ui.Printer;
 import lotto.ui.Receiver;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 public class LottoApplicationTest {
 
@@ -25,11 +27,8 @@ public class LottoApplicationTest {
                 new Printer(), new Receiver(new ByteArrayInputStream(manualInput.getBytes()))
         );
 
-        //when
-        app.run();
-        appManual.run();
-
-        //then
-        assertThat(true).isTrue();
+        //when then
+        assertDoesNotThrow(app::run);
+        assertDoesNotThrow(appManual::run);
      }
 }
