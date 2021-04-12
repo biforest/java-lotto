@@ -16,11 +16,11 @@ public class WinningNumber {
 
         this.winningNumbers = new LottoNumbers(
                 winningNumbers.stream()
-                .map(LottoNumber::new)
+                .map(LottoNumber::from)
                 .collect(Collectors.toUnmodifiableList())
         );
 
-        this.bonusNumber = new LottoNumber(bonusNumber);
+        this.bonusNumber = LottoNumber.from(bonusNumber);
     }
 
     private void validate(List<Integer> winningNumbers, int bonusNumber) {

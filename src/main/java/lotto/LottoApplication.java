@@ -56,7 +56,7 @@ public class LottoApplication {
                 Arrays.stream(receiver.receiveLine().split(LOTTO_NUMBER_INPUT_DELIMITER))
                         .map(String::trim)
                         .map(Integer::valueOf)
-                        .map(LottoNumber::new)
+                        .map(LottoNumber::from)
                         .collect(Collectors.toList())
         );
     }

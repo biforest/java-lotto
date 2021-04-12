@@ -1,6 +1,8 @@
 package lotto.domain.lotto;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -12,20 +14,32 @@ public class LottoNumber {
     private static final String LOTTO_NUMBER_RANGE_EXCEPTION_MESSAGE =
             "로또 번호는 " + LOTTO_NUMBER_LOWER_BOUND + " 이상, " + LOTTO_NUMBER_UPPER_BOUND + " 이하여야 합니다.";
 
+    private static final Map<Integer, LottoNumber> numbers;
+
+    static {
+        numbers = new HashMap<>();
+        IntStream.rangeClosed(LOTTO_NUMBER_LOWER_BOUND, LOTTO_NUMBER_UPPER_BOUND)
+                .forEach(number -> numbers.put(number, new LottoNumber(number)));
+    }
+
     private final int lottoNumber;
 
-    public LottoNumber(int lottoNumber) {
-        validate(lottoNumber);
+    private LottoNumber(int lottoNumber) {
         this.lottoNumber = lottoNumber;
     }
 
-    private void validate(int lottoNumber) {
+    public static LottoNumber from(int lottoNumber) {
+        validate(lottoNumber);
+        return numbers.get(lottoNumber);
+    }
+
+    private static void validate(int lottoNumber) {
         if (!isInRange(lottoNumber)) {
             throw new IllegalArgumentException(LOTTO_NUMBER_RANGE_EXCEPTION_MESSAGE);
         }
     }
 
-    private boolean isInRange(int lottoNumber) {
+    private static boolean isInRange(int lottoNumber) {
         return lottoNumber >= LOTTO_NUMBER_LOWER_BOUND && lottoNumber <= LOTTO_NUMBER_UPPER_BOUND;
     }
 

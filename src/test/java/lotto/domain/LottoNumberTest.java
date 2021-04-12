@@ -11,6 +11,18 @@ import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 class LottoNumberTest {
 
+    @DisplayName("재활용되는 read-only 객체에 대한 동일성 테스트")
+    @Test
+    void identity() {
+        //given
+        LottoNumber lottoOne = LottoNumber.from(1);
+        LottoNumber lottoOne2 = LottoNumber.from(1);
+
+        //when then
+        assertThat(lottoOne.equals(lottoOne2)).isTrue();
+        assertThat(lottoOne == lottoOne2).isTrue();
+    }
+
     @DisplayName("LottoNumber가 생성하는 후보 숫자는 1부터 45 사이")
     @Test
     void range() {
@@ -19,7 +31,7 @@ class LottoNumberTest {
 
         //when then
         for (int containedNumber = 1; containedNumber <= 45; containedNumber++) {
-            assertThat(numbers.contains(new LottoNumber(containedNumber))).isTrue();
+            assertThat(numbers.contains(LottoNumber.from(containedNumber))).isTrue();
         }
     }
 
@@ -31,7 +43,7 @@ class LottoNumberTest {
 
         //when then
         assertThatExceptionOfType(IllegalArgumentException.class)
-                .isThrownBy(() -> new LottoNumber(lottoNumber))
+                .isThrownBy(() -> LottoNumber.from(lottoNumber))
                 .withMessage("로또 번호는 1 이상, 45 이하여야 합니다.");
     }
 
@@ -39,7 +51,7 @@ class LottoNumberTest {
     @Test
     void testCoverage() {
         //given when then
-        LottoNumber lottoNumber = new LottoNumber(10);
+        LottoNumber lottoNumber = LottoNumber.from(1);
         int hashCode = lottoNumber.hashCode();
         assertThat(hashCode).isEqualTo(lottoNumber.hashCode());
     }
