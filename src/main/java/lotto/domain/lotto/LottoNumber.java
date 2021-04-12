@@ -30,7 +30,7 @@ public class LottoNumber {
     }
 
     public static List<LottoNumber> range() {
-        return IntStream.range(LOTTO_NUMBER_LOWER_BOUND, LOTTO_NUMBER_UPPER_BOUND + 1)
+        return IntStream.rangeClosed(LOTTO_NUMBER_LOWER_BOUND, LOTTO_NUMBER_UPPER_BOUND)
                 .boxed()
                 .map(LottoNumber::new)
                 .collect(Collectors.toList());
