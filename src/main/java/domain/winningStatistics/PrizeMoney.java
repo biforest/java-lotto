@@ -1,7 +1,11 @@
 package domain.winningStatistics;
 
+import domain.lotteryStore.PurchasePrice;
+
 import java.util.Arrays;
 import java.util.List;
+
+import static domain.lotteryStore.PurchasePrice.PRICE_OF_ONE_LOTTERY_TICKET;
 
 public enum PrizeMoney {
     THREE(3, false, 5000),
@@ -25,7 +29,7 @@ public enum PrizeMoney {
                 .mapToInt(prizeMoney -> winningStatistics.get(prizeMoney) * prizeMoney.getPrizeMoney())
                 .sum();
 
-        return (double)totalPrizeMoney / (purchasedCount * 1000);
+        return (double)totalPrizeMoney / (purchasedCount * PRICE_OF_ONE_LOTTERY_TICKET);
     }
 
     public int getMatchingCount() {
