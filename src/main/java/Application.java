@@ -13,10 +13,8 @@ import ui.Receiver;
 public class Application {
     private final Receiver receiver;
     private final Printer printer;
-    private final LotteryStore lotteryStore;
 
     public Application() {
-        lotteryStore = new LotteryStore();
         receiver = new Receiver();
         printer = new Printer();
     }
@@ -33,7 +31,7 @@ public class Application {
         List<String> manualNumbers = receiver.receiveManualNumbers(manualCount);
         printer.printPurchasedCount(manualCount, purchasedCount);
 
-        Lotteries lotteries = lotteryStore.createLotteries(purchasedCount, manualCount, manualNumbers);
+        Lotteries lotteries = LotteryStore.createLotteries(purchasedCount, manualCount, manualNumbers);
         printer.printPurchasedLotteries(lotteries);
 
         ManualNumbersGenerator winningNumbers = new ManualNumbersGenerator(receiver.receiveWinningNumbers());

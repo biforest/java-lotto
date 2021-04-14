@@ -8,7 +8,7 @@ import domain.lotteryStore.numbers.ManualNumbersGenerator;
 import domain.lotteryStore.numbers.Numbers;
 
 public class LotteryStore {
-    public Lotteries createLotteries(int purchasedCount, int manualCount, List<String> manualNumbers) {
+    public static Lotteries createLotteries(int purchasedCount, int manualCount, List<String> manualNumbers) {
         List<Lottery> lotteries = new ArrayList<>();
         List<Lottery> manualLotteries = makeManualLotteries(manualCount, manualNumbers);
         List<Lottery> autoLotteries = makeAutoLotteries(purchasedCount, manualCount);
@@ -19,7 +19,7 @@ public class LotteryStore {
         return new Lotteries(lotteries);
     }
 
-    private List<Lottery> makeManualLotteries(int manualCount, List<String> manualNumbers) {
+    private static List<Lottery> makeManualLotteries(int manualCount, List<String> manualNumbers) {
         List<Lottery> manualLotteries = new ArrayList<>();
         for (int i = 0; i < manualCount; i++) {
             Numbers numbers = new Numbers(new ManualNumbersGenerator(manualNumbers.get(i)).getManualNumbers());
@@ -28,7 +28,7 @@ public class LotteryStore {
         return manualLotteries;
     }
 
-    private List<Lottery> makeAutoLotteries(int purchasedCount, int manualCount) {
+    private static List<Lottery> makeAutoLotteries(int purchasedCount, int manualCount) {
         AutoNumbersGenerator autoNumbersGenerator = new AutoNumbersGenerator();
         List<Lottery> autoLotteries = new ArrayList<>();
         int autoCount = purchasedCount - manualCount;
@@ -38,7 +38,7 @@ public class LotteryStore {
         return autoLotteries;
     }
 
-    private Lottery makeAutoLottery(AutoNumbersGenerator autoNumbersGenerator) {
+    private static Lottery makeAutoLottery(AutoNumbersGenerator autoNumbersGenerator) {
         autoNumbersGenerator.shuffle();
         Numbers numbers = new Numbers(autoNumbersGenerator.getSixNumbersFromTheFront());
         return new Lottery(numbers);
