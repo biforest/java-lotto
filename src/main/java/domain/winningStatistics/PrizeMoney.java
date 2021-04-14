@@ -26,7 +26,7 @@ public enum PrizeMoney {
 
     public static double calculateEarningsRate(WinningStatistics winningStatistics, int purchasedCount) {
         int totalPrizeMoney = Arrays.stream(values())
-                .mapToInt(prizeMoney -> winningStatistics.get(prizeMoney) * prizeMoney.getPrizeMoney())
+                .mapToInt(money -> winningStatistics.get(money) * money.prizeMoney)
                 .sum();
 
         return (double)totalPrizeMoney / (purchasedCount * PRICE_OF_ONE_LOTTERY_TICKET);
