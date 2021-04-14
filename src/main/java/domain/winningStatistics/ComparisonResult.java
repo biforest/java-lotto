@@ -16,7 +16,7 @@ public class ComparisonResult {
     }
 
     private void checkWinnings(WinningStatistics winningStatistics, PrizeMoney prizeMoney) {
-        if (matchingCount == prizeMoney.getMatchingCount()
+        if (prizeMoney.isSameMatchingCount(matchingCount)
                 && isHavingBonusNumberWithFiveMatchingCount() == prizeMoney.isHavingBonusNumber()) {
             winningStatistics.increase(prizeMoney);
         }

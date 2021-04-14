@@ -43,4 +43,8 @@ public enum PrizeMoney {
     public int getPrizeMoney() {
         return prizeMoney;
     }
+
+    public boolean isSameMatchingCount(int matchingCount) {
+        return this.matchingCount == matchingCount;
+    }
 }
