@@ -20,12 +20,12 @@ public enum PrizeMoney {
         this.prizeMoney = prizeMoney;
     }
 
-    public static float calculateEarningsRate(WinningStatistics winningStatistics, int purchasedCount) {
+    public static double calculateEarningsRate(WinningStatistics winningStatistics, int purchasedCount) {
         int totalPrizeMoney = Arrays.stream(values())
                 .mapToInt(prizeMoney -> winningStatistics.get(prizeMoney) * prizeMoney.getPrizeMoney())
                 .sum();
 
-        return (float)totalPrizeMoney / (purchasedCount * 1000);
+        return (double)totalPrizeMoney / (purchasedCount * 1000);
     }
 
     public int getMatchingCount() {

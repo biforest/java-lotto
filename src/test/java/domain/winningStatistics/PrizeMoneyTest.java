@@ -22,7 +22,7 @@ class PrizeMoneyTest {
         int purchasedCount = 20;
 
         // when
-        float earningsRate = PrizeMoney.calculateEarningsRate(winningStatistics, purchasedCount);
+        double earningsRate = PrizeMoney.calculateEarningsRate(winningStatistics, purchasedCount);
         PrizeMoney[] values = PrizeMoney.values();
 
         // then

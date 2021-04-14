@@ -46,7 +46,7 @@ public class Printer {
                 prizeMoney.getPrizeMoney(), result));
     }
 
-    public void printTotalEarningsRate(float totalEarningsRate) {
+    public void printTotalEarningsRate(double totalEarningsRate) {
         System.out.printf(OutputMessage.TOTAL_EARNINGS_RATE.getMessage(), totalEarningsRate);
     }
 }
