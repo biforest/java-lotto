@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import domain.winningStatistics.PrizeMoney;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import domain.lotteryStore.numbers.BonusNumber;
@@ -15,16 +16,23 @@ import domain.winningStatistics.ComparisonResult;
 import domain.winningStatistics.WinningStatistics;
 
 class LotteriesTest {
-    private final ManualNumbersGenerator winningNumbers = new ManualNumbersGenerator("1, 2, 3, 4, 5, 6");
-    private final BonusNumber bonusNumber = new BonusNumber(7, winningNumbers);
-    private final Lotteries lotteries = new Lotteries(Arrays.asList(
-        new Lottery(new Numbers(Arrays.asList(8, 2, 23, 41, 4, 5))),
-        new Lottery(new Numbers(Arrays.asList(3, 5, 29, 6, 2, 38))),
-        new Lottery(new Numbers(Arrays.asList(4, 31, 5, 40, 2, 1))),
-        new Lottery(new Numbers(Arrays.asList(4, 1, 3, 45, 5, 2))),
-        new Lottery(new Numbers(Arrays.asList(7, 1, 2, 3, 4, 5))),
-        new Lottery(new Numbers(Arrays.asList(1, 2, 3, 4, 5, 6)))
-    ));
+    private static ManualNumbersGenerator winningNumbers;
+    private static BonusNumber bonusNumber;
+    private static Lotteries lotteries;
+
+    @BeforeAll
+    public static void setup() {
+        winningNumbers = new ManualNumbersGenerator("1, 2, 3, 4, 5, 6");
+        bonusNumber = new BonusNumber(7, winningNumbers);
+        lotteries = new Lotteries(Arrays.asList(
+                new Lottery(new Numbers(Arrays.asList(8, 2, 23, 41, 4, 5))),
+                new Lottery(new Numbers(Arrays.asList(3, 5, 29, 6, 2, 38))),
+                new Lottery(new Numbers(Arrays.asList(4, 31, 5, 40, 2, 1))),
+                new Lottery(new Numbers(Arrays.asList(4, 1, 3, 45, 5, 2))),
+                new Lottery(new Numbers(Arrays.asList(7, 1, 2, 3, 4, 5))),
+                new Lottery(new Numbers(Arrays.asList(1, 2, 3, 4, 5, 6)))
+        ));
+    }
 
     @Test
     public void 로또_티켓_하나의_비교_결과를_확인한다() {
