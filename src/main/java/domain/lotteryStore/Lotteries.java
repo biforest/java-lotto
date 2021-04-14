@@ -27,17 +27,9 @@ public class Lotteries {
 
     public ComparisonResult compareOneTicketNumbers(ManualNumbersGenerator winningNumbers, BonusNumber bonusNumber,
         Lottery lottery) {
-        int countOfMatchingNumbers = getCountOfMatchingWinningNumbers(lottery, winningNumbers);
-        boolean hasBonusNumber = hasBonusNumber(lottery, bonusNumber);
+        int countOfMatchingNumbers = lottery.getCountOfMatchingWinningNumbers(winningNumbers);
+        boolean hasBonusNumber = lottery.hasBonusNumber(bonusNumber);
         return new ComparisonResult(countOfMatchingNumbers, hasBonusNumber);
-    }
-
-    private int getCountOfMatchingWinningNumbers(Lottery lottery, ManualNumbersGenerator winningNumbers) {
-        return lottery.getNumbers().countMatchingNumbers(winningNumbers);
-    }
-
-    private boolean hasBonusNumber(Lottery lottery, BonusNumber bonusNumber) {
-        return lottery.getNumbers().contains(bonusNumber.getBonusNumber());
     }
 
     public Lottery get(int index) {
