@@ -17,7 +17,7 @@ class LotteryNumberRangeTest {
     }
 
     @ParameterizedTest
-    @ValueSource(ints = {-1, 0, 46, 47, 52, 55})
+    @ValueSource(ints = {-1, 0, 46})
     public void 입력_범위안에_들어오는지_검증한다(int invalidNumber) {
         Assertions.assertThatThrownBy(() -> lotteryNumberRange.validateRange(invalidNumber))
             .isInstanceOf(IllegalArgumentException.class)

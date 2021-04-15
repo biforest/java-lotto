@@ -4,38 +4,32 @@ import static org.assertj.core.api.Assertions.*;
 
 import java.util.Arrays;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import domain.lotteryStore.numbers.BonusNumber;
 import domain.lotteryStore.numbers.Lottery;
 import domain.lotteryStore.numbers.ManualNumbersGenerator;
-import domain.winningStatistics.ComparisonResult;
 import domain.winningStatistics.Ranking;
 import domain.winningStatistics.WinningStatistics;
 
 class LotteriesTest {
-    private final Lottery winningNumbers = ManualNumbersGenerator.createWinningNumbers("1, 2, 3, 4, 5, 6");
-    private final BonusNumber bonusNumber = BonusNumber.of(7, winningNumbers);
-    private final Lotteries lotteries = Lotteries.from(Arrays.asList(
-        Lottery.from(Arrays.asList(8, 2, 23, 41, 4, 5)),
-        Lottery.from(Arrays.asList(3, 5, 29, 6, 2, 38)),
-        Lottery.from(Arrays.asList(4, 31, 5, 40, 2, 1)),
-        Lottery.from(Arrays.asList(4, 1, 3, 45, 5, 2)),
-        Lottery.from(Arrays.asList(7, 1, 2, 3, 4, 5)),
-        Lottery.from(Arrays.asList(1, 2, 3, 4, 5, 6))
-    ));
+    private Lottery winningNumbers;
+    private BonusNumber bonusNumber;
+    private Lotteries lotteries;
 
-    @Test
-    public void 로또_티켓_하나의_비교_결과를_확인한다() {
-        //when
-        ComparisonResult result1 = lotteries.compareOneTicketNumbers(winningNumbers, bonusNumber, lotteries.get(1));
-        ComparisonResult result2 = lotteries.compareOneTicketNumbers(winningNumbers, bonusNumber, lotteries.get(4));
-
-        //then
-        assertThat(result1.getMatchingCount()).isEqualTo(4);
-        assertThat(result1.isHavingBonusNumber()).isEqualTo(false);
-        assertThat(result2.getMatchingCount()).isEqualTo(5);
-        assertThat(result2.isHavingBonusNumber()).isEqualTo(true);
+    @BeforeEach
+    void setUp() {
+        winningNumbers = ManualNumbersGenerator.createWinningNumbers("1, 2, 3, 4, 5, 6");
+        bonusNumber = BonusNumber.of(7, winningNumbers);
+        lotteries = Lotteries.from(Arrays.asList(
+            Lottery.from(Arrays.asList(8, 2, 23, 41, 4, 5)),
+            Lottery.from(Arrays.asList(3, 5, 29, 6, 2, 38)),
+            Lottery.from(Arrays.asList(4, 31, 5, 40, 2, 1)),
+            Lottery.from(Arrays.asList(4, 1, 3, 45, 5, 2)),
+            Lottery.from(Arrays.asList(7, 1, 2, 3, 4, 5)),
+            Lottery.from(Arrays.asList(1, 2, 3, 4, 5, 6))
+        ));
     }
 
     @Test
