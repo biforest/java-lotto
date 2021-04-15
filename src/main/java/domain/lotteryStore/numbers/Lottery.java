@@ -2,6 +2,8 @@ package domain.lotteryStore.numbers;
 
 import java.util.List;
 
+import domain.winningStatistics.ComparisonResult;
+
 public class Lottery {
     private final List<Integer> numbers;
 
@@ -13,7 +15,13 @@ public class Lottery {
         return new Lottery(numbers);
     }
 
-    public int countMatchingNumbers(Lottery winningNumbers) {
+    public ComparisonResult compareOneTicketNumbers(Lottery winningNumbers, BonusNumber bonusNumber) {
+        int countOfMatchingNumbers = countMatchingNumbers(winningNumbers);
+        boolean hasBonusNumber = contains(bonusNumber.getBonusNumber());
+        return ComparisonResult.of(countOfMatchingNumbers, hasBonusNumber);
+    }
+
+    private int countMatchingNumbers(Lottery winningNumbers) {
         return (int)winningNumbers.getNumbers()
             .stream()
             .filter(this::contains)
