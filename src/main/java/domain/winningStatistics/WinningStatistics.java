@@ -6,8 +6,12 @@ import java.util.Map;
 public class WinningStatistics {
     private final Map<Ranking, Integer> winningStatistics = new EnumMap<>(Ranking.class);
 
-    public WinningStatistics() {
+    private WinningStatistics() {
         initiate();
+    }
+
+    public static WinningStatistics getInstance() {
+        return new WinningStatistics();
     }
 
     private void initiate() {

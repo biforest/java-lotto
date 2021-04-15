@@ -8,10 +8,10 @@ import org.junit.jupiter.api.Test;
 class ComparisonResultTest {
     @Test
     void 랭킹을_확인한다() {
-        WinningStatistics winningStatistics = new WinningStatistics();
+        WinningStatistics winningStatistics = WinningStatistics.getInstance();
         int matchingCount = 5;
         boolean havingBonusNumber = false;
-        ComparisonResult comparisonResult = new ComparisonResult(matchingCount, havingBonusNumber);
+        ComparisonResult comparisonResult = ComparisonResult.of(matchingCount, havingBonusNumber);
 
         comparisonResult.rank(winningStatistics);
         Map<Ranking, Integer> rankings = winningStatistics.getWinningStatistics();

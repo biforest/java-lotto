@@ -13,7 +13,7 @@ class PurchasePriceTest {
         int purchasePrice = 900;
 
         //then
-        Assertions.assertThatThrownBy(() -> new PurchasePrice(purchasePrice))
+        Assertions.assertThatThrownBy(() -> PurchasePrice.from(purchasePrice))
             .isInstanceOf(IllegalArgumentException.class)
             .hasMessageContaining(ExceptionMessage.MUST_BUY_MORE_THAN_ONE_TICKET.getMessage());
     }

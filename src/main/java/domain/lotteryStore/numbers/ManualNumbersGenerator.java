@@ -18,10 +18,18 @@ public class ManualNumbersGenerator extends LotteryNumberRange {
 
     private final List<Integer> manualNumbers;
 
-    public ManualNumbersGenerator(String manualNumbers) {
+    private ManualNumbersGenerator(String manualNumbers) {
         validateOtherCharacterSymbols(manualNumbers);
         this.manualNumbers = splitWinningNumbers(manualNumbers);
         validateSplitInput();
+    }
+
+    public static Lottery createWinningNumbers(String winningNumbers) {
+        return Lottery.from(createManualLotteryNumbers(winningNumbers));
+    }
+
+    public static List<Integer> createManualLotteryNumbers(String manualNumbers) {
+        return new ManualNumbersGenerator(manualNumbers).manualNumbers;
     }
 
     private void validateOtherCharacterSymbols(String input) {
@@ -58,13 +66,5 @@ public class ManualNumbersGenerator extends LotteryNumberRange {
         if (numbers.size() != SIZE_OF_NUMBERS) {
             throw new IllegalArgumentException(ExceptionMessage.DUPLICATE_NUMBERS.getMessage());
         }
-    }
-
-    public boolean contains(int numberToCompare) {
-        return manualNumbers.contains(numberToCompare);
-    }
-
-    public List<Integer> getManualNumbers() {
-        return manualNumbers;
     }
 }

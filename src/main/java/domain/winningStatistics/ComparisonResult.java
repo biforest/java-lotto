@@ -4,9 +4,13 @@ public class ComparisonResult {
     private final int matchingCount;
     private final boolean havingBonusNumber;
 
-    public ComparisonResult(int matchingCount, boolean havingBonusNumber) {
+    private ComparisonResult(int matchingCount, boolean havingBonusNumber) {
         this.matchingCount = matchingCount;
         this.havingBonusNumber = havingBonusNumber;
+    }
+
+    public static ComparisonResult of(int matchingCount, boolean havingBonusNumber) {
+        return new ComparisonResult(matchingCount, havingBonusNumber);
     }
 
     public void rank(WinningStatistics winningStatistics) {

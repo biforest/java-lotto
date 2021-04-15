@@ -7,9 +7,13 @@ public class PurchasePrice {
 
     private final int purchasePrice;
 
-    public PurchasePrice(int purchasePrice) {
+    private PurchasePrice(int purchasePrice) {
         validateSmallerThanPurchasePrice(purchasePrice);
         this.purchasePrice = purchasePrice;
+    }
+
+    public static PurchasePrice from(int purchasePrice) {
+        return new PurchasePrice(purchasePrice);
     }
 
     private void validateSmallerThanPurchasePrice(int purchasePrice) {

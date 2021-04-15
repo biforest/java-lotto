@@ -10,7 +10,7 @@ class WinningStatisticsTest {
 
     @BeforeEach
     void setUp() {
-        winningStatistics = new WinningStatistics();
+        winningStatistics = WinningStatistics.getInstance();
     }
 
     @Test

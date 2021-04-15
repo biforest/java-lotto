@@ -14,10 +14,7 @@ public class AutoNumbersGenerator {
             .forEach(autoNumbers::add);
     }
 
-    private AutoNumbersGenerator() {
-    }
-
-    public static List<Integer> getSixNumbersFromTheFront() {
+    public static List<Integer> createAutoLotteryNumbers() {
         shuffle();
         return autoNumbers.stream()
             .limit(6)

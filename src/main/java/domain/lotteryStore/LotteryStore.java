@@ -16,14 +16,15 @@ public class LotteryStore {
         lotteries.addAll(manualLotteries);
         lotteries.addAll(autoLotteries);
 
-        return new Lotteries(lotteries);
+        return Lotteries.from(lotteries);
     }
 
     private static List<Lottery> makeManualLotteries(int manualCount, List<String> manualNumbers) {
         List<Lottery> manualLotteries = new ArrayList<>();
         for (int i = 0; i < manualCount; i++) {
-            Lottery lottery = new Lottery(new ManualNumbersGenerator(manualNumbers.get(i)).getManualNumbers());
-            manualLotteries.add(lottery);
+            Lottery manualLottery = Lottery.from(
+                ManualNumbersGenerator.createManualLotteryNumbers(manualNumbers.get(i)));
+            manualLotteries.add(manualLottery);
         }
         return manualLotteries;
     }
@@ -32,8 +33,8 @@ public class LotteryStore {
         List<Lottery> autoLotteries = new ArrayList<>();
         int autoCount = purchasedCount - manualCount;
         while (autoCount-- > 0) {
-            Lottery lottery = new Lottery(AutoNumbersGenerator.getSixNumbersFromTheFront());
-            autoLotteries.add(lottery);
+            Lottery autoLottery = Lottery.from(AutoNumbersGenerator.createAutoLotteryNumbers());
+            autoLotteries.add(autoLottery);
         }
         return autoLotteries;
     }

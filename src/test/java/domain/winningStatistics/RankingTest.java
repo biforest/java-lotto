@@ -1,6 +1,5 @@
 package domain.winningStatistics;
 
-import static javax.swing.UIManager.*;
 import static org.assertj.core.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
@@ -9,13 +8,13 @@ class RankingTest {
     @Test
     void 총수익률을_계산한다() {
         // given
-        WinningStatistics winningStatistics = new WinningStatistics() {{
-            put(Ranking.THREE, 3);
-            put(Ranking.FOUR, 1);
-            put(Ranking.FIVE, 3);
-            put(Ranking.FIVE_BONUS, 1);
-            put(Ranking.SIX, 1);
-        }};
+        WinningStatistics winningStatistics = WinningStatistics.getInstance();
+        winningStatistics.getWinningStatistics().put(Ranking.THREE, 3);
+        winningStatistics.getWinningStatistics().put(Ranking.FOUR, 1);
+        winningStatistics.getWinningStatistics().put(Ranking.FIVE, 3);
+        winningStatistics.getWinningStatistics().put(Ranking.FIVE_BONUS, 1);
+        winningStatistics.getWinningStatistics().put(Ranking.SIX, 1);
+
         int purchasedCount = 20;
 
         // when

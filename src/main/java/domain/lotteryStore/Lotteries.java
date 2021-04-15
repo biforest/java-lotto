@@ -4,20 +4,22 @@ import java.util.List;
 
 import domain.lotteryStore.numbers.BonusNumber;
 import domain.lotteryStore.numbers.Lottery;
-import domain.lotteryStore.numbers.ManualNumbersGenerator;
 import domain.winningStatistics.ComparisonResult;
 import domain.winningStatistics.WinningStatistics;
 
 public class Lotteries {
     private final List<Lottery> lotteries;
 
-    public Lotteries(List<Lottery> lotteries) {
+    private Lotteries(List<Lottery> lotteries) {
         this.lotteries = lotteries;
     }
 
-    public WinningStatistics compareWithWinningNumbersAndBonusNumber(ManualNumbersGenerator winningNumbers,
-        BonusNumber bonusNumber) {
-        WinningStatistics winningStatistics = new WinningStatistics();
+    public static Lotteries from(List<Lottery> lotteries) {
+        return new Lotteries(lotteries);
+    }
+
+    public WinningStatistics compareWithWinningNumbersAndBonusNumber(Lottery winningNumbers, BonusNumber bonusNumber) {
+        WinningStatistics winningStatistics = WinningStatistics.getInstance();
         for (Lottery lottery : lotteries) {
             ComparisonResult comparisonResult = compareOneTicketNumbers(winningNumbers, bonusNumber, lottery);
             comparisonResult.rank(winningStatistics);
@@ -26,14 +28,13 @@ public class Lotteries {
         return winningStatistics;
     }
 
-    public ComparisonResult compareOneTicketNumbers(ManualNumbersGenerator winningNumbers, BonusNumber bonusNumber,
-        Lottery lottery) {
+    public ComparisonResult compareOneTicketNumbers(Lottery winningNumbers, BonusNumber bonusNumber, Lottery lottery) {
         int countOfMatchingNumbers = getCountOfMatchingWinningNumbers(lottery, winningNumbers);
         boolean hasBonusNumber = hasBonusNumber(lottery, bonusNumber);
-        return new ComparisonResult(countOfMatchingNumbers, hasBonusNumber);
+        return ComparisonResult.of(countOfMatchingNumbers, hasBonusNumber);
     }
 
-    private int getCountOfMatchingWinningNumbers(Lottery lottery, ManualNumbersGenerator winningNumbers) {
+    private int getCountOfMatchingWinningNumbers(Lottery lottery, Lottery winningNumbers) {
         return lottery.countMatchingNumbers(winningNumbers);
     }
 

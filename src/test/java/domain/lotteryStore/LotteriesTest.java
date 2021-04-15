@@ -14,15 +14,15 @@ import domain.winningStatistics.Ranking;
 import domain.winningStatistics.WinningStatistics;
 
 class LotteriesTest {
-    private final ManualNumbersGenerator winningNumbers = new ManualNumbersGenerator("1, 2, 3, 4, 5, 6");
-    private final BonusNumber bonusNumber = new BonusNumber(7, winningNumbers);
-    private final Lotteries lotteries = new Lotteries(Arrays.asList(
-        new Lottery(Arrays.asList(8, 2, 23, 41, 4, 5)),
-        new Lottery(Arrays.asList(3, 5, 29, 6, 2, 38)),
-        new Lottery(Arrays.asList(4, 31, 5, 40, 2, 1)),
-        new Lottery(Arrays.asList(4, 1, 3, 45, 5, 2)),
-        new Lottery(Arrays.asList(7, 1, 2, 3, 4, 5)),
-        new Lottery(Arrays.asList(1, 2, 3, 4, 5, 6))
+    private final Lottery winningNumbers = ManualNumbersGenerator.createWinningNumbers("1, 2, 3, 4, 5, 6");
+    private final BonusNumber bonusNumber = BonusNumber.of(7, winningNumbers);
+    private final Lotteries lotteries = Lotteries.from(Arrays.asList(
+        Lottery.from(Arrays.asList(8, 2, 23, 41, 4, 5)),
+        Lottery.from(Arrays.asList(3, 5, 29, 6, 2, 38)),
+        Lottery.from(Arrays.asList(4, 31, 5, 40, 2, 1)),
+        Lottery.from(Arrays.asList(4, 1, 3, 45, 5, 2)),
+        Lottery.from(Arrays.asList(7, 1, 2, 3, 4, 5)),
+        Lottery.from(Arrays.asList(1, 2, 3, 4, 5, 6))
     ));
 
     @Test

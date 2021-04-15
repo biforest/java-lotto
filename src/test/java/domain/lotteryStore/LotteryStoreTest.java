@@ -25,6 +25,6 @@ class LotteryStoreTest {
         Lotteries lotteries = lotteryStore.createLotteries(1, 0, new ArrayList<>());
 
         //then
-        assertThat(lotteries.getLotteries().get(0).getNumbers().getNumbers().size()).isEqualTo(sizeOfLottery);
+        assertThat(lotteries.getLotteries().get(0).getNumbers().size()).isEqualTo(sizeOfLottery);
     }
 }

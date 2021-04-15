@@ -5,12 +5,16 @@ import java.util.List;
 public class Lottery {
     private final List<Integer> numbers;
 
-    public Lottery(List<Integer> numbers) {
+    private Lottery(List<Integer> numbers) {
         this.numbers = numbers;
     }
 
-    public int countMatchingNumbers(ManualNumbersGenerator winningNumbers) {
-        return (int)winningNumbers.getManualNumbers()
+    public static Lottery from(List<Integer> numbers) {
+        return new Lottery(numbers);
+    }
+
+    public int countMatchingNumbers(Lottery winningNumbers) {
+        return (int)winningNumbers.getNumbers()
             .stream()
             .filter(this::contains)
             .count();

@@ -4,6 +4,7 @@ import domain.lotteryStore.Lotteries;
 import domain.lotteryStore.LotteryStore;
 import domain.lotteryStore.PurchasePrice;
 import domain.lotteryStore.numbers.BonusNumber;
+import domain.lotteryStore.numbers.Lottery;
 import domain.lotteryStore.numbers.ManualNumbersGenerator;
 import domain.winningStatistics.Ranking;
 import domain.winningStatistics.WinningStatistics;
@@ -15,7 +16,7 @@ public class LottoController {
         final Receiver receiver = new Receiver();
         final Printer printer = new Printer();
 
-        PurchasePrice purchasePrice = new PurchasePrice(receiver.receivePurchasePrice());
+        PurchasePrice purchasePrice = PurchasePrice.from(receiver.receivePurchasePrice());
         int purchasedCount = purchasePrice.getPurchasedCount();
         int manualCount = receiver.receiveManualCount();
         List<String> manualNumbers = receiver.receiveManualNumbers(manualCount);
@@ -24,8 +25,8 @@ public class LottoController {
         Lotteries lotteries = LotteryStore.createLotteries(purchasedCount, manualCount, manualNumbers);
         printer.printPurchasedLotteries(lotteries);
 
-        ManualNumbersGenerator winningNumbers = new ManualNumbersGenerator(receiver.receiveWinningNumbers());
-        BonusNumber bonusNumber = new BonusNumber(receiver.receiveBonusNumber(), winningNumbers);
+        Lottery winningNumbers = ManualNumbersGenerator.createWinningNumbers(receiver.receiveWinningNumbers());
+        BonusNumber bonusNumber = BonusNumber.of(receiver.receiveBonusNumber(), winningNumbers);
 
         WinningStatistics winningStatistics = lotteries.compareWithWinningNumbersAndBonusNumber(winningNumbers,
             bonusNumber);
