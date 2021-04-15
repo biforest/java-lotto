@@ -3,7 +3,7 @@ package domain.lotteryStore;
 import ui.message.ExceptionMessage;
 
 public class PurchasePrice {
-    private static final int PRICE_OF_ONE_LOTTERY_TICKET = 1000;
+    public static final int PRICE_OF_ONE_LOTTERY_TICKET = 1000;
 
     private final int purchasePrice;
 

@@ -7,7 +7,7 @@ public enum InputMessage {
     INPUT_LAST_WEEK_WINNING_NUMBERS("\n지난 주 당첨 번호를 입력해 주세요."),
     INPUT_BONUS_BALL("보너스 볼을 입력해 주세요.");
 
-    private String message;
+    private final String message;
 
     InputMessage(String message) {
         this.message = message;

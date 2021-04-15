@@ -8,7 +8,7 @@ public enum ExceptionMessage {
     MUST_INPUT_SIX_WINNING_NUMBERS("6개의 당첨 번호를 입력해야 합니다."),
     INPUT_ONLY_NUMBERS_AND_COMMA("숫자와 , 이외의 문자는 입력할 수 없습니다.");
 
-    private String message;
+    private final String message;
 
     ExceptionMessage(String message) {
         this.message = message;

@@ -7,7 +7,7 @@ public enum OutputMessage {
     MATCH_COUNT_WITH_BONUS("%d개 일치, 보너스 볼 일치 (%d원)- %d개\n"),
     TOTAL_EARNINGS_RATE("총 수익률은 %.2f입니다.(1 기준)\n");
 
-    private String message;
+    private final String message;
 
     OutputMessage(String message) {
         this.message = message;
