@@ -1,7 +1,12 @@
 package ui;
 
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import domain.lotteryStore.Lotteries;
-import domain.winningStatistics.PrizeMoney;
+import domain.lotteryStore.numbers.Lottery;
+import domain.winningStatistics.Ranking;
 import domain.winningStatistics.WinningStatistics;
 import ui.message.OutputMessage;
 
@@ -14,15 +19,18 @@ public class Printer {
     }
 
     public void printPurchasedLotteries(Lotteries lotteries) {
-        lotteries.getLotteries()
+        List<List<Integer>> lotteriesNumbers = lotteries.getLotteries()
             .stream()
-            .map(lottery -> lottery.getNumbers().getNumbers())
-            .forEach(System.out::println);
+            .map(Lottery::getNumbers)
+            .collect(Collectors.toList());
+
+        lotteriesNumbers.forEach(Collections::sort);
+        lotteriesNumbers.forEach(System.out::println);
     }
 
     public void printWinningStatistics(WinningStatistics winningStatistics) {
         StringBuilder builder = new StringBuilder();
-        PrizeMoney[] prizeMonies = PrizeMoney.values();
+        Ranking[] prizeMonies = Ranking.values();
 
         builder.append(OutputMessage.WINNING_STATISTICS.getMessage());
 
@@ -32,18 +40,18 @@ public class Printer {
         System.out.print(builder);
     }
 
-    private void printWinningStatisticsDetails(StringBuilder builder, PrizeMoney prizeMoney, Integer result, int i) {
+    private void printWinningStatisticsDetails(StringBuilder builder, Ranking ranking, Integer result, int i) {
         if (i == WIN_WITH_BONUS_NUMBER) {
             builder.append(
-                String.format(OutputMessage.MATCH_COUNT_WITH_BONUS.getMessage(), prizeMoney.getMatchingCount(),
-                    prizeMoney.getPrizeMoney(), result));
+                String.format(OutputMessage.MATCH_COUNT_WITH_BONUS.getMessage(), ranking.getMatchingCount(),
+                    ranking.getPrizeMoney(), result));
             return;
         }
-        builder.append(String.format(OutputMessage.MATCH_COUNT.getMessage(), prizeMoney.getMatchingCount(),
-            prizeMoney.getPrizeMoney(), result));
+        builder.append(String.format(OutputMessage.MATCH_COUNT.getMessage(), ranking.getMatchingCount(),
+            ranking.getPrizeMoney(), result));
     }
 
-    public void printTotalEarningsRate(float totalEarningsRate) {
+    public void printTotalEarningsRate(double totalEarningsRate) {
         System.out.printf(OutputMessage.TOTAL_EARNINGS_RATE.getMessage(), totalEarningsRate);
     }
 }

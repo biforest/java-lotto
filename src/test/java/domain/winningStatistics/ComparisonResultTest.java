@@ -14,12 +14,12 @@ class ComparisonResultTest {
         ComparisonResult comparisonResult = new ComparisonResult(matchingCount, havingBonusNumber);
 
         comparisonResult.rank(winningStatistics);
-        Map<PrizeMoney, Integer> rankings = winningStatistics.getWinningStatistics();
+        Map<Ranking, Integer> rankings = winningStatistics.getWinningStatistics();
 
-        Assertions.assertThat(rankings.get(PrizeMoney.THREE)).isEqualTo(0);
-        Assertions.assertThat(rankings.get(PrizeMoney.FOUR)).isEqualTo(0);
-        Assertions.assertThat(rankings.get(PrizeMoney.FIVE)).isEqualTo(1);
-        Assertions.assertThat(rankings.get(PrizeMoney.FIVE_BONUS)).isEqualTo(0);
-        Assertions.assertThat(rankings.get(PrizeMoney.SIX)).isEqualTo(0);
+        Assertions.assertThat(rankings.get(Ranking.THREE)).isEqualTo(0);
+        Assertions.assertThat(rankings.get(Ranking.FOUR)).isEqualTo(0);
+        Assertions.assertThat(rankings.get(Ranking.FIVE)).isEqualTo(1);
+        Assertions.assertThat(rankings.get(Ranking.FIVE_BONUS)).isEqualTo(0);
+        Assertions.assertThat(rankings.get(Ranking.SIX)).isEqualTo(0);
     }
 }

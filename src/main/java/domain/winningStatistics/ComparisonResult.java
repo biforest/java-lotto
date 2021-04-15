@@ -10,27 +10,31 @@ public class ComparisonResult {
     }
 
     public void rank(WinningStatistics winningStatistics) {
-        for (PrizeMoney prizeMoney : PrizeMoney.values()) {
-            checkWinnings(winningStatistics, prizeMoney);
+        for (Ranking ranking : Ranking.values()) {
+            checkWinnings(winningStatistics, ranking);
         }
     }
 
-    private void checkWinnings(WinningStatistics winningStatistics, PrizeMoney prizeMoney) {
-        if (isEqualMatchingCount(prizeMoney) && isEqualBonusNumber(prizeMoney)) {
-            winningStatistics.win(prizeMoney);
+    private void checkWinnings(WinningStatistics winningStatistics, Ranking ranking) {
+        if (isSecondPlace(ranking) || isThirdPlace(ranking) || isOtherRank(ranking)) {
+            winningStatistics.win(ranking);
         }
     }
 
-    private boolean isEqualMatchingCount(PrizeMoney prizeMoney) {
-        return matchingCount == prizeMoney.getMatchingCount();
+    private boolean isSecondPlace(Ranking ranking) {
+        return hasFiveMatchingCount() && havingBonusNumber && ranking == Ranking.FIVE_BONUS;
     }
 
-    private boolean isEqualBonusNumber(PrizeMoney prizeMoney) {
-        return isHavingBonusNumberWithFiveMatchingCount() == prizeMoney.isHavingBonusNumber();
+    private boolean isThirdPlace(Ranking ranking) {
+        return hasFiveMatchingCount() && !havingBonusNumber && ranking == Ranking.FIVE;
     }
 
-    private boolean isHavingBonusNumberWithFiveMatchingCount() {
-        return matchingCount == 5 && havingBonusNumber;
+    private boolean isOtherRank(Ranking ranking) {
+        return !hasFiveMatchingCount() && ranking.isSameMatchingCount(matchingCount);
+    }
+
+    private boolean hasFiveMatchingCount() {
+        return matchingCount == 5;
     }
 
     public int getMatchingCount() {

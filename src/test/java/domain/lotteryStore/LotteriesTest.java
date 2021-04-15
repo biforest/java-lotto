@@ -7,22 +7,22 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import domain.lotteryStore.numbers.BonusNumber;
+import domain.lotteryStore.numbers.Lottery;
 import domain.lotteryStore.numbers.ManualNumbersGenerator;
-import domain.lotteryStore.numbers.Numbers;
 import domain.winningStatistics.ComparisonResult;
-import domain.winningStatistics.PrizeMoney;
+import domain.winningStatistics.Ranking;
 import domain.winningStatistics.WinningStatistics;
 
 class LotteriesTest {
     private final ManualNumbersGenerator winningNumbers = new ManualNumbersGenerator("1, 2, 3, 4, 5, 6");
     private final BonusNumber bonusNumber = new BonusNumber(7, winningNumbers);
     private final Lotteries lotteries = new Lotteries(Arrays.asList(
-        new Lottery(new Numbers(Arrays.asList(8, 2, 23, 41, 4, 5))),
-        new Lottery(new Numbers(Arrays.asList(3, 5, 29, 6, 2, 38))),
-        new Lottery(new Numbers(Arrays.asList(4, 31, 5, 40, 2, 1))),
-        new Lottery(new Numbers(Arrays.asList(4, 1, 3, 45, 5, 2))),
-        new Lottery(new Numbers(Arrays.asList(7, 1, 2, 3, 4, 5))),
-        new Lottery(new Numbers(Arrays.asList(1, 2, 3, 4, 5, 6)))
+        new Lottery(Arrays.asList(8, 2, 23, 41, 4, 5)),
+        new Lottery(Arrays.asList(3, 5, 29, 6, 2, 38)),
+        new Lottery(Arrays.asList(4, 31, 5, 40, 2, 1)),
+        new Lottery(Arrays.asList(4, 1, 3, 45, 5, 2)),
+        new Lottery(Arrays.asList(7, 1, 2, 3, 4, 5)),
+        new Lottery(Arrays.asList(1, 2, 3, 4, 5, 6))
     ));
 
     @Test
@@ -44,7 +44,7 @@ class LotteriesTest {
         lotteries.compareWithWinningNumbersAndBonusNumber(winningNumbers, bonusNumber);
         WinningStatistics winningStatistics = lotteries.compareWithWinningNumbersAndBonusNumber(winningNumbers,
             bonusNumber);
-        PrizeMoney[] prizeMonies = PrizeMoney.values();
+        Ranking[] prizeMonies = Ranking.values();
 
         //then
         assertThat(winningStatistics.get(prizeMonies[0])).isEqualTo(1);

@@ -15,8 +15,8 @@ class WinningStatisticsTest {
 
     @Test
     void 당첨자_수를_증가시킨다() {
-        winningStatistics.win(PrizeMoney.THREE);
-        PrizeMoney[] prizeMonies = PrizeMoney.values();
+        winningStatistics.win(Ranking.THREE);
+        Ranking[] prizeMonies = Ranking.values();
 
         assertThat(winningStatistics.get(prizeMonies[0])).isEqualTo(1);
         assertThat(winningStatistics.get(prizeMonies[1])).isEqualTo(0);

@@ -3,6 +3,7 @@ package domain.lotteryStore;
 import java.util.List;
 
 import domain.lotteryStore.numbers.BonusNumber;
+import domain.lotteryStore.numbers.Lottery;
 import domain.lotteryStore.numbers.ManualNumbersGenerator;
 import domain.winningStatistics.ComparisonResult;
 import domain.winningStatistics.WinningStatistics;
@@ -33,11 +34,11 @@ public class Lotteries {
     }
 
     private int getCountOfMatchingWinningNumbers(Lottery lottery, ManualNumbersGenerator winningNumbers) {
-        return lottery.getNumbers().countMatchingNumbers(winningNumbers);
+        return lottery.countMatchingNumbers(winningNumbers);
     }
 
     private boolean hasBonusNumber(Lottery lottery, BonusNumber bonusNumber) {
-        return lottery.getNumbers().contains(bonusNumber.getBonusNumber());
+        return lottery.contains(bonusNumber.getBonusNumber());
     }
 
     public Lottery get(int index) {

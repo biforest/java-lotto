@@ -11,7 +11,7 @@ public class BonusNumber extends LotteryNumberRange {
         this.bonusNumber = bonusNumber;
     }
 
-    public void validateDuplicate(int bonusNumber, ManualNumbersGenerator winningNumbers) {
+    private void validateDuplicate(int bonusNumber, ManualNumbersGenerator winningNumbers) {
         if (winningNumbers.contains(bonusNumber)) {
             throw new IllegalArgumentException(
                 ExceptionMessage.BONUS_NUMBER_CANNOT_EQUAL_WINNING_NUMBERS.getMessage());

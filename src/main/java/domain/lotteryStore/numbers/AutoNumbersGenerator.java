@@ -4,27 +4,27 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class AutoNumbersGenerator {
-    private final List<Integer> autoNumbers = new ArrayList<>();
+    private static final List<Integer> autoNumbers = new ArrayList<>();
 
-    public AutoNumbersGenerator() {
-        initiateNumbers();
+    static {
+        IntStream.rangeClosed(LotteryNumberRange.MINIMUM_LOTTERY_NUMBER, LotteryNumberRange.MAXIMUM_LOTTERY_NUMBER)
+            .forEach(autoNumbers::add);
     }
 
-    private void initiateNumbers() {
-        for (int i = LotteryNumberRange.MINIMUM_LOTTERY_NUMBER; i <= LotteryNumberRange.MAXIMUM_LOTTERY_NUMBER; i++) {
-            autoNumbers.add(i);
-        }
+    private AutoNumbersGenerator() {
     }
 
-    public void shuffle() {
-        Collections.shuffle(autoNumbers);
-    }
-
-    public List<Integer> getSixNumbersFromTheFront() {
+    public static List<Integer> getSixNumbersFromTheFront() {
+        shuffle();
         return autoNumbers.stream()
             .limit(6)
             .collect(Collectors.toList());
+    }
+
+    private static void shuffle() {
+        Collections.shuffle(autoNumbers);
     }
 }

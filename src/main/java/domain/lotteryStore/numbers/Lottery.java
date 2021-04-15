@@ -1,13 +1,11 @@
 package domain.lotteryStore.numbers;
 
-import java.util.Collections;
 import java.util.List;
 
-public class Numbers {
+public class Lottery {
     private final List<Integer> numbers;
 
-    public Numbers(List<Integer> numbers) {
-        Collections.sort(numbers);
+    public Lottery(List<Integer> numbers) {
         this.numbers = numbers;
     }
 
