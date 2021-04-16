@@ -1,7 +1,6 @@
 package domain.lotteryStore.numbers;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -14,14 +13,10 @@ public class AutoNumbersGenerator {
             .forEach(autoNumbers::add);
     }
 
-    public static List<Integer> createAutoLotteryNumbers() {
-        shuffle();
+    public static List<Integer> createAutoLotteryNumbers(ShuffleStrategy strategy) {
+        strategy.shuffle(autoNumbers);
         return autoNumbers.stream()
             .limit(6)
             .collect(Collectors.toList());
-    }
-
-    private static void shuffle() {
-        Collections.shuffle(autoNumbers);
     }
 }

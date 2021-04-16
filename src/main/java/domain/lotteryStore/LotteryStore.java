@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import domain.lotteryStore.numbers.AutoNumbersGenerator;
+import domain.lotteryStore.numbers.AutoShuffleStrategy;
 import domain.lotteryStore.numbers.Lottery;
 import domain.lotteryStore.numbers.ManualNumbersGenerator;
 
@@ -31,9 +32,10 @@ public class LotteryStore {
 
     private static List<Lottery> makeAutoLotteries(int purchasedCount, int manualCount) {
         List<Lottery> autoLotteries = new ArrayList<>();
+        AutoShuffleStrategy autoShuffleStrategy = AutoShuffleStrategy.getInstance();
         int autoCount = purchasedCount - manualCount;
         while (autoCount-- > 0) {
-            Lottery autoLottery = Lottery.from(AutoNumbersGenerator.createAutoLotteryNumbers());
+            Lottery autoLottery = Lottery.from(AutoNumbersGenerator.createAutoLotteryNumbers(autoShuffleStrategy));
             autoLotteries.add(autoLottery);
         }
         return autoLotteries;
