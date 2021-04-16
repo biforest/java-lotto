@@ -21,7 +21,7 @@ public class Printer {
     public void printPurchasedLotteries(Lotteries lotteries) {
         List<List<Integer>> lotteriesNumbers = lotteries.getLotteries()
             .stream()
-            .map(Lottery::getNumbers)
+            .map(Lottery::getIntegerNumbers)
             .collect(Collectors.toList());
 
         lotteriesNumbers.forEach(Collections::sort);

@@ -1,17 +1,18 @@
 package domain.lotteryStore.numbers;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import domain.winningStatistics.ComparisonResult;
 
 public class Lottery {
-    private final List<Integer> numbers;
+    private final List<LotteryNumber> numbers;
 
-    private Lottery(List<Integer> numbers) {
+    private Lottery(List<LotteryNumber> numbers) {
         this.numbers = numbers;
     }
 
-    public static Lottery from(List<Integer> numbers) {
+    public static Lottery from(List<LotteryNumber> numbers) {
         return new Lottery(numbers);
     }
 
@@ -28,11 +29,17 @@ public class Lottery {
             .count();
     }
 
-    public boolean contains(int numberToCompare) {
+    public boolean contains(LotteryNumber numberToCompare) {
         return numbers.contains(numberToCompare);
     }
 
-    public List<Integer> getNumbers() {
+    public List<LotteryNumber> getNumbers() {
         return numbers;
+    }
+
+    public List<Integer> getIntegerNumbers() {
+        return numbers.stream()
+            .map(LotteryNumber::getNumber)
+            .collect(Collectors.toList());
     }
 }

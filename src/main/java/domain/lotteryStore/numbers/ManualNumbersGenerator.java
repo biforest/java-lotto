@@ -9,14 +9,14 @@ import java.util.stream.Collectors;
 
 import ui.message.ExceptionMessage;
 
-public class ManualNumbersGenerator extends LotteryNumberRange {
+public class ManualNumbersGenerator {
     private static final String CHARACTERS_CONTAINING_NUMBER_COMMA = "^[0-9,\\s]+$";
     private static final int SIZE_OF_NUMBERS = 6;
     private static final String DELIMITER = ",";
     private static final String CHARACTER_BEFORE_REPLACING = " ";
     private static final String CHARACTER_AFTER_REPLACING = "";
 
-    private final List<Integer> manualNumbers;
+    private final List<LotteryNumber> manualNumbers;
 
     private ManualNumbersGenerator(String manualNumbers) {
         validateOtherCharacterSymbols(manualNumbers);
@@ -28,7 +28,7 @@ public class ManualNumbersGenerator extends LotteryNumberRange {
         return Lottery.from(createManualLotteryNumbers(winningNumbers));
     }
 
-    public static List<Integer> createManualLotteryNumbers(String manualNumbers) {
+    public static List<LotteryNumber> createManualLotteryNumbers(String manualNumbers) {
         return new ManualNumbersGenerator(manualNumbers).manualNumbers;
     }
 
@@ -38,16 +38,17 @@ public class ManualNumbersGenerator extends LotteryNumberRange {
         }
     }
 
-    private List<Integer> splitWinningNumbers(String input) {
-        return Arrays.stream(input.replaceAll(CHARACTER_BEFORE_REPLACING, CHARACTER_AFTER_REPLACING)
-            .split(DELIMITER))
+    private List<LotteryNumber> splitWinningNumbers(String input) {
+        return Arrays.stream(
+            input.replaceAll(CHARACTER_BEFORE_REPLACING, CHARACTER_AFTER_REPLACING)
+                .split(DELIMITER))
             .map(Integer::parseInt)
+            .map(LotteryNumber::from)
             .collect(Collectors.toList());
     }
 
     private void validateSplitInput() {
         validateSizeOfWinningNumbers();
-        validateRangeOfLotteryNumbers();
         validateDuplicateWinningNumbers();
     }
 
@@ -57,12 +58,8 @@ public class ManualNumbersGenerator extends LotteryNumberRange {
         }
     }
 
-    private void validateRangeOfLotteryNumbers() {
-        manualNumbers.forEach(super::validateRange);
-    }
-
     private void validateDuplicateWinningNumbers() {
-        Set<Integer> numbers = new HashSet<>(manualNumbers);
+        Set<LotteryNumber> numbers = new HashSet<>(manualNumbers);
         if (numbers.size() != SIZE_OF_NUMBERS) {
             throw new IllegalArgumentException(ExceptionMessage.DUPLICATE_NUMBERS.getMessage());
         }

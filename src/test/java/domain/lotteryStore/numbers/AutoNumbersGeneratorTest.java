@@ -10,16 +10,16 @@ class AutoNumbersGeneratorTest {
     @Test
     public void 자동_로또를_생성한다() throws Exception {
         //when
-        List<Integer> autoLotteryNumbers = AutoNumbersGenerator.createAutoLotteryNumbers(
+        List<LotteryNumber> autoLotteryNumbers = AutoNumbersGenerator.createAutoLotteryNumbers(
             ManualShuffleStrategy.getInstance());
 
         //then
         assertThat(autoLotteryNumbers.size()).isEqualTo(6);
-        assertThat(autoLotteryNumbers.get(0)).isEqualTo(3);
-        assertThat(autoLotteryNumbers.get(1)).isEqualTo(42);
-        assertThat(autoLotteryNumbers.get(2)).isEqualTo(5);
-        assertThat(autoLotteryNumbers.get(3)).isEqualTo(21);
-        assertThat(autoLotteryNumbers.get(4)).isEqualTo(15);
-        assertThat(autoLotteryNumbers.get(5)).isEqualTo(30);
+        assertThat(autoLotteryNumbers.get(0).getNumber()).isEqualTo(3);
+        assertThat(autoLotteryNumbers.get(1).getNumber()).isEqualTo(42);
+        assertThat(autoLotteryNumbers.get(2).getNumber()).isEqualTo(5);
+        assertThat(autoLotteryNumbers.get(3).getNumber()).isEqualTo(21);
+        assertThat(autoLotteryNumbers.get(4).getNumber()).isEqualTo(15);
+        assertThat(autoLotteryNumbers.get(5).getNumber()).isEqualTo(30);
     }
 }
