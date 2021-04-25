@@ -12,25 +12,22 @@ import ui.Printer;
 import ui.Receiver;
 
 public class LottoController {
-    public static void run() {
-        final Receiver receiver = new Receiver();
-        final Printer printer = new Printer();
-
-        PurchasePrice purchasePrice = PurchasePrice.from(receiver.receivePurchasePrice());
+    public void run() {
+        PurchasePrice purchasePrice = PurchasePrice.from(Receiver.receivePurchasePrice());
         int purchasedCount = purchasePrice.getPurchasedCount();
-        int manualCount = receiver.receiveManualCount();
-        List<String> manualNumbers = receiver.receiveManualNumbers(manualCount);
-        printer.printPurchasedCount(manualCount, purchasedCount);
+        int manualCount = Receiver.receiveManualCount();
+        List<String> manualNumbers = Receiver.receiveManualNumbers(manualCount);
+        Printer.printPurchasedCount(manualCount, purchasedCount);
 
         Lotteries lotteries = LotteryStore.createLotteries(purchasedCount, manualCount, manualNumbers);
-        printer.printPurchasedLotteries(lotteries);
+        Printer.printPurchasedLotteries(lotteries);
 
-        Lottery winningNumbers = ManualNumbersGenerator.createWinningNumbers(receiver.receiveWinningNumbers());
-        BonusNumber bonusNumber = BonusNumber.of(receiver.receiveBonusNumber(), winningNumbers);
+        Lottery winningNumbers = ManualNumbersGenerator.createWinningNumbers(Receiver.receiveWinningNumbers());
+        BonusNumber bonusNumber = BonusNumber.of(Receiver.receiveBonusNumber(), winningNumbers);
 
         WinningStatistics winningStatistics = lotteries.compareWithWinningNumbersAndBonusNumber(winningNumbers,
             bonusNumber);
-        printer.printWinningStatistics(winningStatistics);
-        printer.printTotalEarningsRate(Ranking.calculateEarningsRate(winningStatistics, purchasedCount));
+        Printer.printWinningStatistics(winningStatistics);
+        Printer.printTotalEarningsRate(Ranking.calculateEarningsRate(winningStatistics, purchasedCount));
     }
 }

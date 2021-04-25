@@ -14,11 +14,11 @@ public class Printer {
     private static final int SIZE_OF_RANK = 5;
     private static final int WIN_WITH_BONUS_NUMBER = 3;
 
-    public void printPurchasedCount(int manualCount, int purchasedCount) {
+    public static void printPurchasedCount(int manualCount, int purchasedCount) {
         System.out.printf(OutputMessage.PURCHASED_COUNT.getMessage(), manualCount, purchasedCount - manualCount);
     }
 
-    public void printPurchasedLotteries(Lotteries lotteries) {
+    public static void printPurchasedLotteries(Lotteries lotteries) {
         List<List<Integer>> lotteriesNumbers = lotteries.getLotteries()
             .stream()
             .map(Lottery::getIntegerNumbers)
@@ -28,7 +28,7 @@ public class Printer {
         lotteriesNumbers.forEach(System.out::println);
     }
 
-    public void printWinningStatistics(WinningStatistics winningStatistics) {
+    public static void printWinningStatistics(WinningStatistics winningStatistics) {
         StringBuilder builder = new StringBuilder();
         Ranking[] prizeMonies = Ranking.values();
 
@@ -40,7 +40,7 @@ public class Printer {
         System.out.print(builder);
     }
 
-    private void printWinningStatisticsDetails(StringBuilder builder, Ranking ranking, Integer result, int i) {
+    private static void printWinningStatisticsDetails(StringBuilder builder, Ranking ranking, Integer result, int i) {
         if (i == WIN_WITH_BONUS_NUMBER) {
             builder.append(
                 String.format(OutputMessage.MATCH_COUNT_WITH_BONUS.getMessage(), ranking.getMatchingCount(),
@@ -51,7 +51,7 @@ public class Printer {
             ranking.getPrizeMoney(), result));
     }
 
-    public void printTotalEarningsRate(double totalEarningsRate) {
+    public static void printTotalEarningsRate(double totalEarningsRate) {
         System.out.printf(OutputMessage.TOTAL_EARNINGS_RATE.getMessage(), totalEarningsRate);
     }
 }

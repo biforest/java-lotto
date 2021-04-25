@@ -9,18 +9,18 @@ import ui.message.InputMessage;
 public class Receiver {
     private static final Scanner SCANNER = new Scanner(System.in);
 
-    public int receivePurchasePrice() {
+    public static int receivePurchasePrice() {
         System.out.println(InputMessage.INPUT_PURCHASE_PRICE.getMessage());
         return SCANNER.nextInt();
     }
 
-    public int receiveManualCount() {
+    public static int receiveManualCount() {
         System.out.println(InputMessage.INPUT_MANUAL_COUNT.getMessage());
         SCANNER.nextLine();
         return SCANNER.nextInt();
     }
 
-    public List<String> receiveManualNumbers(int manualCount) {
+    public static List<String> receiveManualNumbers(int manualCount) {
         System.out.println(InputMessage.INPUT_MANUAL_NUMBERS.getMessage());
         SCANNER.nextLine();
         List<String> inputManualNumbers = new ArrayList<>();
@@ -30,12 +30,12 @@ public class Receiver {
         return inputManualNumbers;
     }
 
-    public String receiveWinningNumbers() {
+    public static String receiveWinningNumbers() {
         System.out.println(InputMessage.INPUT_LAST_WEEK_WINNING_NUMBERS.getMessage());
         return SCANNER.nextLine();
     }
 
-    public int receiveBonusNumber() {
+    public static int receiveBonusNumber() {
         System.out.println(InputMessage.INPUT_BONUS_BALL.getMessage());
         return SCANNER.nextInt();
     }
